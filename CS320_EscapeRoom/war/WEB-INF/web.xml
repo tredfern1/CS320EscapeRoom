@@ -11,8 +11,8 @@
     <servlet-class>edu.ycp.cs320.CS320_EscapeRoom.servlet.IndexServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>AddNumbersServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.CS320_EscapeRoom.servlet.AddNumbersServlet</servlet-class>
+    <servlet-name>GameServlet</servlet-name>
+    <servlet-class>edu.ycp.cs320.CS320_EscapeRoom.servlet.GameServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>GuessingGameServlet</servlet-name>
@@ -22,6 +22,7 @@
     <servlet-name>MultiplyNumbersServlet</servlet-name>
     <servlet-class>edu.ycp.cs320.CS320_EscapeRoom.servlet.MultiplyNumbersServlet</servlet-class>
   </servlet>
+
   
   
   <!-- AJAX servlets. -->
@@ -46,8 +47,8 @@
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>AddNumbersServlet</servlet-name>
-    <url-pattern>/addNumbers</url-pattern>
+    <servlet-name>GameServlet</servlet-name>
+    <url-pattern>/game</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>GuessingGameServlet</servlet-name>
@@ -58,6 +59,10 @@
     <servlet-name>MultiplyNumbersServlet</servlet-name>
     <url-pattern>/MultiplyNumbers</url-pattern>
   </servlet-mapping>
+  
+  
+  
+
 
   
   <!--  AJAX servlet mappings. -->
