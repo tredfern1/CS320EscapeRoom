@@ -1,0 +1,27 @@
+
+
+body{
+    background-color: black
+        
+}
+
+.main-heading{
+
+    color: white;
+    text-align: center;
+    border-bottom: solid;
+}
+
+.game-box{
+    border: solid;
+    color: white;
+    float: right;
+    width:500px;
+    height: 500px;
+    text-align: center;
+    border-width: 2px;
+    margin-top: 50px;
+    margin-right: 50px;
+    
+    
+}

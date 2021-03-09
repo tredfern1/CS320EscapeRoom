@@ -5,6 +5,9 @@
 <html>
 	<head>
 		<title>Game</title>
+		
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
+		
 		<style type="text/css">
 		.error {
 			color: red;
@@ -19,11 +22,11 @@
 	<body>
 		        
             
-        <div >
+        <div class="main-heading">
             <h1>Escape Room</h1>
          </div>
         
-            <div >
+            <div class="game-box">
                 <p> you are in a dark room</p>
             </div>
             
