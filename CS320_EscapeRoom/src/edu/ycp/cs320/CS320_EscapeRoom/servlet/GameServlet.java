@@ -17,7 +17,7 @@ public class GameServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		System.out.println("AddNumbers Servlet: doGet");	
+		System.out.println("Game Servlet: doGet");	
 		
 		// call JSP to generate empty form
 		req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
