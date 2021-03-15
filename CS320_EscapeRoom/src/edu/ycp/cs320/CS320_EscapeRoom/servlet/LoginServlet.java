@@ -10,24 +10,24 @@ import javax.servlet.http.HttpServletResponse;
 import edu.ycp.cs320.CS320_EscapeRoom.controller.GuessingGameController;
 import edu.ycp.cs320.CS320_EscapeRoom.model.GuessingGame;
 
-public class GuessingGameServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		System.out.println("GuessingGame Servlet: doGet");	
+		System.out.println("Login Servlet: doGet");	
 		
 		// call JSP to generate empty form
-		req.getRequestDispatcher("/_view/guessingGame.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		System.out.println("GuessingGame Servlet: doPost");
+		System.out.println("Login Servlet: doPost");
 		
 		// create GuessingGame model - model does not persist between requests
 		// must recreate it each time a Post comes in 

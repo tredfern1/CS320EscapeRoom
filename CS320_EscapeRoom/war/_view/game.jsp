@@ -28,6 +28,8 @@
         
             <div class="game-box">
                 <p> you are in a dark room</p>
+                
+                <input type="text">
             </div>
             
           

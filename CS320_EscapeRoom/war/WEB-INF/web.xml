@@ -15,8 +15,8 @@
     <servlet-class>edu.ycp.cs320.CS320_EscapeRoom.servlet.GameServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>GuessingGameServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.CS320_EscapeRoom.servlet.GuessingGameServlet</servlet-class>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>edu.ycp.cs320.CS320_EscapeRoom.servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>MultiplyNumbersServlet</servlet-name>
@@ -51,8 +51,8 @@
     <url-pattern>/game</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>GuessingGameServlet</servlet-name>
-    <url-pattern>/guessingGame</url-pattern>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>

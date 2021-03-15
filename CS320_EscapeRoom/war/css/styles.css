@@ -15,7 +15,7 @@ body{
 .game-box{
     border: solid;
     color: white;
-    float: right;
+    float: center;
     width:500px;
     height: 500px;
     text-align: center;
