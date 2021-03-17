@@ -29,7 +29,9 @@
             <div class="game-box">
                 <p> you are in a dark room</p>
                 
-                <input type="text">
+                <input type="text" name="command" value="${command}">
+                
+                <input type="Submit" name="submit" value="Go!">
             </div>
             
           
