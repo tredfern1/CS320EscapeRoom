@@ -1,4 +1,4 @@
-package edu.ycp.cs320.CS320_EscapeRoom.controller;
+package edu.ycp.cs320.CS320_EscapeRoom;
 
 public class Door extends Room {
 	
