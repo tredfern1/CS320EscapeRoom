@@ -18,6 +18,27 @@ public class Move {
 		}
 	}
 	
+	public String getOutput(String[] move) {
+		String output = null;
+		if(move[0] == "go") {
+			if(move[1] == "north") {
+				output = "you went north";
+			}
+			else if(move[1] == "east") {
+				output = "you went east";
+			}
+			else if(move[1] == "south") {
+				output = "you went south";
+			}
+			else if(move[1] == "west") {
+				output = "you went west";
+			}
+		}
+		else {
+			output = "your move does nothing";
+		}
+		return output;
+	}
 	
 	
 }
