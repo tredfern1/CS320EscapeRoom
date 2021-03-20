@@ -1,3 +1,6 @@
+package edu.ycp.cs320.CS320_EscapeRoom;
+
+
 public class Room {
 	
 	private int roomNumber;
