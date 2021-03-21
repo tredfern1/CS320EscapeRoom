@@ -4,7 +4,11 @@ public class Move {
 
 	//splits the move into two separate strings in an array
 	public String[] split(String move) {
+	
+		
 		return move.split(" ");
+		
+
 	}
 	
 	//if the command consists of two words it is considered valid
@@ -20,18 +24,23 @@ public class Move {
 	
 	public String getOutput(String[] move) {
 		String output = null;
-		if(move[0] == "go") {
-			if(move[1] == "north") {
+		System.out.println(move[0]);
+		System.out.println(move[1]);
+		if(move[0].contains("go")) {
+			if(move[1].contains("north")) {
 				output = "you went north";
 			}
-			else if(move[1] == "east") {
+			else if(move[1].contains("east")) {
 				output = "you went east";
 			}
-			else if(move[1] == "south") {
+			else if(move[1].contains("south")) {
 				output = "you went south";
 			}
-			else if(move[1] == "west") {
+			else if(move[1].contains("west")) {
 				output = "you went west";
+			}
+			else {
+				output = "f";
 			}
 		}
 		else {

@@ -21,7 +21,7 @@
 
 	<body>
 		        
-            
+     <form action="${pageContext.servletContext.contextPath}/game" method="post">       
         <div class="main-heading">
             <h1>Escape Room</h1>
          </div>
@@ -29,11 +29,17 @@
             <div class="game-box">
                 <p> you are in a dark room</p>
                 
-                <input type="text" name="command" value="${command}">
+                <input type="text" name="move" value="${move}">
                 
                 <input type="Submit" name="submit" value="Go!">
+              <table>
+                <tr>
+					<td class="label">Result:</td>
+					<td>${result}</td>
+				</tr>
+				</table>
             </div>
-            
+        </form>   
           
             
   

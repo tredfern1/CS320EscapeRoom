@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs320.CS320_EscapeRoom.controller.AddNumbersController;
+import edu.ycp.cs320.CS320_EscapeRoom.controller.GameController;
+import edu.ycp.cs320.CS320_EscapeRoom.model.Move;
 import edu.ycp.cs320.CS320_EscapeRoom.model.Numbers;
 
 public class GameServlet extends HttpServlet {
@@ -27,6 +29,22 @@ public class GameServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		System.out.println("Game Servlet: doPost");
 		
+		String result = null;
+		
+		Move model = new Move();
+		
+		GameController controller = new GameController();
+		
+		controller.setModel(model);
+		
+		String move = req.getParameter("move");
+		
+		result = controller.getOuput(move);
+		
+		req.setAttribute("result", result);
+		
+		req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
 	}
 }

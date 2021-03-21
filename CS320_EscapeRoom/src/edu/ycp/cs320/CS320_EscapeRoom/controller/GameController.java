@@ -1,22 +1,25 @@
 package edu.ycp.cs320.CS320_EscapeRoom.controller;
 
-import edu.ycp.cs320.CS320_EscapeRoom.model.Numbers;
+import edu.ycp.cs320.CS320_EscapeRoom.model.Move;
 
 public class GameController {
 	
-	private Numbers model;
+	private Move model;
 	
-	public void setModel(Numbers model) {
+	public void setModel(Move model) {
 		this.model = model;
 	}
 	
 	
-	public void add(Double first, Double second, Double third) {
-		model.add(first, second, third);
+	public String getOuput(String move) {
+		
+		if(model.validate(model.split(move))) {
+			return model.getOutput(model.split(move));
+		}
+		else {
+			return "invalid move";
+		}
 	}
 	
-	public double getResult()
-	{
-		return model.getResult();
-	}
+
 }
