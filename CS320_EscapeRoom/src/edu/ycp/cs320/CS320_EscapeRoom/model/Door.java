@@ -1,13 +1,12 @@
+package edu.ycp.cs320.CS320_EscapeRoom.model;
 
-public class Door extends Room {
+public class Door {
 	
-	private Room isPartOf;
-	private Coordinate location;
+	private Spot isPartOf;
 	private boolean isOpen;
 	
-	Door(Room r, Coordinate c, boolean isOpen) {
-		this.isPartOf = r;
-		this.location = c;
+	Door (Spot s, boolean isOpen) {
+		this.isPartOf = s;
 		this.isOpen = isOpen;
 	}
 	
@@ -18,7 +17,7 @@ public class Door extends Room {
 	
 	//returns the coordinate where a door is located
 	public Coordinate getLocation() {
-		return location;
+		return isPartOf.getSpotLocation();
 	}
 	
 	//returns wether a door is locked or open
