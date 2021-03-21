@@ -59,7 +59,8 @@ public class GameServlet extends HttpServlet {
 		String move = req.getParameter("move");
 		
 		result = controller.getOuput(move);
-
+		
+		//COORDINATE TEST
 		if(result == "you went north")
 		{
 			//this code doesn't work because data is not saved between dopost
@@ -68,7 +69,7 @@ public class GameServlet extends HttpServlet {
 			//x = controller.getPlayer().getPlayerx();
 			//y = controller.getPlayer().getPlayery();
 			x = x + 1;
-			coor = x + "," + y;
+			coor = x + "," + y;  //figure out how to set coordinate
 		}
 		else if(result == "you went south")
 		{
@@ -89,11 +90,13 @@ public class GameServlet extends HttpServlet {
 		{
 			coor = x + "," + y;
 		}
-
-		req.setAttribute("result", result);
 		req.setAttribute("result2", coor);
 		req.setAttribute("x", x);
 		req.setAttribute("y", y);
+		//
+		
+		req.setAttribute("result", result);
+		
 		
 		req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
 	}
