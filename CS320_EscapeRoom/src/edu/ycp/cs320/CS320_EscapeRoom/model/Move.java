@@ -1,5 +1,7 @@
 package edu.ycp.cs320.CS320_EscapeRoom.model;
 
+import edu.ycp.cs320.CS320_EscapeRoom.controller.GameController;
+
 public class Move {
 
 	//splits the move into two separate strings in an array

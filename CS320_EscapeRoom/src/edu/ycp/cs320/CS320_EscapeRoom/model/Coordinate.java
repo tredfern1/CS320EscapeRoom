@@ -3,7 +3,14 @@ package edu.ycp.cs320.CS320_EscapeRoom.model;
 public class Coordinate {
 	private int x,y;
 	
-	public Coordinate(int x, int y) {
+	
+	public Coordinate()
+	{
+		this.x = 0;
+		this.y = 0;
+	}
+	
+	public void setCoordinate(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}

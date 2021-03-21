@@ -32,10 +32,17 @@
                 <input type="text" name="move" value="${move}">
                 
                 <input type="Submit" name="submit" value="Go!">
+                
+                <input type="hidden" name = "x" value="${x}">
+                <input type="hidden" name = "y" value="${y}">
               <table>
                 <tr>
 					<td class="label">Result:</td>
 					<td>${result}</td>
+				</tr>
+				<tr>
+					<td class="label">Coord:</td>
+					<td>${result2}</td>
 				</tr>
 				</table>
             </div>
