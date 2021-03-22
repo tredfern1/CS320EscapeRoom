@@ -1,7 +1,6 @@
 package edu.ycp.cs320.CS320_EscapeRoom.model;
 public class Spot {
 	
-	//private int roomNumber;
 	private Coordinate location;
 	private String[] items;
 	private String[] descriptions;
@@ -11,7 +10,7 @@ public class Spot {
 	boolean isWin;
 	boolean isDoor;
 	
-	Spot (int roomNumber, Coordinate location, String[] items, String[] descriptions, boolean isStartingSpot, boolean isWall, boolean isWin, boolean isDoor){
+	Spot (Coordinate location, String[] items, String[] descriptions, boolean isStartingSpot, boolean isWall, boolean isWin, boolean isDoor){
 		//this.roomNumber = roomNumber;
 		this.location = location;
 		this.items = items;
@@ -31,10 +30,19 @@ public class Spot {
 		return descriptions[state];
 	}
 	
+	//returns the Coordinate where a spot is located
 	public Coordinate getSpotLocation() {
 		return location;
 	}
 	
+	//returns the item in the provided index in the array of items in the spot
+	public String getItem(int index) {
+		return items[index];
+	}
 	
+	//TODO: will remove an item from the spot
+	public void removeItem(String itemName) {
+		
+	}
 	
 }

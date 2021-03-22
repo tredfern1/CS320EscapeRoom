@@ -1,8 +1,9 @@
-<<<<<<< HEAD:CS320_EscapeRoom/src/edu/ycp/cs320/CS320_EscapeRoom/Door.java
-package edu.ycp.cs320.CS320_EscapeRoom;
-=======
+
+//<<<<<<< HEAD:CS320_EscapeRoom/src/edu/ycp/cs320/CS320_EscapeRoom/Door.java
+//package edu.ycp.cs320.CS320_EscapeRoom;
+
 package edu.ycp.cs320.CS320_EscapeRoom.model;
->>>>>>> main:CS320_EscapeRoom/src/edu/ycp/cs320/CS320_EscapeRoom/model/Door.java
+//>>>>>>> main:CS320_EscapeRoom/src/edu/ycp/cs320/CS320_EscapeRoom/model/Door.java
 
 public class Door {
 	
