@@ -25,7 +25,7 @@ public class Player {
 	
 	public int getPlayery()
 	{
-		return this.coord.getX();
+		return this.coord.getY();
 	}
 	
 }

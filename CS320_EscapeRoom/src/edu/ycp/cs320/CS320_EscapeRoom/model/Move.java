@@ -26,8 +26,7 @@ public class Move {
 	
 	public String getOutput(String[] move) {
 		String output = null;
-		System.out.println(move[0]);
-		System.out.println(move[1]);
+
 		if(move[0].contains("go")) {
 			if(move[1].contains("north")) {
 				output = "you went north";
