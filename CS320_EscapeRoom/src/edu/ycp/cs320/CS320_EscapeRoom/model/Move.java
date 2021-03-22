@@ -42,7 +42,7 @@ public class Move {
 				output = "you went west";
 			}
 			else {
-				output = "f";
+				output = "your move does nothing";
 			}
 		}
 		else {
