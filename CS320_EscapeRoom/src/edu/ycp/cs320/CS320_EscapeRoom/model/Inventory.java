@@ -1,16 +1,37 @@
 package edu.ycp.cs320.CS320_EscapeRoom.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Inventory {
 	
-	String[] playerInventory = {}; //stores items and keys the player has
+	ArrayList<String> playerInventory; //stores items and keys the player has
 	
 	public Inventory()
 	{
-		Arrays.fill(playerInventory, null); //creates empty array anytime inventory is called
-		
+		playerInventory = new ArrayList<String>(); //creates empty array anytime inventory is called
 	}
 	
+	public void additem(String item)
+	{
+		playerInventory.add(item);
+	}
+	
+	public boolean hasItem(String item)
+	{
+		if(playerInventory.contains(item))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public int invSize()
+	{
+		return playerInventory.size();
+	}
 	
 }
