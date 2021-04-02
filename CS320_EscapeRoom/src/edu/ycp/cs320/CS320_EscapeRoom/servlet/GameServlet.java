@@ -52,7 +52,7 @@ public class GameServlet extends HttpServlet {
 
 		Move model = new Move();
 		
-		GameController controller = new GameController();
+		GameController controller = new GameController(x, y);
 		
 		controller.setModel(model);
 		
@@ -60,36 +60,52 @@ public class GameServlet extends HttpServlet {
 		
 		result = controller.getOuput(move);
 		
+		x = controller.getPlayer().getPlayerx();
+		y = controller.getPlayer().getPlayery();
 		//COORDINATE TEST
 		if(result == "you went north")
 		{
 			//this code doesn't work because data is not saved between dopost
 			//ask tutor best way to save controller
-			//controller.getPlayer().updatePlayerCoor(controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery() + 1);
-			//x = controller.getPlayer().getPlayerx();
-			//y = controller.getPlayer().getPlayery();
-			x = x + 1;
+			y = y + 1;
 			coor = x + "," + y;  //figure out how to set coordinate
 		}
 		else if(result == "you went south")
 		{
-			x = x - 1;
+			y = y - 1;
 			coor = x + "," + y;
 		}
 		else if(result == "you went west")
 		{
-			y = y - 1;
+			x = x - 1;
 			coor = x + "," + y;
 		}
 		else if(result == "you went east")
 		{
-			y = y + 1;
+			x = x + 1;
 			coor = x + "," + y;
 		}
 		else
 		{
 			coor = x + "," + y;
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//set attributes
 		req.setAttribute("result2", coor);
 		req.setAttribute("x", x);
 		req.setAttribute("y", y);
