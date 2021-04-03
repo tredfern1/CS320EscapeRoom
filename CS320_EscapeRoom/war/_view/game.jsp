@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+
+
+
 <html>
 	<head>
 		<title>Game</title>
@@ -27,7 +30,8 @@
          </div>
         
             <div class="game-box">
-                <p> you are in a dark room</p>
+            	
+         		<p> ${description == null ? "You are in the center of a dark and dirty room." : description}</p>
                 
                 <input type="text" name="move" value="${move}">
                 
@@ -35,6 +39,11 @@
                 
                 <input type="hidden" name = "x" value="${x}">
                 <input type="hidden" name = "y" value="${y}">
+                <input type="hidden" name = "room" value="${room}">
+                
+                <input type="hidden" name = "Inventory" value="${Inventory}">
+                <input type="hidden" name = "Actions" value="${Actions}">
+                
               <table>
                 <tr>
 					<td class="label">Result:</td>
@@ -42,7 +51,19 @@
 				</tr>
 				<tr>
 					<td class="label">Coord:</td>
-					<td>${result2}</td>
+					<td>${coords}</td>
+				</tr>
+				<tr>
+					<td class="label">Inventory:</td>
+					<td>${Inventory}</td>
+				</tr>
+				<tr>
+					<td class="label">Actions made:</td>
+					<td>${Actions}</td>
+				</tr>
+				<tr>
+					<td class="label">Room number:</td>
+					<td>${room}</td>
 				</tr>
 				</table>
             </div>

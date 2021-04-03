@@ -3,59 +3,59 @@ package edu.ycp.cs320.CS320_EscapeRoom.model;
 public class Map {
 	
 	Spot[][] spots;
-	
-	public Map() {
-		this.spots[0][0].setdescription("This is the first room");
+
+	public Map(int room) {
+		// Initialize Map Spots
+		spots = new Spot[3][3];
+		for(int i = 0; i < 3; i++)
+		{
+			for(int j = 0; j < 3; j++)
+			{
+				spots[i][j] = new Spot();
+			}
+		}
+		if(room == 1)
+		{
+		//Description and item setters before actions #0
+		spots[0][0].setdescription("Seems like a dark an empty corner.");
+		spots[0][1].setdescription("There's a heavy *hammer on the floor. Wonder who left that there?"); 
+		spots[0][1].addItem("hammer"); //adds item
+		spots[0][2].setdescription("You see a crate lying on the ground. Looks poorly made.");
+		spots[0][2].addItem("redkey"); 
+		spots[1][0].setdescription("There's a window with bars on it. No way you could get through this.");
+		spots[1][1].setdescription("You are in the center of a dark and dirty room.");
+		spots[1][2].setdescription("There's a red door with a keyhole, it's locked.");
+		spots[2][0].setdescription("In this corner of the room you see a rat, ew!");
+		spots[2][1].setdescription("Yeah there's nothing here but a sense of dread."); 
+		spots[2][2].setdescription("Yikes! a corner with some nasty rats!");
+		
+		//Description setters after actions #1
+		spots[0][1].setdescription("There's a dusty spot where the hammer was."); 
+		spots[0][2].setdescription("The crate is broken and lying on the ground. Looks like a little *redkey fell out.");
+		spots[1][2].setdescription("There's a red door with a keyhole, it's been unlocked!");
+		//Description setters after actions #2
+		spots[0][2].setdescription("The crate is broken and lying on the ground. This is where you found the key.");
+		}
+		if(room == 2)
+		{
+			spots[0][0].setdescription("This is a test of room 2");
+			spots[0][1].setdescription("This is a test of room 2"); 
+			spots[0][2].setdescription("This is a test of room 2");
+			spots[1][0].setdescription("This is a test of room 2");
+			spots[1][1].setdescription("This is a test of room 2");
+			spots[1][2].setdescription("This is a test of room 2");
+			spots[2][0].setdescription("This is a test of room 2");
+			spots[2][1].setdescription("This is a test of room 2"); 
+			spots[2][2].setdescription("This is a test of room 2");
+		}
+		
 	}
 	
-	Map (Spot[][] s) {
-		this.spots = s;
-	}
 	
 	public Spot getSpot(int x, int y) {
 		return spots[x][y];
 	}
 	
 	
-	public String getSpotDescription(int x, int y)
-	{
-		String description;
-		description = spots[x][y].lookAround(0);
-		
-		return description;
-	}
-	
-	/*
-	//generates the particular map for our game
-	public Map generateMap() {
-		Map m;
-		Spot[][] s;
-		
-		for (int x = 0; x <= 13; x++) {
-			for (int y = 0; y <= 9; y++) {
-				
-				//creates the walls 
-				if (x == 0 || x == 13) {
-					
-				}
-				
-				//creates the doors
-				
-				
-				//creates spots in the center room (and start spot)
-				
-				//creates spots in the right room
-				
-				//creates spots in the left room
-				
-				//creates spots in the bottom room
-				
-				//creates win spot
-			}
-		}
-		
-		
-		return m;
-	}
-	*/
+
 }
