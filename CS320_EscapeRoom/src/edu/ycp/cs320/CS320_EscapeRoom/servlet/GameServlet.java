@@ -89,7 +89,14 @@ public class GameServlet extends HttpServlet {
 			y = 0;
 			room += 1;
 			coor = x + "," + y;
-		} else {
+			
+		} else if (result == "you went back to room 1") {  //if the player changes rooms
+			x = 1;
+			y = 2;
+			room -= 1;
+			coor = x + "," + y;
+			
+		}else {
 			coor = x + "," + y;
 		}
 		//

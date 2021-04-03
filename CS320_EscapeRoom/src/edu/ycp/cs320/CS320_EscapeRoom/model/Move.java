@@ -18,6 +18,10 @@ public class Move {
 				{
 					return true;
 				}
+				else if(move[1].contains("south") && player1.hasAction("unlock1") && playerx == 1 && playery == 0 && player1.getRoomNumber() == 2)
+				{
+					return true;
+				}
 				else
 				{
 					if(move[1].contains("north") && playery + 1 <= 2) {
@@ -97,7 +101,14 @@ public class Move {
 				output = "you went east";
 			}
 			else if(move[1].contains("south")) {
-				output = "you went south";
+				if(player1.hasAction("unlock1") && player1.getPlayerx() == 1 && player1.getPlayery() == 0 && player1.getRoomNumber() == 2) //ROOM CHANGE VALIDATION
+				{
+					output = "you went back to room 1";
+				}
+				else
+				{
+					output = "you went south";
+				}
 			}
 			else if(move[1].contains("west")) {
 				output = "you went west";

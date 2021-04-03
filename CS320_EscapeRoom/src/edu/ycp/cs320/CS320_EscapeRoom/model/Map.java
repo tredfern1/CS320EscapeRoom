@@ -41,7 +41,7 @@ public class Map {
 			spots[0][0].setdescription("This is a test of room 2");
 			spots[0][1].setdescription("This is a test of room 2"); 
 			spots[0][2].setdescription("This is a test of room 2");
-			spots[1][0].setdescription("This is a test of room 2");
+			spots[1][0].setdescription("This door goes back to room 1");
 			spots[1][1].setdescription("This is a test of room 2");
 			spots[1][2].setdescription("This is a test of room 2");
 			spots[2][0].setdescription("This is a test of room 2");
