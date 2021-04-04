@@ -38,15 +38,15 @@ public class Map {
 		}
 		if(room == 2)
 		{
-			spots[0][0].setdescription("This is a test of room 2");
-			spots[0][1].setdescription("This is a test of room 2"); 
-			spots[0][2].setdescription("This is a test of room 2");
+			spots[0][0].setdescription("There's nothing but a bunch of cobwebs here.");
+			spots[0][1].setdescription("There's a small hole at the bass of the wall. Too small for your hand to fit in, but maybe something smaller?"); 
+			spots[0][2].setdescription("There is a safe with a keypad");
 			spots[1][0].setdescription("This door goes back to room 1");
-			spots[1][1].setdescription("This is a test of room 2");
-			spots[1][2].setdescription("This is a test of room 2");
-			spots[2][0].setdescription("This is a test of room 2");
-			spots[2][1].setdescription("This is a test of room 2"); 
-			spots[2][2].setdescription("This is a test of room 2");
+			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
+			spots[1][2].setdescription("There's a crowbar leaned against the wall");
+			spots[2][0].setdescription("How shocking!? More cobwebs.");
+			spots[2][1].setdescription("There is a lit torch mounted on the wall"); 
+			spots[2][2].setdescription("This corner is too dark to see anything. Perhaps some light would help?");
 		}
 		
 	}
