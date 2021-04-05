@@ -30,6 +30,7 @@ public class Map {
 		spots[2][0].setdescription("In this corner of the room you see a rat, ew!");
 		spots[2][1].setdescription("Yeah there's nothing here but a sense of dread."); 
 		spots[2][2].setdescription("Yikes! a corner with some nasty rats!");
+	
 		
 		//Description setters after actions #1
 		spots[0][1].setdescription("There's a dusty spot where the hammer was."); 
