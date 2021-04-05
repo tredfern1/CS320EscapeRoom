@@ -108,9 +108,9 @@ public class GameServlet extends HttpServlet {
 		
 		if(result.contains("You used the")) //check for uses of items
 		{
-			System.out.println("BIG NUT");
+		
 			String[] input = move.split(" ");
-			System.out.println("input[1] :" + input[1]);
+
 			if(input[1].contains("hammer"))
 			{              
 				Actions = Actions + "boxBreak" + " "; 

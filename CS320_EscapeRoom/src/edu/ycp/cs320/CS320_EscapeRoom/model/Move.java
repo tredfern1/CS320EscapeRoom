@@ -121,9 +121,7 @@ public class Move {
 		}
 		else if(move[0].contains("use"))
 		{
-
 				output = "You used the " + move[1];
-
 		}
 		else {
 			output = "your move does nothing";
