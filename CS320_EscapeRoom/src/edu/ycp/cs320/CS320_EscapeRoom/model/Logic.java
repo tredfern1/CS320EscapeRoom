@@ -7,13 +7,26 @@ public class Logic {
 		//create logic
 	}
 	
-	public String LogicPickup(String move, String result, String Inventory, String Actions) {
+	public String LogicPickup(String move, String result, String Inventory) {
 		if(result.contains("You picked up a")) //add item to inventory
 		{
 			String[] input = move.split(" ");
 			Inventory = Inventory + input[1] + " ";      
 		}
 		return Inventory;//add to string of items
+	}
+	
+	public String LogicPickupMapInventory(String move, String result, String MapInventory, Player player1) {
+		if(result.contains("You picked up a")) //add item to inventory
+		{
+			String[] input = move.split(" ");
+			if(MapInventory.contains(input[1]))
+			{
+				String replaceString = String.valueOf(player1.getPlayerx()) + String.valueOf(player1.getPlayery()) + String.valueOf(player1.getRoomNumber() + input[1]);
+				MapInventory = MapInventory.replace(replaceString, "");
+			}
+		}
+		return MapInventory;//add to string of items
 	}
 		
 		
