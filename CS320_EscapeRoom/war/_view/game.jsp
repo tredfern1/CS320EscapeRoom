@@ -42,6 +42,7 @@
                 <input type="hidden" name = "room" value="${room}">
                 
                 <input type="hidden" name = "Inventory" value="${Inventory}">
+                <input type="hidden" name = "MapInventory" value="${MapInventory}">
                 <input type="hidden" name = "Actions" value="${Actions}">
                 
               <table>
@@ -60,6 +61,10 @@
 				<tr>
 					<td class="label">Actions made:</td>
 					<td>${Actions}</td>
+				</tr>
+				<tr>
+					<td class="label">Map Inventory:</td>
+					<td>${MapInventory}</td>
 				</tr>
 				<tr>
 					<td class="label">Room number:</td>

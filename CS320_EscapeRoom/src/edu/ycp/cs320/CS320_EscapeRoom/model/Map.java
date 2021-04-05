@@ -1,10 +1,13 @@
 package edu.ycp.cs320.CS320_EscapeRoom.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Map {
 	
 	Spot[][] spots;
 
-	public Map(int room) {
+	public Map(int room, List<String> newMapInventory) {
 		// Initialize Map Spots
 		spots = new Spot[3][3];
 		for(int i = 0; i < 3; i++)
@@ -14,20 +17,20 @@ public class Map {
 				spots[i][j] = new Spot();
 			}
 		}
+		//Set descriptions
 		if(room == 1)
 		{
 		//Description and item setters before actions #0
 		spots[0][0].setdescription("Seems like a dark an empty corner.");
 		spots[0][1].setdescription("There's a heavy *hammer on the floor. Wonder who left that there?"); 
-		spots[0][1].addItem("hammer"); //adds item
 		spots[0][2].setdescription("You see a crate lying on the ground. Looks poorly made.");
-		spots[0][2].addItem("redkey"); 
 		spots[1][0].setdescription("There's a window with bars on it. No way you could get through this.");
 		spots[1][1].setdescription("You are in the center of a dark and dirty room.");
 		spots[1][2].setdescription("There's a red door with a keyhole, it's locked.");
 		spots[2][0].setdescription("In this corner of the room you see a rat, ew!");
 		spots[2][1].setdescription("Yeah there's nothing here but a sense of dread."); 
 		spots[2][2].setdescription("Yikes! a corner with some nasty rats!");
+	
 		
 		//Description setters after actions #1
 		spots[0][1].setdescription("There's a dusty spot where the hammer was."); 
@@ -46,11 +49,11 @@ public class Map {
 			spots[1][0].setdescription("This door goes back to room 1");
 			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
 			spots[1][2].setdescription("There's a crowbar leaned against the wall");
-			spots[1][2].addItem("crowbar");
+			//spots[1][2].addItem("crowbar");
 			
 			spots[2][0].setdescription("How shocking!? More cobwebs.");
 			spots[2][1].setdescription("There is a lit torch mounted on the wall"); 
-			spots[2][1].addItem("torch");
+			//spots[2][1].addItem("torch");
 			
 			spots[2][2].setdescription("This corner is too dark to see anything. Perhaps some light would help?");
 			
@@ -63,7 +66,26 @@ public class Map {
 			
 		}
 		
+		
+		//SET THE ITEMS IN THE MAP BASED ON THE ARRAY OF MAP ITEMS
+		for(int i = 0; i < newMapInventory.size(); i++) //goes through all items in the map and adds them based on the string
+		{
+			if(!newMapInventory.get(i).isEmpty())
+			{
+				int x = Character.getNumericValue(newMapInventory.get(i).charAt(0));
+				int y = Character.getNumericValue(newMapInventory.get(i).charAt(1));
+				int itemRoom = Character.getNumericValue(newMapInventory.get(i).charAt(2));
+				String item = newMapInventory.get(i).substring(3);
+				
+				if(itemRoom == room)
+				{
+					spots[x][y].addItem(item);
+				}
+			}
+		}
+		
 	}
+	
 	
 	
 	public Spot getSpot(int x, int y) {
