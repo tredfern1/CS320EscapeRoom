@@ -43,14 +43,11 @@ public class Move {
 			}
 			else if(move[0].contains("pickup")) //PICKUP VALIDATION //////////////////////
 			{
-				if(move[1].contains("hammer") && spot.hasItem("hammer") && !player1.hasitem("hammer"))
+				if(spot.hasItem(move[1]) && !player1.hasitem(move[1]))
 				{
 					return true;
 				} //add more items here
-				else if(move[1].contains("redkey") && spot.hasItem("redkey") && !player1.hasitem("redkey") && player1.hasAction("boxBreak"))
-				{
-					return true;
-				} //add more items here
+		
 				else
 				{
 					return false;

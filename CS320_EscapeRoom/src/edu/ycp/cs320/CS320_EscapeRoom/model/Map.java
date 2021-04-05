@@ -44,8 +44,12 @@ public class Map {
 			spots[1][0].setdescription("This door goes back to room 1");
 			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
 			spots[1][2].setdescription("There's a crowbar leaned against the wall");
+			spots[1][2].addItem("crowbar");
+			
 			spots[2][0].setdescription("How shocking!? More cobwebs.");
 			spots[2][1].setdescription("There is a lit torch mounted on the wall"); 
+			spots[2][1].addItem("torch");
+			
 			spots[2][2].setdescription("This corner is too dark to see anything. Perhaps some light would help?");
 		}
 		
