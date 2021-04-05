@@ -37,10 +37,12 @@ public class Map {
 		spots[0][2].setdescription("The crate is broken and lying on the ground. This is where you found the key.");
 		}
 		if(room == 2)
-		{
+		{	//set first descriptions/items of the room
 			spots[0][0].setdescription("There's nothing but a bunch of cobwebs here.");
 			spots[0][1].setdescription("There's a small hole at the bass of the wall. Too small for your hand to fit in, but maybe something smaller?"); 
 			spots[0][2].setdescription("There is a safe with a keypad");
+			spots[0][2].addItem("redkey"); 
+			
 			spots[1][0].setdescription("This door goes back to room 1");
 			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
 			spots[1][2].setdescription("There's a crowbar leaned against the wall");
@@ -51,6 +53,14 @@ public class Map {
 			spots[2][1].addItem("torch");
 			
 			spots[2][2].setdescription("This corner is too dark to see anything. Perhaps some light would help?");
+			
+			//set second descriptions of the room
+			spots[1][2].setdescription("This is the spot where the crowbar used to be");
+			
+			spots[2][2].setdescription("You can now see a code on the wall. 6851");
+			
+			spots[0][2].setdescription("The safe is unlocked and you see a bluekey inside of it");
+			
 		}
 		
 	}

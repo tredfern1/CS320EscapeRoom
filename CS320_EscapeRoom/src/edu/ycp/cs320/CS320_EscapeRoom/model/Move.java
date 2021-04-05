@@ -68,6 +68,15 @@ public class Move {
 					return false;
 				}
 			}
+			else if(move[0].contains("enter")) {
+				if(move[1].contains("6851") && spot.hasItem("bluekey")) {
+					return true;
+				}
+				else{
+				return false;
+				}
+				
+			}
 			else
 			{
 				return false;
@@ -122,6 +131,9 @@ public class Move {
 		else if(move[0].contains("use"))
 		{
 				output = "You used the " + move[1];
+		}
+		else if(move[0].contains("enter")){
+			output = "you've unlocked the safe!";
 		}
 		else {
 			output = "your move does nothing";
