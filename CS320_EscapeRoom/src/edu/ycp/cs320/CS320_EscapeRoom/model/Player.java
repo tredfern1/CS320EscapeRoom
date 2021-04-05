@@ -2,7 +2,7 @@ package edu.ycp.cs320.CS320_EscapeRoom.model;
 
 import java.util.ArrayList;
 
-import edu.ycp.cs320.CS320_EscapeRoom.model.Inventory;
+
 
 public class Player {
 	
@@ -37,7 +37,7 @@ public class Player {
 		playerInv.additem(item);
 	}
 	
-	public void addActiontoActions(String action)
+	public void addActiontoActions(String action)  
 	{
 		Actions.add(action);
 	}

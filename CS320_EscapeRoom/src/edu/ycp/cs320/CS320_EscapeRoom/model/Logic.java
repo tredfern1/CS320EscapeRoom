@@ -25,6 +25,11 @@ public class Logic {
 				String replaceString = String.valueOf(player1.getPlayerx()) + String.valueOf(player1.getPlayery()) + String.valueOf(player1.getRoomNumber() + input[1]);
 				MapInventory = MapInventory.replace(replaceString, "");
 			}
+		if(result.contains("You dropped the")) {
+			
+			MapInventory = MapInventory + String.valueOf(player1.getPlayerx()) + String.valueOf(player1.getPlayery()) + String.valueOf(player1.getRoomNumber()) + input[1] + " ";
+			
+		}
 		}
 		return MapInventory;//add to string of items
 	}
@@ -45,6 +50,11 @@ public class Logic {
 			if(input[1].contains("redkey"))
 			{              
 				Actions = Actions + "unlock1" + " "; 
+				//add respectable tags to actions(remember the space)
+			}
+			if(input[1].contains("torch"))
+			{              
+				Actions = Actions + "litroom" + " "; 
 				//add respectable tags to actions(remember the space)
 			}
 		}

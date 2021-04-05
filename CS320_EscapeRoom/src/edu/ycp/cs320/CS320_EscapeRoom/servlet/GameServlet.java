@@ -53,7 +53,7 @@ public class GameServlet extends HttpServlet {
 		}
 		if(MapInventory.length() < 1)      //INTITAL VALUES OF THE MAPS INVENTORY, THIS PLACES THE ITEMS IN THE MAP 
 		{
-			MapInventory = "011hammer " + "021redkey " + "122crowbar " + "212torch " + "122rat "; //FORMAT IS: spotx,spoty,spotroom, spotitem, space Ex. 011hammer 0 is x, 1 is y, 1, is room#, hammer is item 
+			MapInventory = "011hammer " + "021redkey " + "122crowbar " + "212torch " + "221rat " + "022bluekey"; //FORMAT IS: spotx,spoty,spotroom, spotitem, space Ex. 011hammer 0 is x, 1 is y, 1, is room#, hammer is item 
 			//Seperate items by a space at end of entry
 		}
 		

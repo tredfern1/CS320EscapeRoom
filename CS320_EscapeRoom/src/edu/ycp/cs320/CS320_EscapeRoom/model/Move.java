@@ -82,6 +82,14 @@ public class Move {
 				return false;
 			}
 		}
+		else if(move[0].contains("drop")) {
+			if(player1.hasitem(move[0])) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 		else {
 			return false;
 		}
@@ -135,10 +143,13 @@ public class Move {
 		else if(move[0].contains("enter")){
 			output = "you've unlocked the safe!";
 		}
+		else if(move[0].contains("drop")) {
+			output = "You dropped the" + move[1];
+		}
 		else {
 			output = "your move does nothing";
 		}
-		
+
 		
 		return output;
 	}

@@ -4,7 +4,7 @@ public class Coordinate {
 	private int x,y;
 	
 	
-	public Coordinate()
+	public Coordinate()   
 	{
 		this.x = 0;
 		this.y = 0;
@@ -13,7 +13,7 @@ public class Coordinate {
 	public void setCoordinate(int x, int y) {
 		this.x = x;
 		this.y = y;
-	}
+	} 
 	
 	public void setX(int x) {
 		this.x = x;
