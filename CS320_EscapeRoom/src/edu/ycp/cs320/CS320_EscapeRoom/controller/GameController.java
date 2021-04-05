@@ -19,11 +19,10 @@ public class GameController {
 	Map map1;
 	Logic logic1;
 	
-	public GameController(int playerx, int playery, String Inventory, String Actions, int room)
+	public GameController(int playerx, int playery, String Inventory, String Actions, String MapInventory, int room)
 	{
 		
 		logic1 = new Logic();
-		map1 = new Map(room); //get map
 		player1 = new Player();//create instance of all game related
 		player1.setRoomNumber(room);
 		this.getPlayer().updatePlayerCoor(playerx, playery); //player coord
@@ -45,7 +44,12 @@ public class GameController {
 		{
 			player1.addActiontoActions(newActions.get(i));
 		}
-		System.out.println("ACTIONS ARRAY: " + player1.Actions());
+		//do the same for map inventory, take the string and convert to arraylist
+		temp = MapInventory.split(" ");
+		List<String> newMapInventory = new ArrayList<String>();
+		newMapInventory = Arrays.asList(temp);
+		//UPDATE THE MAP WITH ITEMS
+		map1 = new Map(room, newMapInventory); //get map
 
 	}
 
@@ -75,7 +79,6 @@ public class GameController {
 			descriptionIndex = 1;
 		}
 	
-		System.out.println(player1.getPlayerx() + " " + player1.getPlayery());
 		description = map1.getSpot(playerx, playery).getdescriptionAt(descriptionIndex);
 		
 		
@@ -108,6 +111,10 @@ public class GameController {
 			{
 				return "You can't pickup anything";
 			}
+			else if(command[0].contains("use"))
+			{
+				return "You can't use that here";
+			}
 			else
 			{
 				return "You cannot do that";
@@ -121,9 +128,14 @@ public class GameController {
 		score += 1;
 	}
 	
-	public String getPickupLogic(String move, String result, String Inventory, String Actions)
+	public String getPickupLogic(String move, String result, String Inventory)
 	{
-		return logic1.LogicPickup(move, result, Inventory, Actions); 
+		return logic1.LogicPickup(move, result, Inventory); 
+	}
+	
+	public String getMapPickupLogic(String move, String result, String MapInventory, Player player1)
+	{
+		return logic1.LogicPickupMapInventory(move, result, MapInventory, player1); 
 	}
 	
 	public String getActionsLogic(String move, String result, String Inventory, String Actions)

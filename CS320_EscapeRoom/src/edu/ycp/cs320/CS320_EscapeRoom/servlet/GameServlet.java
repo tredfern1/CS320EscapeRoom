@@ -37,7 +37,9 @@ public class GameServlet extends HttpServlet {
 		Integer x = getIntFromParameter(req.getParameter("x"));
 		Integer y = getIntFromParameter(req.getParameter("y"));
 		String Inventory = (String)req.getParameter("Inventory");
+		String MapInventory = (String)req.getParameter("MapInventory");
 		String Actions = (String)req.getParameter("Actions");
+		
 		
 
 		if (x == null) {
@@ -48,6 +50,11 @@ public class GameServlet extends HttpServlet {
 		}
 		if (room == null) {
 			room = 1;
+		}
+		if(MapInventory.length() < 1)      //INTITAL VALUES OF THE MAPS INVENTORY, THIS PLACES THE ITEMS IN THE MAP 
+		{
+			MapInventory = "011hammer " + "021redkey " + "122crowbar " + "212torch "; //FORMAT IS: spotx,spoty,spotroom, spotitem, space Ex. 011hammer 0 is x, 1 is y, 1, is room#, hammer is item 
+			//Seperate items by a space at end of entry
 		}
 		
 		
@@ -60,7 +67,7 @@ public class GameServlet extends HttpServlet {
 
 		Move model = new Move();
 
-		GameController controller = new GameController(x, y, Inventory, Actions, room);
+		GameController controller = new GameController(x, y, Inventory, Actions, MapInventory, room);
 
 		controller.setModel(model);
 
@@ -102,21 +109,20 @@ public class GameServlet extends HttpServlet {
 		}
 		//
 		
-		Inventory = controller.getPickupLogic(move, result, Inventory, Actions);
+		Inventory = controller.getPickupLogic(move, result, Inventory);
+		MapInventory = controller.getMapPickupLogic(move, result, MapInventory, controller.getPlayer());
 		Actions = controller.getActionsLogic(move, result, Inventory, Actions);
 		
 		
 		
-		
-		
-		
-		controller = new GameController(x, y, Inventory, Actions, room); //update game controller for new descriptions
+		controller = new GameController(x, y, Inventory, Actions, MapInventory, room); //update game controller for new descriptions
 		description = controller.getSpotDescription(x, y); //set new description
 
 		
 		// set attributes(STUFF THAT IS SAVED)
 		req.setAttribute("Actions", Actions);
 		req.setAttribute("Inventory", Inventory);
+		req.setAttribute("MapInventory", MapInventory);
 		req.setAttribute("coords", coor);
 		req.setAttribute("x", x);
 		req.setAttribute("y", y);
