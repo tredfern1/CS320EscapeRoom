@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.ycp.cs320.CS320_EscapeRoom.model.Logic;
 import edu.ycp.cs320.CS320_EscapeRoom.model.Map;
 
 
@@ -16,9 +17,12 @@ public class GameController {
 	public int score;
 	Player player1;
 	Map map1;
+	Logic logic1;
 	
 	public GameController(int playerx, int playery, String Inventory, String Actions, int room)
 	{
+		
+		logic1 = new Logic();
 		map1 = new Map(room); //get map
 		player1 = new Player();//create instance of all game related
 		player1.setRoomNumber(room);
@@ -117,6 +121,15 @@ public class GameController {
 		score += 1;
 	}
 	
+	public String getPickupLogic(String move, String result, String Inventory, String Actions)
+	{
+		return logic1.LogicPickup(move, result, Inventory, Actions); 
+	}
+	
+	public String getActionsLogic(String move, String result, String Inventory, String Actions)
+	{
+		return logic1.LogicActions(move, result, Inventory, Actions); 
+	}
 
 	
 	

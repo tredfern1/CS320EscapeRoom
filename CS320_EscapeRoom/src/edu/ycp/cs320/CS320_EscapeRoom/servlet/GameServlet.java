@@ -14,6 +14,7 @@ import edu.ycp.cs320.CS320_EscapeRoom.controller.GameController;
 import edu.ycp.cs320.CS320_EscapeRoom.model.Move;
 import edu.ycp.cs320.CS320_EscapeRoom.model.Player;
 import edu.ycp.cs320.CS320_EscapeRoom.model.Numbers;
+import edu.ycp.cs320.CS320_EscapeRoom.model.Logic;
 
 public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -100,28 +101,10 @@ public class GameServlet extends HttpServlet {
 			coor = x + "," + y;
 		}
 		//
-		if(result.contains("You picked up a")) //add item to inventory
-		{
-			String[] input = move.split(" ");
-			Inventory = Inventory + input[1] + " ";                   //add to string of items
-		}
 		
-		if(result.contains("You used the")) //check for uses of items
-		{
+		Inventory = controller.getPickupLogic(move, result, Inventory, Actions);
+		Actions = controller.getActionsLogic(move, result, Inventory, Actions);
 		
-			String[] input = move.split(" ");
-
-			if(input[1].contains("hammer"))
-			{              
-				Actions = Actions + "boxBreak" + " "; 
-				//add respectable tags to actions(remember the space)
-			}
-			if(input[1].contains("redkey"))
-			{              
-				Actions = Actions + "unlock1" + " "; 
-				//add respectable tags to actions(remember the space)
-			}
-		}
 		
 		
 		
