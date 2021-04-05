@@ -54,4 +54,6 @@ public class Spot {
 		return descriptions.get(index);
 	}
 	
+	
+	
 }
