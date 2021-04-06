@@ -96,9 +96,15 @@ public class GameController {
 	}
 	
 	
-	public String getOuput(String move) {
+	public String getOutput(String move) {
 		
 		if(model.validate(model.split(move), player1.getPlayerx(), player1.getPlayery(), map1.getSpot(player1.getPlayerx(), player1.getPlayery()), player1)) {
+			
+			//if there is nothing after "go" in the move
+			if (move.replace("go", "").contentEquals("") || move.replace("go", "").contentEquals(" ")) {
+				return "You cannot do that";
+			}
+			
 			return model.getOutput(model.split(move), player1);
 		}
 		else {
