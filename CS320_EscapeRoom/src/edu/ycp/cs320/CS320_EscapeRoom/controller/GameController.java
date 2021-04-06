@@ -84,14 +84,17 @@ public class GameController {
 		description = map1.getSpot(playerx, playery).getdescriptionAt(descriptionIndex);
 		
 		String[] itemChecker = mapInventory.split(" ");
-			
-		for(int i = 1; i < itemChecker.length; i++) {
-			System.out.println(itemChecker[i].charAt(0));
-			if(itemChecker[i].charAt(0) == playerx && itemChecker[i].charAt(1) == playery && itemChecker[i].charAt(2) == player1.getRoomNumber()) {
-				description = description + itemChecker[i].substring(3);
+
+
+		for (int i = 0; i < itemChecker.length; i++) {
+			if (itemChecker[i].length() > 0) {
+				if (Character.getNumericValue(itemChecker[i].charAt(0)) == playerx && Character.getNumericValue(itemChecker[i].charAt(1)) == playery
+						&& Character.getNumericValue(itemChecker[i].charAt(2)) == player1.getRoomNumber()) {
+					description = description + itemChecker[i].substring(3);
+					
+				}
 			}
 		}
-
 		return description;
 	}
 	

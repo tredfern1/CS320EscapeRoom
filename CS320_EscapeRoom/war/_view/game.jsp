@@ -44,12 +44,14 @@
                 <input type="hidden" name = "Inventory" value="${Inventory}">
                 <input type="hidden" name = "MapInventory" value="${MapInventory}">
                 <input type="hidden" name = "Actions" value="${Actions}">
-                
+              
+             
               <table>
                 <tr>
 					<td class="label">Result:</td>
 					<td>${result}</td>
 				</tr>
+				<%--
 				<tr>
 					<td class="label">Coord:</td>
 					<td>${coords}</td>
@@ -70,7 +72,9 @@
 					<td class="label">Room number:</td>
 					<td>${room}</td>
 				</tr>
+				--%>
 				</table>
+				
             </div>
         </form>   
           
