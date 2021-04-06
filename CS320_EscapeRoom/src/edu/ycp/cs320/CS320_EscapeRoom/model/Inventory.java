@@ -17,6 +17,15 @@ public class Inventory {
 		playerInventory.add(item);
 	}
 	
+	public void subItemfromInventory(String item)
+	{
+		for(int i = 0; i < playerInventory.size(); i++) {
+			if(playerInventory.get(i).contentEquals(item)) {
+				playerInventory.remove(i);
+			}
+		}
+	}
+	
 	public boolean hasItem(String item)
 	{
 		if(playerInventory.contains(item))

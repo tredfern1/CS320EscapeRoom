@@ -69,6 +69,7 @@ public class Move {
 				}
 			}
 			else if(move[0].contains("enter")) {
+				System.out.println("entercheck");
 				if(move[1].contains("6851") && spot.hasItem("bluekey")) {
 					return true;
 				}
@@ -77,22 +78,20 @@ public class Move {
 				}
 				
 			}
-			else
-			{
-				return false;
+			else if(move[0].contains("drop")) {
+				System.out.println("dropcheck");
+				if(player1.hasitem(move[1])) {
+					return true;
+				}
 			}
+
 		}
-		else if(move[0].contains("drop")) {
-			if(player1.hasitem(move[0])) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
+
 		else {
 			return false;
 		}
+		return false;
+
 	}
 	
 	
@@ -144,7 +143,7 @@ public class Move {
 			output = "you've unlocked the safe!";
 		}
 		else if(move[0].contains("drop")) {
-			output = "You dropped the" + move[1];
+			output = "You dropped the " + move[1];
 		}
 		else {
 			output = "your move does nothing";

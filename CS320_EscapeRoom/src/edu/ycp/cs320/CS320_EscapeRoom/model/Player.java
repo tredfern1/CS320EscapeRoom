@@ -37,6 +37,10 @@ public class Player {
 		playerInv.additem(item);
 	}
 	
+	public void removeFromInventory(String item) {
+		playerInv.subItemfromInventory(item);
+	}
+	
 	public void addActiontoActions(String action)  
 	{
 		Actions.add(action);

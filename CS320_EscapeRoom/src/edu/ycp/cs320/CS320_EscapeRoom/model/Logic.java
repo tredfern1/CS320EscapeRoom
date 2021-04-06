@@ -25,11 +25,15 @@ public class Logic {
 				String replaceString = String.valueOf(player1.getPlayerx()) + String.valueOf(player1.getPlayery()) + String.valueOf(player1.getRoomNumber() + input[1]);
 				MapInventory = MapInventory.replace(replaceString, "");
 			}
+
+		}
 		if(result.contains("You dropped the")) {
+			
+			String[] input = move.split(" ");
 			
 			MapInventory = MapInventory + String.valueOf(player1.getPlayerx()) + String.valueOf(player1.getPlayery()) + String.valueOf(player1.getRoomNumber()) + input[1] + " ";
 			
-		}
+			player1.removeFromInventory(input[1]);
 		}
 		return MapInventory;//add to string of items
 	}
