@@ -63,6 +63,9 @@ public class Move {
 				{
 					return true;
 				} //add more items here
+				if(move[1].contains("torch") && player1.hasitem("torch") && !player1.hasAction("litroom") && player1.getPlayerx() == 2 && player1.getPlayery() == 2) {
+					return true;
+				}
 				else
 				{
 					return false;
@@ -139,8 +142,9 @@ public class Move {
 		{
 				output = "You used the " + move[1];
 		}
-		else if(move[0].contains("enter")){
-			output = "you've unlocked the safe!";
+		else if(move[0].contains("enter") && player1.getPlayerx() == 0 && player1.getPlayery() == 2){
+			if(move[1].contains("6851"))
+				output = "you've unlocked the safe!";
 		}
 		else if(move[0].contains("drop")) {
 			output = "You dropped the " + move[1];

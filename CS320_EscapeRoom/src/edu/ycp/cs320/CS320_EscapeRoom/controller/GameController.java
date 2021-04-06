@@ -78,6 +78,10 @@ public class GameController {
 		{
 			descriptionIndex = 1;
 		}
+		else if(playerx == 2 && playery == 2 && player1.hasAction("litroom") && player1.getRoomNumber() == 2) //change box room description
+		{
+			descriptionIndex = 1;
+		}
 	
 		
 		
@@ -90,7 +94,7 @@ public class GameController {
 			if (itemChecker[i].length() > 0) {
 				if (Character.getNumericValue(itemChecker[i].charAt(0)) == playerx && Character.getNumericValue(itemChecker[i].charAt(1)) == playery
 						&& Character.getNumericValue(itemChecker[i].charAt(2)) == player1.getRoomNumber()) {
-					description = description + itemChecker[i].substring(3);
+					description = description + ". There is a " + itemChecker[i].substring(3) + " here";
 					
 				}
 			}
