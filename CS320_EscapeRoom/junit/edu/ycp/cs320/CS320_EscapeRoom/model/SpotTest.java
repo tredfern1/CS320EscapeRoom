@@ -2,47 +2,63 @@ package edu.ycp.cs320.CS320_EscapeRoom.model;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class SpotTest {
 	
 	private Spot s;
+	//private ArrayList<String> descriptions;
+	//private ArrayList<String> items;
 	
 	@Before
 	public void setup() {
 		
-		Coordinate c = new Coordinate();
-		c.setX(0);
-		c.setY(1);
-		
-		String[] items = { "book", "key" };
-		String[] descriptions = { "a test spot", "description 2" };
-		boolean start = false;
-		boolean wall = false;
-		boolean win = false;
-		boolean door = false;
-		
-		s = new Spot(c, items, descriptions, start, wall, win, door);
+		s = new Spot();
 		
 	}
 	
 	@Test
-	public void testCoordinate() {
-		assertEquals(s.getSpotLocation().getX(), 0);
-		assertEquals(s.getSpotLocation().getY(), 1);
+	public void testLookAround() {
+		
 	}
 	
 	@Test
-	public void testItems() {
+	public void testAddAndGetItem() {
+		
+		s.addItem("book");
+		s.addItem("key");
+		
 		assertTrue(s.getItem(0).contains("book"));
 		assertTrue(s.getItem(1).contains("key"));
+		
+		assertFalse(s.getItem(0).contains("dog"));
 	}
 	
 	@Test
-	public void testDescriptions() {
-		assertTrue(s.lookAround(0).contains("a test spot"));
-		assertTrue(s.lookAround(1).contains("description 2"));
+	public void testHasItem() {
+		
+		s.addItem("cactus");
+		assertTrue(s.hasItem("cactus"));
+		
+		assertFalse(s.hasItem("tree"));
+		
+	}
+	
+	
+	@Test
+	public void testGetAndSetDescription() {
+		//assertTrue(s.lookAround(0).contains("a test spot"));
+		//assertTrue(s.lookAround(1).contains("description 2"));
+		
+		s.setdescription("description1");
+		
+		assertTrue(s.getdescriptionAt(0).contains("description1"));
+		
+		assertFalse(s.getdescriptionAt(0).contains("description2"));
+		
 	}
 	
 }
