@@ -70,6 +70,5 @@ public class Logic {
 		}
 		return Actions;//add to string of items
 		
-		
 }
 }
