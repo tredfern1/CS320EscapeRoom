@@ -13,7 +13,7 @@ public class Move {
 	//if not then the move is not valid
 	public boolean validate(String[] move, int playerx, int playery, Spot spot, Player player1) {
 		if(move.length == 2) { //MOVE VALIDATION /////////////////////
-			if(move[0].contains("go")) {
+			if(move[0].contains("go") || move[0].contains("walk") || move[0].contains("move")) {
 				if(move[1].contains("north") && player1.hasAction("unlock1") && playerx == 1 && playery == 2 && player1.getRoomNumber() == 1)
 				{
 					return true;
@@ -41,7 +41,7 @@ public class Move {
 					}
 				}
 			}
-			else if(move[0].contains("pickup")) //PICKUP VALIDATION //////////////////////
+			else if(move[0].contains("pickup") || move[0].contains("take")) //PICKUP VALIDATION //////////////////////
 			{
 				if(spot.hasItem(move[1]) && !player1.hasitem(move[1]))
 				{
@@ -92,7 +92,7 @@ public class Move {
 	public String getOutput(String[] move, Player player1) {
 		String output = null;
 
-		if(move[0].contains("go")) {         //move outputs
+		if(move[0].contains("go") || move[0].contains("move") || move[0].contains("walk")) {         //move outputs
 			if(move[1].contains("north")) {
 				if(player1.hasAction("unlock1") && player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 1) //ROOM CHANGE VALIDATION
 				{

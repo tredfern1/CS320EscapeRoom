@@ -6,9 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.ycp.cs320.CS320_EscapeRoom.controller.GuessingGameController;
-import edu.ycp.cs320.CS320_EscapeRoom.model.GuessingGame;
-import edu.ycp.cs320.CS320_EscapeRoom.model.Move;
+//import edu.ycp.cs320.CS320_EscapeRoom.controller.GuessingGameController;
+import edu.ycp.cs320.CS320_EscapeRoom.model.*;
 
 public class GameControllerTest {
 	private Move model;
@@ -16,8 +15,14 @@ public class GameControllerTest {
 	
 	@Before
 	public void setUp() {
+		
 		model = new Move();
-		controller = new GameController();
+		String inv = "";
+		Player p = new Player();
+		String Actions = "";
+		String mapInv = "";
+		int room = 1;
+		controller = new GameController(p.getPlayerx(), p.getPlayery(), inv, Actions, mapInv,  room);
 		
 		
 		controller.setModel(model);
@@ -25,25 +30,29 @@ public class GameControllerTest {
 	
 	@Test
 	public void testGoEast() {
-		assertTrue(controller.getOuput("go east").contentEquals("you went east"));
+		assertTrue(controller.getOutput("go east").contentEquals("you went east"));
 		
 	}
 	
 	@Test
 	public void testGoNorth() {
-		assertTrue(controller.getOuput("go north").contentEquals("you went north"));
+		assertTrue(controller.getOutput("go north").contentEquals("you went north"));
 		
 	}
 	
 	@Test
 	public void testOneWordInvalid() {
-		assertTrue(controller.getOuput("go").contentEquals("invalid move"));
+		System.out.println("" + controller.getOutput("go") );
+		assertTrue(controller.getOutput("go").contains("cannot") );
 		
 	}
 
 	@Test
 	public void testValidButIneffective() {
-		assertTrue(controller.getOuput("go down").contentEquals("your move does nothing"));
+		
+		//controller.getPlayer()
+		
+		assertTrue(controller.getOutput("go down").contentEquals("your move does nothing"));
 		
 	}
 	

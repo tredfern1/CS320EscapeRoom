@@ -21,9 +21,11 @@ public class Door {
 	}
 	
 	//returns the coordinate where a door is located
+	/*
 	public Coordinate getLocation() {
 		return isPartOf.getSpotLocation();
 	}
+	*/
 	
 	//returns wether a door is locked or open
 	//false = locked, true = open
