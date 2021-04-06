@@ -73,7 +73,7 @@ public class GameServlet extends HttpServlet {
 
 		String move = req.getParameter("move");
 
-		result = controller.getOuput(move);
+		result = controller.getOutput(move);
 
 		description = controller.getSpotDescription(1, 1);
 

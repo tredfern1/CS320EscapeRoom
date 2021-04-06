@@ -13,7 +13,6 @@ public class Spot {
 		items = new ArrayList<String>();
 	}
 	
-	
 	/*
 	 * Returns a description based on the state of the spot
 	 * Default state should be 0
@@ -37,6 +36,15 @@ public class Spot {
 		{
 			return false;
 		}
+	}
+	
+	public void setIsWall(boolean b) {
+		
+	}
+	
+	//TODO: will remove an item from the spot
+	public void removeItem(String itemName) {
+		
 	}
 	
 	//adds item to spot(for map class)
