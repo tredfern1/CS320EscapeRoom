@@ -35,5 +35,40 @@ public class PlayerTest {
 		assertTrue(player.getPlayery() == 1);
 	}
 	
-
+	@Test
+	public void testInventory() {
+		
+		player.addItemToInventory("pen");
+		player.addItemToInventory("pineapple");
+		
+		assertTrue(player.hasitem("pen"));
+		assertTrue(player.hasitem("pineapple"));
+		
+		assertFalse(player.hasitem("apple"));
+		
+		//TODO: add tests for removing items
+	}
+	
+	@Test
+	public void testActions() {
+		
+		player.addActiontoActions("Smashed_The_Crate");
+		player.addActiontoActions("openedDoor");
+		
+		assertTrue(player.Actions().contains("Smashed_The_Crate"));
+		assertTrue(player.Actions().contains("openedDoor"));
+		
+		assertFalse(player.Actions().contains("Took-A-Nap"));
+		
+	}
+	
+	@Test
+	public void roomNumberTest() {
+		player.setRoomNumber(1);
+		assertTrue(player.getRoomNumber() == 1);
+		
+		assertFalse(player.getRoomNumber() == 2);
+		
+	}
+	
 }

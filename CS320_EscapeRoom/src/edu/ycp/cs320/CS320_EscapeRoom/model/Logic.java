@@ -7,6 +7,7 @@ public class Logic {
 		//create logic
 	}
 	
+	//called when adding an item to the player's inventory
 	public String LogicPickup(String move, String result, String Inventory) {
 		if(result.contains("You picked up a")) //add item to inventory
 		{
@@ -22,6 +23,7 @@ public class Logic {
 		return Inventory;//add to string of items
 	}
 	
+	//called when you pick up something, removes that item from the map inventory
 	public String LogicPickupMapInventory(String move, String result, String MapInventory, Player player1) {
 		if(result.contains("You picked up a")) //add item to inventory
 		{
@@ -44,7 +46,7 @@ public class Logic {
 		return MapInventory;//add to string of items
 	}
 		
-		
+	//called when adding an action to the string of actions
 	public String LogicActions(String move, String result, String Inventory, String Actions)
 	{
 		if(result.contains("You used the")) //check for uses of items
@@ -69,6 +71,5 @@ public class Logic {
 			}
 		}
 		return Actions;//add to string of items
-		
-}
+	}
 }

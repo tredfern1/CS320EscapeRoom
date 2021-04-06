@@ -41,7 +41,7 @@ public class GameServlet extends HttpServlet {
 		String Actions = (String)req.getParameter("Actions");
 		
 		
-
+		//sets the starting x and y
 		if (x == null) {
 			x = 1;
 		}
@@ -49,7 +49,7 @@ public class GameServlet extends HttpServlet {
 			y = 1;
 		}
 		if (room == null) {
-			room = 1;
+			room = 3; //sets the starting room
 		}
 		if(MapInventory.length() < 1)      //INTITAL VALUES OF THE MAPS INVENTORY, THIS PLACES THE ITEMS IN THE MAP 
 		{
@@ -104,7 +104,18 @@ public class GameServlet extends HttpServlet {
 			room -= 1;
 			coor = x + "," + y;
 			
-		}else {
+		} else if (result == "you enter room 3") { //moving from room 2 to room 3
+			x = 1;
+			y = 0;
+			room = 3;
+			coor = x + "," + y;
+		} else if (result == "you returned to room 2"){ //moving from room 3 to room 2
+			x = 1;
+			y = 2;
+			room = 2;
+			coor = x + "," + y;
+		}
+		else {
 			coor = x + "," + y;
 		}
 		//

@@ -22,6 +22,14 @@ public class Move {
 				{
 					return true;
 				}
+				//validate being able to enter room 3 from room 2 (currently there are no conditions to do this)
+				else if (move[1].contains("north") && playerx == 1 && playery == 2 && player1.getRoomNumber() == 2) {
+					return true;
+				}
+				//validate being able to enter room 2 from room 3
+				else if (move[1].contains("south") && playerx == 1 && playery == 0 && player1.getRoomNumber() == 3) {
+					return true;
+				}
 				else
 				{
 					if(move[1].contains("north") && playery + 1 <= 2) {
@@ -41,7 +49,7 @@ public class Move {
 					}
 				}
 			}
-			else if(move[0].contains("pickup") || move[0].contains("take")) //PICKUP VALIDATION //////////////////////
+			else if(move[0].contains("pickup") || move[0].contains("take") || move[0].contains("grab")) //PICKUP VALIDATION //////////////////////
 			{
 				if(spot.hasItem(move[1]) && !player1.hasitem(move[1]))
 				{
@@ -108,6 +116,12 @@ public class Move {
 				{
 					output = "you changed rooms";
 				}
+				
+				//move from room 2 to room 3
+				if(player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 2) {
+					output = "you enter room 3";
+				}
+				
 				else
 				{
 					output = "you went north";
@@ -121,6 +135,12 @@ public class Move {
 				{
 					output = "you went back to room 1";
 				}
+				
+				//move from room 3 to room 2
+				if(player1.getPlayerx() == 1 && player1.getPlayery() == 0 && player1.getRoomNumber() == 3) {
+					output = "you returned to room 2";
+				}
+				
 				else
 				{
 					output = "you went south";
@@ -133,7 +153,7 @@ public class Move {
 				output = "your move does nothing";
 			}
 		}
-		else if(move[0].contains("pickup"))   //pickup outputs
+		else if(move[0].contains("pickup") || move[0].contains("take") || move[0].contains("grab"))   //pickup outputs
 		{
 			output = "You picked up a " + move[1];
 		

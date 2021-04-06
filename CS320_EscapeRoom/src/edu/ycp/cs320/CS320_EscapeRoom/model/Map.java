@@ -20,24 +20,24 @@ public class Map {
 		//Set descriptions
 		if(room == 1)
 		{
-		//Description and item setters before actions #0
-		spots[0][0].setdescription("Seems like a dark an empty corner.");
-		spots[0][1].setdescription("There's a heavy *hammer on the floor. Wonder who left that there?"); 
-		spots[0][2].setdescription("You see a crate lying on the ground. Looks poorly made.");
-		spots[1][0].setdescription("There's a window with bars on it. No way you could get through this.");
-		spots[1][1].setdescription("You are in the center of a dark and dirty room.");
-		spots[1][2].setdescription("There's a red door with a keyhole, it's locked.");
-		spots[2][0].setdescription("In this corner of the room you see a rat, ew!");
-		spots[2][1].setdescription("Yeah there's nothing here but a sense of dread."); 
-		spots[2][2].setdescription("Yikes! a corner with some nasty rats!");
+			//Description and item setters before actions #0
+			spots[0][0].setdescription("Seems like a dark an empty corner.");
+			spots[0][1].setdescription("There's a heavy *hammer on the floor. Wonder who left that there?"); 
+			spots[0][2].setdescription("You see a crate lying on the ground. Looks poorly made.");
+			spots[1][0].setdescription("There's a window with bars on it. No way you could get through this.");
+			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
+			spots[1][2].setdescription("There's a red door with a keyhole, it's locked.");
+			spots[2][0].setdescription("In this corner of the room you see a rat, ew!");
+			spots[2][1].setdescription("Yeah there's nothing here but a sense of dread."); 
+			spots[2][2].setdescription("Yikes! a corner with some nasty rats!");
 	
 		
-		//Description setters after actions #1
-		spots[0][1].setdescription("There's a dusty spot where the hammer was."); 
-		spots[0][2].setdescription("The crate is broken and lying on the ground. Looks like a little *redkey fell out.");
-		spots[1][2].setdescription("There's a red door with a keyhole, it's been unlocked!");
-		//Description setters after actions #2
-		spots[0][2].setdescription("The crate is broken and lying on the ground. This is where you found the key.");
+			//Description setters after actions #1
+			spots[0][1].setdescription("There's a dusty spot where the hammer was."); 
+			spots[0][2].setdescription("The crate is broken and lying on the ground. Looks like a little *redkey fell out.");
+			spots[1][2].setdescription("There's a red door with a keyhole, it's been unlocked!");
+			//Description setters after actions #2
+			spots[0][2].setdescription("The crate is broken and lying on the ground. This is where you found the key.");
 		}
 		if(room == 2)
 		{	//set first descriptions/items of the room
@@ -46,7 +46,7 @@ public class Map {
 			spots[0][2].setdescription("There is a safe with a keypad");
 			spots[0][2].addItem("redkey"); 
 			
-			spots[1][0].setdescription("This door goes back to room 1");
+			spots[1][0].setdescription("You have entered room 2. The door south of you goes back to room 1");
 			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
 			spots[1][2].setdescription("There's a crowbar leaned against the wall");
 			//spots[1][2].addItem("crowbar");
@@ -65,7 +65,19 @@ public class Map {
 			spots[0][2].setdescription("The safe is unlocked and you see a bluekey inside of it");
 			
 		}
-		
+		if (room == 3) {
+			spots[0][0].setdescription("A dark part of the room. There is nothing here");
+			spots[0][1].setdescription("A dark part of the room. There is nothing here");
+			spots[0][2].setdescription("A dark part of the room. There is nothing here");
+			
+			spots[1][0].setdescription("You entered room 3. Go south to return to room 2.");
+			spots[1][1].setdescription("A dark part of the room. There is nothing here");
+			spots[1][2].setdescription("A dark part of the room. There is nothing here");
+			
+			spots[2][0].setdescription("A dark part of the room. There is nothing here");
+			spots[2][1].setdescription("A dark part of the room. There is nothing here");
+			spots[2][2].setdescription("A dark part of the room. There is nothing here");
+		}
 		
 		//SET THE ITEMS IN THE MAP BASED ON THE ARRAY OF MAP ITEMS
 		for(int i = 0; i < newMapInventory.size(); i++) //goes through all items in the map and adds them based on the string

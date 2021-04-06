@@ -42,7 +42,7 @@ public class GameControllerTest {
 	
 	@Test
 	public void testOneWordInvalid() {
-		System.out.println("" + controller.getOutput("go") );
+		//System.out.println("" + controller.getOutput("go") );
 		assertTrue(controller.getOutput("go").contains("cannot") );
 		
 	}
@@ -51,8 +51,8 @@ public class GameControllerTest {
 	public void testValidButIneffective() {
 		
 		//controller.getPlayer()
-		
-		assertTrue(controller.getOutput("go down").contentEquals("your move does nothing"));
+		System.out.println("" + controller.getOutput("go") );
+		assertTrue(controller.getOutput("go down").contains("cannot"));
 		
 	}
 	
