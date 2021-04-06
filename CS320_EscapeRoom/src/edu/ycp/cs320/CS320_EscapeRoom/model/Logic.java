@@ -17,7 +17,7 @@ public class Logic {
 		if(result.contains("You dropped the")) //add item to inventory
 		{
 			String[] input = move.split(" ");
-			Inventory = Inventory.replace(input[1], "");    
+			Inventory = Inventory.replace(input[1], "");      
 		}
 		return Inventory;//add to string of items
 	}
@@ -69,5 +69,7 @@ public class Logic {
 			}
 		}
 		return Actions;//add to string of items
+		
+		
 }
 }
