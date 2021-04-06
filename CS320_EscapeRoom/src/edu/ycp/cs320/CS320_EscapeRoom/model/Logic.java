@@ -13,6 +13,12 @@ public class Logic {
 			String[] input = move.split(" ");
 			Inventory = Inventory + input[1] + " ";      
 		}
+		
+		if(result.contains("You dropped the")) //add item to inventory
+		{
+			String[] input = move.split(" ");
+			Inventory = Inventory.replace(input[1], "");    
+		}
 		return Inventory;//add to string of items
 	}
 	
@@ -31,9 +37,9 @@ public class Logic {
 			
 			String[] input = move.split(" ");
 			
-			MapInventory = MapInventory + String.valueOf(player1.getPlayerx()) + String.valueOf(player1.getPlayery()) + String.valueOf(player1.getRoomNumber()) + input[1] + " ";
+			MapInventory = MapInventory + String.valueOf(player1.getPlayerx()) + String.valueOf(player1.getPlayery()) + String.valueOf(player1.getRoomNumber()) + input[1]  ;
 			
-			player1.removeFromInventory(input[1]);
+			
 		}
 		return MapInventory;//add to string of items
 	}

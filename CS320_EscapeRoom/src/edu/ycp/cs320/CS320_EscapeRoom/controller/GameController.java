@@ -57,12 +57,12 @@ public class GameController {
 		this.model = model;
 	}
 	
-	public String getSpotDescription(int playerx, int playery)
+	public String getSpotDescription(int playerx, int playery, String mapInventory)
 	{
 		int descriptionIndex = 0;
 		String description = "";
 		
-		if(playerx == 0 && playery == 1 && player1.hasitem("hammer") && player1.getRoomNumber() == 1) //change hammer room description
+		if(playerx == 0 && playery == 1 && !map1.getSpot(0, 1).hasItem("hammer") && player1.getRoomNumber() == 1) //change hammer room description
 		{
 			descriptionIndex = 1;
 		}
@@ -79,9 +79,19 @@ public class GameController {
 			descriptionIndex = 1;
 		}
 	
+		
+		
 		description = map1.getSpot(playerx, playery).getdescriptionAt(descriptionIndex);
 		
-		
+		String[] itemChecker = mapInventory.split(" ");
+			
+		for(int i = 1; i < itemChecker.length; i++) {
+			System.out.println(itemChecker[i].charAt(0));
+			if(itemChecker[i].charAt(0) == playerx && itemChecker[i].charAt(1) == playery && itemChecker[i].charAt(2) == player1.getRoomNumber()) {
+				description = description + itemChecker[i].substring(3);
+			}
+		}
+
 		return description;
 	}
 	
