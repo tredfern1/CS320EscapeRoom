@@ -73,8 +73,6 @@ public class MoveTest {
 		Spot tempSpot = new Spot();
 		Player tempPlayer = new Player();
 		
-		
-		
 		//the player should be able to take an item from the spot they are on
 		tempSpot.addItem("hammer");
 		assertTrue(m.validate(m.split("take hammer"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));

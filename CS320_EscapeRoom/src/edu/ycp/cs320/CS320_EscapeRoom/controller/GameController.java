@@ -126,7 +126,7 @@ public class GameController {
 		}
 		else {
 			String[] command = model.split(move);
-			if(command[0].contains("go"))
+			if(command[0].contains("go") && command.length > 1)
 			{
 				return "Ouch, you hit a wall";
 			}
