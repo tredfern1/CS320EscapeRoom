@@ -38,10 +38,6 @@ public class Spot {
 		}
 	}
 	
-	public void setIsWall(boolean b) {
-		
-	}
-	
 	//TODO: will remove an item from the spot
 	public void removeItem(String itemName) {
 		
