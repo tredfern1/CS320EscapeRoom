@@ -75,7 +75,7 @@ public class Move {
 					return true;
 				}
 
-				if(move[1].contains("rat") && player1.getPlayerx()==0 && player1.getPlayery()==1 && player1.getRoomNumber()==2) {
+				if(move[1].contains("rat") && player1.hasitem("rat") && player1.getPlayerx()==0 && player1.getPlayery()==1 && player1.getRoomNumber()==2) {
 					return true;
 				}
 				

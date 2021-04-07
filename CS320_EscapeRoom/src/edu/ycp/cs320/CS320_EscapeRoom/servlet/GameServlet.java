@@ -57,7 +57,6 @@ public class GameServlet extends HttpServlet {
 			//Seperate items by a space at end of entry
 		}
 		
-		
 
 		System.out.println("Game Servlet: doPost");
 
