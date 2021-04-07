@@ -1,7 +1,6 @@
 package edu.ycp.cs320.CS320_EscapeRoom.controller;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +15,11 @@ public class GameControllerTest {
 	//private Map m;
 	private String inv;
 	private Player p;
-	private String Actions;
+	private String actions;
 	private String mapInv;
+	private String move;
+	private String result;
+	private String inventory;
 	private int room;
 	
 	@Before
@@ -27,12 +29,14 @@ public class GameControllerTest {
 		inv = "";
 		p = new Player();
 		p.updatePlayerCoor(1, 1);
-		Actions = "";
+		actions = "";
 		mapInv = "";
 		room = 1;
-		controller = new GameController(p.getPlayerx(), p.getPlayery(), inv, Actions, mapInv, room);
-		//m = new Map();
-		
+		controller = new GameController(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller.setModel(model);
+		move = "";
+		result = "";
+		inventory = "";
 		controller.setModel(model);
 	}
 	
@@ -94,6 +98,82 @@ public class GameControllerTest {
 		assertTrue(controller.getOutput("go up").contains("Make sure your command follows the format: move <direction>"));
 	}
 	
-
+	@Test
+	public void testGetPickupLogic() {
+		
+		//test picking up the hammer
+		p.updatePlayerCoor(1, 1);
+		p.setRoomNumber(1);
+		
+		move = "pickup hammer";
+		inv = "";
+		//update the controller's inventory for this test
+		mapInv = "111hammer";
+		
+		controller = new GameController(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller.setModel(model);
+		
+		result = controller.getOutput("pickup hammer");
+		
+		assertTrue(controller.getPickupLogic(move, result, inv).contains("hammer"));
+		
+		//test synonyms
+		move = "take hammer";
+		assertTrue(controller.getPickupLogic(move, result, inv).contains("hammer"));
+		
+		move = "grab hammer";
+		assertTrue(controller.getPickupLogic(move, result, inv).contains("hammer"));
+		
+		//test picking up an item on another spot should return null
+		mapInv = "221hammer";
+		controller = new GameController(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller.setModel(model);
+		
+		result = controller.getOutput("pickup hammer");
+		
+		assertTrue(controller.getPickupLogic(move, result, inv).equals(""));
+		
+		//an invalid 'move' should return null
+		move = "";
+		mapInv = "111hammer";
+		
+		controller = new GameController(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller.setModel(model);
+		
+		assertEquals(controller.getPickupLogic(move, result, inv), "");
+		
+	}
+	
+	@Test
+	public void testGetMapPickupLogic() {
+		//test picking up the hammer
+		p.updatePlayerCoor(1, 1);
+		p.setRoomNumber(1);
+				
+		move = "pickup hammer";
+		inv = "";
+		//update the controller's inventory for this test
+		mapInv = "111hammer";
+		
+		controller = new GameController(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller.setModel(model);
+		
+		result = controller.getOutput("pickup hammer");
+		//System.out.println(result);
+		
+		//returns the map inventory after the item was taken. For an inventory with 1 item, should be null after removing the item
+		assertEquals(controller.getMapPickupLogic(move, result, inv, controller.getPlayer()), "");
+		
+		move = "pickup cheese";
+		result = controller.getOutput(move);
+		System.out.println(result);
+		
+		assertEquals(controller.getMapPickupLogic(move, result, inv, controller.getPlayer()), "");
+	}
+	
+	@Test
+	public void testGetActionsLogic() {
+		
+	}
 	
 }

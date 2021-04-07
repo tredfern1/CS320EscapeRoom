@@ -49,7 +49,7 @@ public class GameServlet extends HttpServlet {
 			y = 1;
 		}
 		if (room == null) {
-			room = 3; //sets the starting room
+			room = 1; //sets the starting room
 		}
 		if(MapInventory.length() < 1)      //INTITAL VALUES OF THE MAPS INVENTORY, THIS PLACES THE ITEMS IN THE MAP 
 		{
