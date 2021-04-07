@@ -53,11 +53,12 @@
         
             <div class="game-box">
             	
-         		<p> ${description == null ? "You are in the center of a dark and dirty room." : description}</p>
+				 <p> ${description == null ? "You are in the center of a dark and dirty room." : description}</p>
+				 <p> ${result == null ? "What do you do?" : result} </p>
                 
                 <input type="text" name="move" value="${move}">
                 
-                <input type="Submit" name="submit" value="Go!">
+
                 
                 <input type="hidden" name = "x" value="${x}">
                 <input type="hidden" name = "y" value="${y}">
@@ -69,19 +70,22 @@
               
              
               <table>
+				<%--
                 <tr>
-					<td class="label">Result:</td>
+					<td class="label"></td>
 					<td>${result}</td>
 				</tr>
-				
+			
 				<tr>
 					<td class="label">Coord:</td>
 					<td>${coords}</td>
 				</tr>
+				--%>
 				<tr>
 					<td class="label">Inventory:</td>
 					<td>${Inventory}</td>
 				</tr>
+				<%--
 				<tr>
 					<td class="label">Actions made:</td>
 					<td>${Actions}</td>
@@ -94,7 +98,7 @@
 					<td class="label">Room number:</td>
 					<td>${room}</td>
 				</tr>
-				
+				--%>
 				</table>
 				
             </div>

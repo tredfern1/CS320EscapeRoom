@@ -53,9 +53,34 @@ public class Move {
 			{
 				if(spot.hasItem(move[1]) && !player1.hasitem(move[1]))
 				{
-					return true;
+					if(move[1].contains("redkey"))
+					{
+						if(player1.hasAction("boxBreak"))
+						{
+							return true;
+						}
+						else
+						{
+							return false;
+						}
+					}
+					else if(move[1].contains("bluekey"))
+					{
+						if(player1.hasAction("opensafe"))
+						{
+							return true;
+						}
+						else
+						{
+							return false;
+						}
+					}
+					else
+					{
+						return true;
+					}
 				} //add more items here
-		
+				
 				else
 				{
 					return false;

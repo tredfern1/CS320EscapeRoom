@@ -46,7 +46,7 @@ public class Map {
 			spots[0][2].setdescription("There is a safe with a keypad");
 			spots[0][2].addItem("redkey"); 
 			
-			spots[1][0].setdescription("You have entered room 2. The door south of you goes back to room 1");
+			spots[1][0].setdescription("The door south of you goes back to room 1");
 			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
 			spots[1][2].setdescription("There's a crowbar leaned against the wall");
 			//spots[1][2].addItem("crowbar");

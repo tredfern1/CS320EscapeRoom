@@ -78,7 +78,10 @@ public class GameServlet extends HttpServlet {
 
 		x = controller.getPlayer().getPlayerx();
 		y = controller.getPlayer().getPlayery();
-		// COORDINATE SYSTEM
+		
+		
+		
+		// COORDINATE SYSTEM // MOVE THIS INTO A NEW CLASS
 		
 		System.out.println("result: " + result);
 		if (result == "you went north") {

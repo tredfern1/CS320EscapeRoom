@@ -105,7 +105,7 @@ public class GameController {
 			if (itemChecker[i].length() > 0) {
 				if (Character.getNumericValue(itemChecker[i].charAt(0)) == playerx && Character.getNumericValue(itemChecker[i].charAt(1)) == playery
 						&& Character.getNumericValue(itemChecker[i].charAt(2)) == player1.getRoomNumber()) {
-					description = description + ". There is a " + itemChecker[i].substring(3) + " here";
+					description = description + " There is a " + itemChecker[i].substring(3) + " here";
 					
 				}
 			}
@@ -139,7 +139,14 @@ public class GameController {
 			String[] command = model.split(move);
 			if( (command[0].contains("go") || command[0].contains("move") || command[0].contains("walk")) && command.length > 1)
 			{
-				return "Ouch, you hit a wall!";
+				if(command[1].contains("north") && player1.getPlayerx() == 1 && player1.getPlayery() == 2)
+				{
+					return "The door is locked, you cannot enter.";
+				}
+				else
+				{
+					return "Ouch, you hit a wall!";
+				}
 			}
 			else if(command[0].contains("pickup"))
 			{

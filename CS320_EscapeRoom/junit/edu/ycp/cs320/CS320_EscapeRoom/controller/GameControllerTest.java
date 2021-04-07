@@ -87,6 +87,7 @@ public class GameControllerTest {
 		assertTrue(controller.getOutput("Walk").contains("cannot") );
 	}
 
+	/*
 	@Test
 	public void testValidButIneffective() {
 		
@@ -97,6 +98,7 @@ public class GameControllerTest {
 		assertTrue(controller.getOutput("walk right").contains("Make sure your command follows the format: move <direction>"));
 		assertTrue(controller.getOutput("go up").contains("Make sure your command follows the format: move <direction>"));
 	}
+	*/
 	
 	@Test
 	public void testGetPickupLogic() {
