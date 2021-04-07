@@ -78,7 +78,7 @@ public class GameController {
 		{
 			descriptionIndex = 1;
 		}
-		else if(playerx == 2 && playery == 2 && player1.hasAction("litroom") && player1.getRoomNumber() == 2) //change box room description
+		else if(playerx == 2 && playery == 2 && player1.hasAction("litroom") && player1.getRoomNumber() == 2) //change light room description
 		{
 			descriptionIndex = 1;
 		}
