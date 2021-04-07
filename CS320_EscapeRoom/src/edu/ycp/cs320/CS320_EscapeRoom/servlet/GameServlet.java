@@ -74,12 +74,14 @@ public class GameServlet extends HttpServlet {
 		String move = req.getParameter("move");
 
 		result = controller.getOutput(move);
-
+		
 		description = controller.getSpotDescription(1, 1, MapInventory);
 
 		x = controller.getPlayer().getPlayerx();
 		y = controller.getPlayer().getPlayery();
 		// COORDINATE SYSTEM
+		
+		System.out.println("result: " + result);
 		if (result == "you went north") {
 			y = y + 1;
 			coor = x + "," + y; // figure out how to set coordinate
@@ -92,16 +94,16 @@ public class GameServlet extends HttpServlet {
 		} else if (result == "you went east") {
 			x = x + 1;
 			coor = x + "," + y;
-		} else if (result == "you changed rooms") {  //if the player changes rooms
+		} else if (result == "you changed rooms") {
+			//if the player changes rooms
 			x = 1;
 			y = 0;
-			room += 1;
+			room = 2;
 			coor = x + "," + y;
-			
 		} else if (result == "you went back to room 1") {  //if the player changes rooms
 			x = 1;
 			y = 2;
-			room -= 1;
+			room = 1;
 			coor = x + "," + y;
 			
 		} else if (result == "you enter room 3") { //moving from room 2 to room 3
@@ -128,6 +130,7 @@ public class GameServlet extends HttpServlet {
 		
 		controller = new GameController(x, y, Inventory, Actions, MapInventory, room); //update game controller for new descriptions
 		description = controller.getSpotDescription(x, y, MapInventory); //set new description
+		
 
 		
 		// set attributes(STUFF THAT IS SAVED)

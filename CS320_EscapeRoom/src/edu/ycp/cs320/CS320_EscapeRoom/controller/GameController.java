@@ -96,7 +96,6 @@ public class GameController {
 		}
 	
 		
-		
 		description = map1.getSpot(playerx, playery).getdescriptionAt(descriptionIndex);
 		
 		String[] itemChecker = mapInventory.split(" ");
@@ -140,7 +139,7 @@ public class GameController {
 			String[] command = model.split(move);
 			if( (command[0].contains("go") || command[0].contains("move") || command[0].contains("walk")) && command.length > 1)
 			{
-				return "Make sure your command follows the format: move <direction>";
+				return "Ouch, you hit a wall!";
 			}
 			else if(command[0].contains("pickup"))
 			{

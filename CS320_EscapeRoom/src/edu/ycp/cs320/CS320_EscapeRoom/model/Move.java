@@ -79,7 +79,6 @@ public class Move {
 					return true;
 				}
 				
-
 				else
 				{
 					return false;
@@ -117,17 +116,16 @@ public class Move {
 		String output = null;
 
 		if(move[0].contains("go") || move[0].contains("move") || move[0].contains("walk")) {         //move outputs
-			if(move[1].contains("north")) {
-				if(player1.hasAction("unlock1") && player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 1) //ROOM CHANGE VALIDATION
+			if(move[1].contains("north")) {	
+				
+				if(player1.hasAction("unlock1") == true && player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 1) //ROOM CHANGE VALIDATION
 				{
 					output = "you changed rooms";
 				}
-				
 				//move from room 2 to room 3
-				if(player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 2) {
+				else if(player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 2) {
 					output = "you enter room 3";
 				}
-				
 				else
 				{
 					output = "you went north";
@@ -137,13 +135,13 @@ public class Move {
 				output = "you went east";
 			}
 			else if(move[1].contains("south")) {
-				if(player1.hasAction("unlock1") && player1.getPlayerx() == 1 && player1.getPlayery() == 0 && player1.getRoomNumber() == 2) //ROOM CHANGE VALIDATION
+				if(player1.hasAction("unlock1") == true && player1.getPlayerx() == 1 && player1.getPlayery() == 0 && player1.getRoomNumber() == 2) //ROOM CHANGE VALIDATION
 				{
 					output = "you went back to room 1";
 				}
 				
 				//move from room 3 to room 2
-				if(player1.getPlayerx() == 1 && player1.getPlayery() == 0 && player1.getRoomNumber() == 3) {
+				else if(player1.getPlayerx() == 1 && player1.getPlayery() == 0 && player1.getRoomNumber() == 3) {
 					output = "you returned to room 2";
 				}
 				
