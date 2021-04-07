@@ -23,3 +23,10 @@ body{
     margin-top: 50px;
     margin-right: 50px;
 }
+
+
+.test-title{
+    color: white;
+    border-bottom: solid;
+    font-size: 15px;
+}
