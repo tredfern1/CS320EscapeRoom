@@ -70,6 +70,9 @@ public class Logic {
 				//add respectable tags to actions(remember the space)
 			}
 		}
+		if(result.contains("you've unlocked the")) {
+			Actions = Actions + "opensafe" + " "; 
+		}
 		return Actions;//add to string of items
 	}
 }

@@ -62,7 +62,7 @@ public class Map {
 			
 			spots[2][2].setdescription("You can now see a code on the wall. 6851");
 			
-			spots[0][2].setdescription("The safe is unlocked and you see a bluekey inside of it");
+			spots[0][2].setdescription("The safe is unlocked");
 			
 		}
 		if (room == 3) {

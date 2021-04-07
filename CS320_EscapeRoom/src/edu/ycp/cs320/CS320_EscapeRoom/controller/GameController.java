@@ -82,6 +82,14 @@ public class GameController {
 		{
 			descriptionIndex = 1;
 		}
+		else if(playerx == 0 && playery == 2 && player1.hasAction("opensafe") && player1.getRoomNumber() == 2) //change box room description
+		{
+			descriptionIndex = 1;
+		}
+		if(playerx == 1 && playery == 2 && player1.getRoomNumber() == 2 && player1.hasitem("crowbar")) //change hammer room description
+		{
+			descriptionIndex = 1;
+		}
 	
 		
 		
