@@ -26,7 +26,13 @@ body{
 
 
 .test-title{
+    margin: auto;
+    border: solid;
     color: white;
+    float: center;
+    width:1800px;
+    height: 300px;
     border-bottom: solid;
     font-size: 10px;
 }
+
