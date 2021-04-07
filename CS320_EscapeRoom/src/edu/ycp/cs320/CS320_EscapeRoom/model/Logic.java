@@ -69,6 +69,11 @@ public class Logic {
 				Actions = Actions + "litroom" + " "; 
 				//add respectable tags to actions(remember the space)
 			}
+			if(input[1].contains("rat"))
+			{              
+				Actions = Actions + "ratused" + " "; 
+				//add respectable tags to actions(remember the space)
+			}
 		}
 		if(result.contains("you've unlocked the")) {
 			Actions = Actions + "opensafe" + " "; 

@@ -42,7 +42,7 @@ public class Map {
 		if(room == 2)
 		{	//set first descriptions/items of the room
 			spots[0][0].setdescription("There's nothing but a bunch of cobwebs here.");
-			spots[0][1].setdescription("There's a small hole at the bass of the wall. Too small for your hand to fit in, but maybe something smaller?"); 
+			spots[0][1].setdescription("There's a small hole at the base of the wall. Too small for your hand to fit in, but maybe something smaller?"); 
 			spots[0][2].setdescription("There is a safe with a keypad");
 			spots[0][2].addItem("redkey"); 
 			
@@ -64,6 +64,7 @@ public class Map {
 			
 			spots[0][2].setdescription("The safe is unlocked");
 			
+			spots[0][1].setdescription("There's the hole where the rat brought you gold from");
 		}
 		if (room == 3) {
 			spots[0][0].setdescription("A dark part of the room. There is nothing here");

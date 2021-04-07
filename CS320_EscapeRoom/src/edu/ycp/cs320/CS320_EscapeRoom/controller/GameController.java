@@ -90,6 +90,10 @@ public class GameController {
 		{
 			descriptionIndex = 1;
 		}
+		if(playerx == 0 && playery == 1 && player1.getRoomNumber() == 2 && player1.hasAction("ratused")) //change hammer room description
+		{
+			descriptionIndex = 1;
+		}
 	
 		
 		
