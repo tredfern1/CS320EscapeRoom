@@ -117,8 +117,8 @@ public class GameController {
 		
 		if(model.validate(model.split(move), player1.getPlayerx(), player1.getPlayery(), map1.getSpot(player1.getPlayerx(), player1.getPlayery()), player1)) {
 			
-			//if there is nothing after "go" in the move
-			if (move.replace("go", "").contentEquals("") || move.replace("go", "").contentEquals(" ")) {
+			//if there is nothing after "go" (or synonym) in the move
+			if (move.replace("go", "").contentEquals("") || move.replace("move", "").contentEquals(" ") || move.replace("walk", "").contentEquals(" ")) {
 				return "You cannot do that";
 			}
 			
@@ -126,9 +126,9 @@ public class GameController {
 		}
 		else {
 			String[] command = model.split(move);
-			if(command[0].contains("go") && command.length > 1)
+			if( (command[0].contains("go") || command[0].contains("move") || command[0].contains("walk")) && command.length > 1)
 			{
-				return "Ouch, you hit a wall";
+				return "Make sure your command follows the format: move <direction>";
 			}
 			else if(command[0].contains("pickup"))
 			{
