@@ -12,7 +12,7 @@ public class Logic {
 		if(result.contains("You picked up a")) //add item to inventory
 		{
 			String[] input = move.split(" ");
-			Inventory = Inventory + input[1] + " ";      
+			Inventory = Inventory + input[1] + " ";       
 		}
 		
 		if(result.contains("You dropped the")) //add item to inventory
