@@ -74,6 +74,9 @@ public class Move {
 				if(move[1].contains("torch") && player1.hasitem("torch") && !player1.hasAction("litroom") && player1.getPlayerx() == 2 && player1.getPlayery() == 2) {
 					return true;
 				}
+				if(move[1].contains("rat") && player1.getPlayerx() == 0 && player1.getPlayery() == 1 && player1.getRoomNumber() == 3) {
+					return true;
+				}
 				else
 				{
 					return false;
