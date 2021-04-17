@@ -1,13 +1,12 @@
-package edu.ycp.cs320.CS320_EscapeRoom.model;
+package modelTest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.ycp.cs320.CS320_EscapeRoom.controller.GameController;
-import edu.ycp.cs320.CS320_EscapeRoom.model.*;
-import edu.ycp.cs320.CS320_EscapeRoom.model.Logic;
+import controller.GameController;
+import model.*;
 
 public class logicTest {
 	
