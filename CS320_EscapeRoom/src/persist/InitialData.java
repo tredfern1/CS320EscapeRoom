@@ -40,4 +40,20 @@ public class InitialData {
 			readAuthors.close();
 		}
 	}
+	
+	/* The get room query
+	public static int getRoom() throws IOException {
+		int room = 0;
+		ReadCSV readRoom = new ReadCSV("room.csv");
+		try {
+			// auto-generated primary key for authors table
+			room = readRoom.next();
+			
+			return room;
+		} finally {
+			readAuthors.close();
+		}
+		
+	}
+	*/
 }

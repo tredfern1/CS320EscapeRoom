@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.AddNumbersController;
 import controller.GameController;
+import controller.AllAuthorsQuery;
+import model.Author;
 import model.Logic;
 import model.Move;
 import model.Numbers;
@@ -18,6 +20,7 @@ import model.Player;
 
 public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,6 +44,20 @@ public class GameServlet extends HttpServlet {
 		String Actions = (String)req.getParameter("Actions");
 		
 		
+		/////////////////////////////////////////////////////////TEST OF THE DATABASE FOR ALL AUTHORS
+		ArrayList<Author> authors = null;
+		
+		AllAuthorsQuery controller1 = null;	
+		controller1 = new AllAuthorsQuery();
+		authors = controller1.getAllAuthors();
+		
+		System.out.println("THIS IS A TEST THAT THE DATABASE WORKS FOR AUTHORS QUERY");
+		
+		for (int i = 0; i < authors.size(); i++) { 		      
+	          System.out.println(authors.get(i).getFirstname());	
+	    }   		
+		
+		///////////////////////////////////////////////////////
 		//sets the starting x and y
 		if (x == null) {
 			x = 1;

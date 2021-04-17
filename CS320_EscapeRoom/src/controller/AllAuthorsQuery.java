@@ -1,32 +1,41 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import controller.InitDatabase;
 import persist.DatabaseProvider;
+import persist.DerbyDatabase;
 import persist.IDatabase;
 import model.Author;
 
 public class AllAuthorsQuery {
-	public static void main(String[] args) throws Exception {
-		Scanner keyboard = new Scanner(System.in);
 
-		// Create the default IDatabase instance
-		InitDatabase.init(keyboard);
+	private IDatabase db = null;
+
+	public AllAuthorsQuery() {
 		
-		// get the DB instance and execute transaction
-		IDatabase db = DatabaseProvider.getInstance();
+		// creating DB instance here
+		DatabaseProvider.setInstance(new DerbyDatabase());
+		db = DatabaseProvider.getInstance();		
+	}
+
+	public ArrayList<Author> getAllAuthors() {
+		
+		// get the list of (Author, Book) pairs from DB
 		List<Author> authorList = db.findAllAuthors();
+		ArrayList<Author> authors = null;
 		
-		// check if anything was returned and output the list
 		if (authorList.isEmpty()) {
-			System.out.println("There are no authors in the database");
+			System.out.println("No authors found in library");
+			return null;
 		}
 		else {
+			authors = new ArrayList<Author>();
 			for (Author author : authorList) {
-				System.out.println(author.getLastname() + ", " + author.getFirstname());
-			}
+				authors.add(author);
+			}			
 		}
+		// return authors for this title
+		return authors;
 	}
 }
