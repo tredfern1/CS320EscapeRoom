@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.AddNumbersController;
 import controller.GameController;
+import controller.DatabaseLogic;
 import controller.AllAuthorsQuery;
 import model.Author;
 import model.Logic;
@@ -34,30 +35,19 @@ public class GameServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		// Grab x and y coordinates form the past
-		// HAS TO BE A BETTER WAY TO SAVE THIS DATA
-		Integer room = getIntFromParameter(req.getParameter("room"));
+		//THIS LOADS THE DATABASE CONTROLLER TO USE FOR LOADING & SAVING THE GAMESTATE
+		DatabaseLogic database = null;	
+		database = new DatabaseLogic();
+		//SET THE VALUES THE GAME USES BASED ON THE DATABASE VALUES
+		Integer room = database.getRoom();
 		Integer x = getIntFromParameter(req.getParameter("x"));
 		Integer y = getIntFromParameter(req.getParameter("y"));
 		String Inventory = (String)req.getParameter("Inventory");
 		String MapInventory = (String)req.getParameter("MapInventory");
 		String Actions = (String)req.getParameter("Actions");
 		
+
 		
-		/////////////////////////////////////////////////////////TEST OF THE DATABASE FOR ALL AUTHORS
-		ArrayList<Author> authors = null;
-		
-		AllAuthorsQuery controller1 = null;	
-		controller1 = new AllAuthorsQuery();
-		authors = controller1.getAllAuthors();
-		
-		System.out.println("THIS IS A TEST THAT THE DATABASE WORKS FOR AUTHORS QUERY");
-		
-		for (int i = 0; i < authors.size(); i++) { 		      
-	          System.out.println(authors.get(i).getFirstname());	
-	    }   		
-		
-		///////////////////////////////////////////////////////
 		//sets the starting x and y
 		if (x == null) {
 			x = 1;
@@ -151,8 +141,11 @@ public class GameServlet extends HttpServlet {
 		description = controller.getSpotDescription(x, y, MapInventory); //set new description
 		
 
+		//STORE THE NEW VALUES IN THE DATABASE///////////////////
+		database.setRoom(room);
+
 		
-		// set attributes(STUFF THAT IS SAVED)
+		// set attributes(STUFF THAT IS SAVED) now in the jsp
 		req.setAttribute("Actions", Actions);
 		req.setAttribute("Inventory", Inventory);
 		req.setAttribute("MapInventory", MapInventory);
@@ -163,8 +156,6 @@ public class GameServlet extends HttpServlet {
 		//
 		req.setAttribute("description", description); //description of room
 		req.setAttribute("result", result);
-		
-		
 		
 		
 

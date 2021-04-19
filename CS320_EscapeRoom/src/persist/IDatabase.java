@@ -6,5 +6,7 @@ import model.Author;
 
 
 public interface IDatabase {
-	public List<Author> findAllAuthors();	
+	public List<Author> findAllAuthors();
+	public int getRoom();
+	public void setRoom(int room);
 }

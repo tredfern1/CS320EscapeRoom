@@ -41,19 +41,21 @@ public class InitialData {
 		}
 	}
 	
-	/* The get room query
+	//GET the Intial Room number from the csv
+	
 	public static int getRoom() throws IOException {
 		int room = 0;
 		ReadCSV readRoom = new ReadCSV("room.csv");
+		List<String> tuple = readRoom.next();
+		
+		Iterator<String> i = tuple.iterator();
 		try {
-			// auto-generated primary key for authors table
-			room = readRoom.next();
+			room = Integer.parseInt(i.next());
+			System.out.println("The first room is: " + room);
 			
 			return room;
 		} finally {
-			readAuthors.close();
+			readRoom.close();
 		}
-		
 	}
-	*/
 }

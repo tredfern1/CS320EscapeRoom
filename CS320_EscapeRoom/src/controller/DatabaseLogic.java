@@ -1,0 +1,35 @@
+package controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import persist.DatabaseProvider;
+import persist.DerbyDatabase;
+import persist.IDatabase;
+import model.Author;
+
+public class DatabaseLogic {
+
+	private IDatabase db = null;
+
+	public DatabaseLogic() {
+		
+		// creating DB instance here
+		DatabaseProvider.setInstance(new DerbyDatabase());
+		db = DatabaseProvider.getInstance();		
+	}
+
+	public int getRoom() {
+		
+		// get the list of (Author, Book) pairs from DB
+		int room = db.getRoom();
+
+		System.out.println("The call from the class is: " + room);
+		// return authors for this title
+		return room;
+	}
+	
+	public void setRoom(int room) {
+		db.setRoom(room);
+	}
+}

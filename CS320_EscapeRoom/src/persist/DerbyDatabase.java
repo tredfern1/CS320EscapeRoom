@@ -74,7 +74,89 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	
+	@Override
+	public int getRoom() {
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"select * from room "
+					);
+					
+					int result = 0;
+					
+					resultSet = stmt.executeQuery();
+
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						System.out.println("TEST");
+						result = resultSet.getInt("roomNumber");
+					}
+					
+					// check if any authors were found
+					if (!found) {
+						System.out.println("No int found");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
 	
+	@Override
+	public void setRoom(int room) {
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"UPDATE room SET roomNumber = ?"
+					);
+					stmt.setString(1, String.valueOf(room));
+					stmt.execute();
+					
+					
+					stmt = conn.prepareStatement("select * from room");
+					resultSet = stmt.executeQuery();
+					
+					//Test to see if this actually works
+					while(resultSet.next())
+					{
+						System.out.println("Test that Room changed");
+						System.out.println("ROOM: " + resultSet.getInt("roomNumber"));
+					}
+
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	
+		
+	/*
+	stmt = conn.prepareStatement(
+			"UPDATE room" +
+			"SET roomNumber = ?"
+	);
+	*/
 	//DO NOT CHANGE THIS STUFF BELOW
 	// wrapper SQL transaction function that calls actual transaction function (which has retries)
 	public<ResultType> ResultType executeTransaction(Transaction<ResultType> txn) {
@@ -147,8 +229,19 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;		
+				PreparedStatement stmt2 = null;	
 			
 				try {
+					
+					stmt2 = conn.prepareStatement(
+							"create table room (" +
+							"	roomNumber int" +
+							")"
+						);	
+					stmt2.executeUpdate();
+						
+					System.out.println("Room table created");
+					
 					stmt1 = conn.prepareStatement(
 						"create table authors (" +
 						"	author_id integer primary key " +
@@ -160,6 +253,7 @@ public class DerbyDatabase implements IDatabase {
 					stmt1.executeUpdate();
 					
 					System.out.println("Authors table created");
+					
 										
 										
 					return true;
@@ -176,14 +270,19 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 				List<Author> authorList;
+				//TEST OF INT
+				int room = 0;
 				
 				try {
-					authorList     = InitialData.getAuthors();			
+					authorList     = InitialData.getAuthors();
+					room = InitialData.getRoom();
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}
-
+				
 				PreparedStatement insertAuthor     = null;
+				PreparedStatement insertRoom     = null;
+				PreparedStatement testRoom = null;
 
 				try {
 					// must completely populate Authors table before populating BookAuthors table because of primary keys
@@ -196,11 +295,34 @@ public class DerbyDatabase implements IDatabase {
 					}
 					insertAuthor.executeBatch();
 					
-					System.out.println("Authors table populated");			
+					System.out.println("Authors table populated");		
+					
+					insertRoom = conn.prepareStatement("insert into room (roomNumber) VALUES (?)");
+					insertRoom.setString(1, String.valueOf(room));
+					insertRoom.execute();
+					System.out.println("Room table populated");	
+					//Test to print out the room
+					
+					ResultSet resultSet = null;
+					testRoom = conn.prepareStatement("select * from room");
+					resultSet = testRoom.executeQuery();
+					
+					//Test to see if this actually works
+					while(resultSet.next())
+					{
+						System.out.println("ITS NOT EMPTY");
+						System.out.println("ROOM: " + resultSet.getInt("roomNumber"));
+					}
+						
+					
+
+					
 					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(insertAuthor);
+					DBUtil.closeQuietly(insertRoom);
+					DBUtil.closeQuietly(testRoom);
 				}
 			}
 		});
