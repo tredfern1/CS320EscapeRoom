@@ -32,6 +32,7 @@ public class DatabaseLogic {
 	public void setRoom(int room) {
 		//set the room from the given room number
 		db.setRoom(room);
-		
 	}
+	
+	
 }

@@ -13,26 +13,38 @@ body{
 }
 
 .game-box{
-    margin: auto;
-    border: solid;
+    border: none;
     color: white;
-    float: center;
-    width:500px;
-    height: 500px;
-    text-align: center;
+    float: left;
+    width:1000px;
+    height: 1000px;
+    text-align: left;
     border-width: 2px;
-    
+    font-family: 'VT323', monospace;
+    font-size: 30px;
 }
 
 
 .test-title{
     margin: auto;
-    border: solid;
+    border: none;
     color: white;
     float: center;
-    width:1800px;
+    width:1900px;
     height: 300px;
     border-bottom: solid;
     font-size: 10px;
+}
+
+.input-style input{
+    background-color: black; 
+    color: white; 
+    border:none; 
+    border-style:none; 
+    outline:none;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+    width: 500px;
+    bottom: 0;
 }
 

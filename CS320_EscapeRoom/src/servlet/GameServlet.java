@@ -140,7 +140,12 @@ public class GameServlet extends HttpServlet {
 		controller = new GameController(x, y, Inventory, Actions, MapInventory, room); //update game controller for new descriptions
 		description = controller.getSpotDescription(x, y, MapInventory); //set new description
 		
-
+		
+		
+		
+		
+		
+		
 		//STORE THE NEW VALUES IN THE DATABASE///////////////////
 		database.setRoom(room);
 

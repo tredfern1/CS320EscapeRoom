@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<title>Game</title>
-		
+		<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
 		
 		<style type="text/css">
@@ -55,11 +55,7 @@
             	
 				 <p> ${description == null ? "You are in the center of a dark and dirty room." : description}</p>
 				 <p> ${result == null ? "What do you do?" : result} </p>
-                
-                <input type="text" name="move" value="${move}">
-                
 
-                
                 <input type="hidden" name = "x" value="${x}">
                 <input type="hidden" name = "y" value="${y}">
                 <input type="hidden" name = "room" value="${room}">
@@ -80,12 +76,12 @@
 					<td class="label">Coord:</td>
 					<td>${coords}</td>
 				</tr>
-				--%>
+				
 				<tr>
 					<td class="label">Inventory:</td>
 					<td>${Inventory}</td>
 				</tr>
-				<%--
+				
 				<tr>
 					<td class="label">Actions made:</td>
 					<td>${Actions}</td>
@@ -100,6 +96,10 @@
 				</tr>
 				--%>
 				</table>
+				<div class = "input-style">
+				<label for="move">></label>
+                <input autofocus autocomplete= "off" type="text" name="move" value="${move}">
+				</div>
 				
             </div>
         </form>   
