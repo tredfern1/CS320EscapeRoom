@@ -18,5 +18,7 @@ public interface IDatabase {
 
 	public List<String> getLog();
 	List<String> addLog(String line);
+	
+	
 
 }
