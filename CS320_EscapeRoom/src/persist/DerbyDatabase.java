@@ -215,8 +215,6 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	public String getMapInventory() {
-		
-		
 		return executeTransaction(new Transaction<String>() {
 			@Override
 			public String execute(Connection conn) throws SQLException {
@@ -229,13 +227,12 @@ public class DerbyDatabase implements IDatabase {
 					stmt = conn.prepareStatement("select * from mapInventory");
 					resultSet = stmt.executeQuery();
 					
-					String result = null;
+					String result = "";
 					
 					//Test to see if this actually works
 					while(resultSet.next())
 					{
-						result = result + resultSet;
-
+						result = result + resultSet.getString("spotid") + resultSet.getString("item");
 					}
 
 					return result;
@@ -419,7 +416,7 @@ public class DerbyDatabase implements IDatabase {
 					//statement to create the map inventory table
 					stmt3 = conn.prepareStatement(
 							"create table mapInventory ("+
-							" spotid int,"+
+							" spotid varchar(40),"+
 							" item varchar(40))"
 							
 							);
@@ -441,6 +438,7 @@ public class DerbyDatabase implements IDatabase {
 				} finally {
 					DBUtil.closeQuietly(stmt1);
 					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt3);
 					DBUtil.closeQuietly(stmt5);
 				}
 			}
@@ -474,10 +472,7 @@ public class DerbyDatabase implements IDatabase {
 				
 				PreparedStatement insertAuthor   = null;
 				PreparedStatement insertRoom     = null;
-
-
 				PreparedStatement mapInventory = null;
-
 				PreparedStatement testRoom       = null;
 				PreparedStatement insertLog      = null;
 
@@ -517,7 +512,7 @@ public class DerbyDatabase implements IDatabase {
 					//Test to print out the room
 					
 					ResultSet resultSet = null;
-					testRoom = conn.prepareStatement("select * from log");
+					testRoom = conn.prepareStatement("select logs from log");
 					resultSet = testRoom.executeQuery();
 					
 					//Test to see if this actually works
@@ -527,23 +522,31 @@ public class DerbyDatabase implements IDatabase {
 						System.out.println("Log: " + resultSet.getString("logs"));
 					}
 					
+					mapInventory = conn.prepareStatement("insert into mapInventory (spotid, item) VALUES (?,?)");
 					for(String item : mapInv) {
 						System.out.println(item);
-						
-
-					mapInventory = conn.prepareStatement("insert into mapInventory (spotid,item) VALUES (?,?)")	;
-					mapInventory.setString(1, item.substring(0, 2));
-					mapInventory.setString(2, item.substring(3));
-					mapInventory.addBatch();
-					
+						mapInventory.setString(1, item.substring(0,3));
+						mapInventory.setString(2, item.substring(3));
+						mapInventory.addBatch();
 					}
+					
+					
 					mapInventory.executeBatch();
 					
 					System.out.println("mapInventory table populated");	
 					
-
-
-
+					//Test to print out the room
+					
+					resultSet = null;
+					testRoom = conn.prepareStatement("select * from mapInventory");
+					resultSet = testRoom.executeQuery();
+					System.out.println(resultSet.getFetchSize());
+					//Test to see if this actually works
+					while(resultSet.next())
+					{
+						System.out.println("MAPINV: " + resultSet.getString("spotid") + resultSet.getString("item"));
+					}
+					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(insertLog);
@@ -566,5 +569,17 @@ public class DerbyDatabase implements IDatabase {
 		db.loadInitialData();
 		
 		System.out.println("Library DB successfully initialized!");
+	}
+
+	@Override
+	public void addtoPlayerInventory(String item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getPlayerInventory() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

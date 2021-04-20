@@ -55,7 +55,5 @@ public class DatabaseLogic {
 		//set the room from the given room number
 		db.addLog(line);
 	}
-	
 
-	
 }

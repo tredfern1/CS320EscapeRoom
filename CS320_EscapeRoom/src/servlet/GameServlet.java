@@ -39,16 +39,22 @@ public class GameServlet extends HttpServlet {
 		DatabaseLogic database = null;	
 		database = new DatabaseLogic();
 		//SET THE VALUES THE GAME USES BASED ON THE DATABASE VALUES
+		
 		Integer room = database.getRoom();
 		Integer x = getIntFromParameter(req.getParameter("x"));
 		Integer y = getIntFromParameter(req.getParameter("y"));
 		String Inventory = (String)req.getParameter("Inventory");
 		String MapInventory = (String)req.getParameter("MapInventory");
 		String Actions = (String)req.getParameter("Actions");
-		
-		
 		List<String> log = new ArrayList<String>();
 		log = database.getLog();
+		
+		//TEST OF THE INVENTORY
+		String INV = new String();
+		INV = database.getMapInventory();
+		
+		System.out.println("INV: " + INV);
+		
 		
 
 		

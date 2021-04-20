@@ -100,6 +100,7 @@
 				</tr>
 				--%>
 				</table>
+				
 				<div class = "input-style">
 				<label for="move">></label>
                 <input autofocus autocomplete= "off" type="text" name="move" value="${move}">
