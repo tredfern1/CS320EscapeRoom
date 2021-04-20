@@ -34,5 +34,12 @@ public class DatabaseLogic {
 		db.setRoom(room);
 	}
 	
+	public void addItemToMapInventory(String item, String coordinate) {
+		db.addToMapInventory(item, coordinate);
+	}
+	
+	public String getMapInventory() {
+		return db.getMapInventory();
+	}
 	
 }

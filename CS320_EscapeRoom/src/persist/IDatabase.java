@@ -12,6 +12,6 @@ public interface IDatabase {
 	public String getPlayerInventory();
 	public void addtoPlayerInventory(String item);
 	public String getMapInventory();
-	public void addToMapInventory(String item);
+	public void addToMapInventory(String item, String Coordinate);
 	
 }

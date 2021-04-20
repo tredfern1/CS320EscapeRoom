@@ -183,6 +183,33 @@ public class DerbyDatabase implements IDatabase {
 		
 		
 	}
+	
+	public void addToMapInventory(String item, String coordinate) {
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"insert into mapInventory(mapInventory.spotid, mapInventory.item)"
+							+ "values (?,?)"
+					);
+					stmt.setString(1, String.valueOf(coordinate));
+					stmt.setString(2, String.valueOf(item));
+					stmt.execute();
+					
+
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+	}
 		
 	/*
 	stmt = conn.prepareStatement(
