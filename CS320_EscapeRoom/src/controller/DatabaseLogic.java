@@ -34,8 +34,38 @@ public class DatabaseLogic {
 		db.setRoom(room);
 	}
 	
+	public String getPlayerInv() {
+		String inv = db.getPlayerInv();
+		System.out.println("Player inv: " + db.getPlayerInv());
+		return inv;
+	}
 	  
 	
+	public void addItemToPlayerInv(String item) {
+		db.addItemToPlayerInv(item);
+		System.out.println("Inv after adding +" + item + ": " + db.getPlayerInv());
+	}
+	
+	public void removeItemFromPlayerInv(String item) {
+		db.removeItemFromPlayerInv(item);
+		System.out.println("Inv after removing +" + item + ": " + db.getPlayerInv());
+	}
+	
+	public String getActions() {
+		String actions = db.getActions();
+		System.out.println("Player actions: " + db.getActions());
+		return actions;
+	}
+	
+	public void addAction(String action) {
+		db.addAction(action);
+		System.out.println("actions after adding" + action + ": " + db.getPlayerInv());
+	}
+	
+	public void remvoveAction(String action) {
+		db.removeAction(action);
+		System.out.println("actions after removing" + action + ": " + db.getPlayerInv());
+	}
 	public void addItemToMapInventory(String item, String coordinate) {
 		db.addToMapInventory(item, coordinate);
 	}

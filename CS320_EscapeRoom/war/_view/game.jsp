@@ -70,12 +70,12 @@
               
              
               <table>
-				<%--
+				
                 <tr>
 					<td class="label"></td>
 					<td>${result}</td>
 				</tr>
-			
+				<%--
 				<tr>
 					<td class="label">Coord:</td>
 					<td>${coords}</td>
