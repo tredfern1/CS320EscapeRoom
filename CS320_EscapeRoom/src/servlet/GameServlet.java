@@ -39,12 +39,22 @@ public class GameServlet extends HttpServlet {
 		DatabaseLogic database = null;	
 		database = new DatabaseLogic();
 		//SET THE VALUES THE GAME USES BASED ON THE DATABASE VALUES
+		
 		Integer room = database.getRoom();
 		Integer x = getIntFromParameter(req.getParameter("x"));
 		Integer y = getIntFromParameter(req.getParameter("y"));
 		String Inventory = (String)req.getParameter("Inventory");
 		String MapInventory = (String)req.getParameter("MapInventory");
 		String Actions = (String)req.getParameter("Actions");
+		List<String> log = new ArrayList<String>();
+		log = database.getLog();
+		
+		//TEST OF THE INVENTORY
+		String INV = new String();
+		INV = database.getMapInventory();
+		
+		System.out.println("INV: " + INV);
+		
 		
 
 		
@@ -133,9 +143,7 @@ public class GameServlet extends HttpServlet {
 		Inventory = controller.getPickupLogic(move, result, Inventory);
 		MapInventory = controller.getMapPickupLogic(move, result, MapInventory, controller.getPlayer());
 		Actions = controller.getActionsLogic(move, result, Inventory, Actions);
-		
-		
-		
+
 		controller = new GameController(x, y, Inventory, Actions, MapInventory, room); //update game controller for new descriptions
 		description = controller.getSpotDescription(x, y, MapInventory); //set new description
 		
@@ -146,6 +154,7 @@ public class GameServlet extends HttpServlet {
 		
 		
 		//STORE THE NEW VALUES IN THE DATABASE///////////////////
+
 		database.setRoom(room);
 		
 		database.getPlayerInv();
@@ -164,6 +173,24 @@ public class GameServlet extends HttpServlet {
 		//database.getPlayerInv();
 		
 		//database.removeItemFromPlayerInv("item1");
+
+		
+		//LOGIC FOR THE LOGS
+		if(result.contains("can't"))
+		{
+			database.addLog(result);
+			database.addLog("");
+		}
+		else if(result != "")
+		{
+			database.setRoom(room);
+			database.addLog(description);
+			database.addLog(result);
+			database.addLog("");
+		}
+		log = database.getLog();
+		//
+
 		
 		// set attributes(STUFF THAT IS SAVED) now in the jsp
 		req.setAttribute("Actions", Actions);
@@ -174,7 +201,7 @@ public class GameServlet extends HttpServlet {
 		req.setAttribute("y", y);
 		req.setAttribute("room", room);
 		//
-		req.setAttribute("description", description); //description of room
+		req.setAttribute("description", log); //description of room
 		req.setAttribute("result", result);
 		
 		

@@ -39,6 +39,7 @@ public class DatabaseLogic {
 		System.out.println("Player inv: " + db.getPlayerInv());
 		return inv;
 	}
+	  
 	
 	public void addItemToPlayerInv(String item) {
 		db.addItemToPlayerInv(item);
@@ -65,4 +66,25 @@ public class DatabaseLogic {
 		db.removeAction(action);
 		System.out.println("actions after removing" + action + ": " + db.getPlayerInv());
 	}
+	public void addItemToMapInventory(String item, String coordinate) {
+		db.addToMapInventory(item, coordinate);
+	}
+	
+	public String getMapInventory() {
+		return db.getMapInventory();
+	}
+  
+	
+	public List<String> getLog() {
+		//set the room from the given room number
+		List<String> result = new ArrayList<String>();
+		result = db.getLog();
+		return result;
+	}
+	
+	public void addLog(String line) {
+		//set the room from the given room number
+		db.addLog(line);
+	}
+
 }

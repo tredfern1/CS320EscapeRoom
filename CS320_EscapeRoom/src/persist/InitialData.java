@@ -41,8 +41,29 @@ public class InitialData {
 		}
 	}
 	
-	//GET the Intial Room number from the csv
 	
+	//GET THE INTIAL LOG FROM THE CSV
+	public static List<String> getLog() throws IOException {
+		List<String> logList = new ArrayList<String>();
+		ReadCSV readlog = new ReadCSV("log.csv");
+		try {
+			while (true) {
+				List<String> tuple = readlog.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+
+				logList.add(i.next());
+			}
+			System.out.println("authorList loaded from CSV file");
+			return logList;
+		} finally {
+			readlog.close();
+		}
+	}
+	
+	//GET the Intial Room number from the csv
 	public static int getRoom() throws IOException {
 		int room = 0;
 		ReadCSV readRoom = new ReadCSV("room.csv");
@@ -59,6 +80,7 @@ public class InitialData {
 		}
 	}
 	
+
 	public static List<String> getplayerInventory() throws IOException {
 		
 		List<String> inv = new ArrayList<String>();
@@ -81,7 +103,7 @@ public class InitialData {
 		
 	}
 	
-public static List<String> getActions() throws IOException {
+	public static List<String> getActions() throws IOException {
 		
 		List<String> actions = new ArrayList<String>();
 		ReadCSV readAuthors = new ReadCSV("actions.csv");
@@ -102,4 +124,32 @@ public static List<String> getActions() throws IOException {
 		}
 		
 	}
+
+	public static List<String> getMapInventory() throws IOException {
+		List<String> result = new ArrayList<String>();
+		
+		ReadCSV readMapInv = new ReadCSV("mapInventory.csv");
+		
+		try {
+		while(true) {
+		List<String> tuple = readMapInv.next();
+		if(tuple == null) {
+			break;
+		}
+		
+		Iterator<String> i = tuple.iterator();
+		
+			
+			String addition = i.next() + i.next() + " ";
+			result.add(addition);
+			System.out.println(addition + "testing in initial data");
+		}	
+		}finally {
+			readMapInv.close();
+		}
+		
+		
+		return result;
+	}
+	
 }

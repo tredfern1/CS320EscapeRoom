@@ -125,7 +125,6 @@ public class Move {
 					return true;
 				}
 			}
-
 		}
 
 		else {

@@ -45,6 +45,6 @@ body{
     font-family: 'VT323', monospace;
     font-size: 30px;
     width: 500px;
-    bottom: 0;
+    bottom: auto;
 }
 

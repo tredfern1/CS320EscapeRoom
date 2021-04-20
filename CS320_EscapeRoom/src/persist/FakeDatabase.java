@@ -1,14 +1,16 @@
+
 package persist;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.ycp.cs320.booksdb.model.Author;
-import edu.ycp.cs320.booksdb.model.Book;
-import edu.ycp.cs320.booksdb.model.Pair;
+
+import model.*;
+
 
 public class FakeDatabase implements IDatabase {
+	
 	
 	private List<Author> authorList;
 	private List<Book> bookList;
@@ -163,4 +165,6 @@ public class FakeDatabase implements IDatabase {
 		}
 		return null;
 	}
+	
 }
+

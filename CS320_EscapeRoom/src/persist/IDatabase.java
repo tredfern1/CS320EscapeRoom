@@ -15,4 +15,11 @@ public interface IDatabase {
 	public String getActions();
 	public void addAction(String action);
 	public void removeAction(String action);
+	public String getMapInventory();
+	public void addToMapInventory(String item, String Coordinate);
+	
+
+	public List<String> getLog();
+	public List<String> addLog(String line);
+
 }
