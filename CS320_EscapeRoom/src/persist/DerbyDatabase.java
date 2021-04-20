@@ -210,6 +210,34 @@ public class DerbyDatabase implements IDatabase {
 		});
 		
 	}
+	
+	public void removeFromMapInventory(String item) {
+		
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"delete from mapInventory where"
+							+"item = ?"
+					);
+					
+					stmt.setString(1, String.valueOf(item));
+					stmt.execute();
+					
+
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+	}
 		
 	/*
 	stmt = conn.prepareStatement(
