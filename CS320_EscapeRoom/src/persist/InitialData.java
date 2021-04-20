@@ -58,4 +58,32 @@ public class InitialData {
 			readRoom.close();
 		}
 	}
+	
+	public static List<String> getMapInventory() throws IOException {
+		List<String> result = new ArrayList<String>();
+		
+		ReadCSV readMapInv = new ReadCSV("mapInventory.csv");
+		
+		try {
+		while(true) {
+		List<String> tuple = readMapInv.next();
+		if(tuple == null) {
+			break;
+		}
+		
+		Iterator<String> i = tuple.iterator();
+		
+			
+			String addition = i.next() + i.next() + " ";
+			result.add(addition);
+			System.out.println(addition + "testing in initial data");
+		}	
+		}finally {
+			readMapInv.close();
+		}
+		
+		
+		return result;
+	}
+	
 }
