@@ -536,6 +536,7 @@ public class DerbyDatabase implements IDatabase {
 					insertCoordinate.setString(1, String.valueOf(coord.getX()));
 					insertCoordinate.setString(2, String.valueOf(coord.getY()));
 					
+					
 					//Test to print out the room
 					
 					ResultSet resultSet = null;
