@@ -41,8 +41,29 @@ public class InitialData {
 		}
 	}
 	
-	//GET the Intial Room number from the csv
 	
+	//GET THE INTIAL LOG FROM THE CSV
+	public static List<String> getLog() throws IOException {
+		List<String> logList = new ArrayList<String>();
+		ReadCSV readlog = new ReadCSV("log.csv");
+		try {
+			while (true) {
+				List<String> tuple = readlog.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+
+				logList.add(i.next());
+			}
+			System.out.println("authorList loaded from CSV file");
+			return logList;
+		} finally {
+			readlog.close();
+		}
+	}
+	
+	//GET the Intial Room number from the csv
 	public static int getRoom() throws IOException {
 		int room = 0;
 		ReadCSV readRoom = new ReadCSV("room.csv");

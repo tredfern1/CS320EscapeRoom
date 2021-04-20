@@ -46,6 +46,10 @@ public class GameServlet extends HttpServlet {
 		String MapInventory = (String)req.getParameter("MapInventory");
 		String Actions = (String)req.getParameter("Actions");
 		
+		
+		List<String> log = new ArrayList<String>();
+		log = database.getLog();
+		
 
 		
 		//sets the starting x and y
@@ -134,9 +138,7 @@ public class GameServlet extends HttpServlet {
 		Inventory = controller.getPickupLogic(move, result, Inventory);
 		MapInventory = controller.getMapPickupLogic(move, result, MapInventory, controller.getPlayer());
 		Actions = controller.getActionsLogic(move, result, Inventory, Actions);
-		
-		
-		
+
 		controller = new GameController(x, y, Inventory, Actions, MapInventory, room); //update game controller for new descriptions
 		description = controller.getSpotDescription(x, y, MapInventory); //set new description
 		
@@ -147,8 +149,22 @@ public class GameServlet extends HttpServlet {
 		
 		
 		//STORE THE NEW VALUES IN THE DATABASE///////////////////
-		database.setRoom(room);
-
+		
+		//LOGIC FOR THE LOGS
+		if(result.contains("can't"))
+		{
+			database.addLog(result);
+			database.addLog("");
+		}
+		else if(result != "")
+		{
+			database.setRoom(room);
+			database.addLog(description);
+			database.addLog(result);
+			database.addLog("");
+		}
+		log = database.getLog();
+		//
 		
 		// set attributes(STUFF THAT IS SAVED) now in the jsp
 		req.setAttribute("Actions", Actions);
@@ -159,7 +175,7 @@ public class GameServlet extends HttpServlet {
 		req.setAttribute("y", y);
 		req.setAttribute("room", room);
 		//
-		req.setAttribute("description", description); //description of room
+		req.setAttribute("description", log); //description of room
 		req.setAttribute("result", result);
 		
 		

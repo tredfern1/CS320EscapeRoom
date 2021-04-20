@@ -52,9 +52,13 @@
          </div>
         
             <div class="game-box">
-            	
-				 <p> ${description == null ? "You are in the center of a dark and dirty room." : description}</p>
-				 <p> ${result == null ? "What do you do?" : result} </p>
+				
+
+				 <p> ${description == null ? "Press ENTER to play!" : ""}</p>
+
+				 <c:forEach items="${description}" var="item">
+				 ${item}<br>
+                 </c:forEach>
 
                 <input type="hidden" name = "x" value="${x}">
                 <input type="hidden" name = "y" value="${y}">
