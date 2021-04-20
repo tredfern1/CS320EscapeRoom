@@ -34,5 +34,17 @@ public class DatabaseLogic {
 		db.setRoom(room);
 	}
 	
+	public List<String> getLog() {
+		//set the room from the given room number
+		List<String> result = new ArrayList<String>();
+		result = db.getLog();
+		return result;
+	}
+	
+	public void addLog(String line) {
+		//set the room from the given room number
+		db.addLog(line);
+	}
+	
 	
 }

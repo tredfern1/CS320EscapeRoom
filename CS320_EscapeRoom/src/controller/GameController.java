@@ -124,12 +124,15 @@ public class GameController {
 	
 	
 	public String getOutput(String move) {
+		if(move.length() <= 0)
+		{
+			return "";
+		}
 		
 		if(model.validate(model.split(move), player1.getPlayerx(), player1.getPlayery(), map1.getSpot(player1.getPlayerx(), player1.getPlayery()), player1)) {
-			
 			//if there is nothing after "go" (or synonym) in the move
 			if (move.replace("go", "").contentEquals("") || move.replace("move", "").contentEquals(" ") || move.replace("walk", "").contentEquals(" ")) {
-				return "You cannot do that";
+				return "You can't do that";
 			}
 			
 			return model.getOutput(model.split(move), player1);

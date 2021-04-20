@@ -73,6 +73,71 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
+	@Override
+	public List<String> getLog() {
+		return executeTransaction(new Transaction<List<String>>() {
+			@Override
+			public List<String> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"select * from log "
+					);
+					
+					List<String> result = new ArrayList<String>();
+					
+					resultSet = stmt.executeQuery();
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						result.add(resultSet.getString("logs"));
+					}
+					
+					// check if any authors were found
+					if (!found) {
+						System.out.println("No logs were found in the database");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	@Override
+	public List<String> addLog(String line) {
+		return executeTransaction(new Transaction<List<String>>() {
+			@Override
+			public List<String> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"INSERT INTO log VALUES (?)"
+					);
+					stmt.setString(1, line);
+					List<String> result = new ArrayList<String>();
+					
+					stmt.executeUpdate();
+
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
 	
 	@Override
 	public int getRoom() {
@@ -229,7 +294,8 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;		
-				PreparedStatement stmt2 = null;	
+				PreparedStatement stmt2 = null;
+				PreparedStatement stmt5 = null;	
 			
 				try {
 					
@@ -254,11 +320,21 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Authors table created");
 					
-										
+					stmt5 = conn.prepareStatement(
+							"create table log (" +
+							"	logs varchar(1000)" +
+							")"
+						);	
+					
+					stmt5.executeUpdate();			
+					
+					System.out.println("Logs table created");
 										
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt5);
 				}
 			}
 		});
@@ -270,19 +346,22 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 				List<Author> authorList;
+				List<String> logList;
 				//TEST OF INT
 				int room = 0;
 				
 				try {
 					authorList     = InitialData.getAuthors();
+					logList     = InitialData.getLog();
 					room = InitialData.getRoom();
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}
 				
-				PreparedStatement insertAuthor     = null;
+				PreparedStatement insertAuthor   = null;
 				PreparedStatement insertRoom     = null;
-				PreparedStatement testRoom = null;
+				PreparedStatement testRoom       = null;
+				PreparedStatement insertLog      = null;
 
 				try {
 					// must completely populate Authors table before populating BookAuthors table because of primary keys
@@ -301,25 +380,38 @@ public class DerbyDatabase implements IDatabase {
 					insertRoom.setString(1, String.valueOf(room));
 					insertRoom.execute();
 					System.out.println("Room table populated");	
+					
+					
+					insertLog = conn.prepareStatement("insert into log (logs) values (?)");
+					for (String statement : logList) {
+//			
+						insertLog.setString(1, statement);
+						insertLog.addBatch();
+					}
+					insertLog.executeBatch();
+					
+					System.out.println("Logs table populated");		
+					
+					
+					
+					
 					//Test to print out the room
 					
 					ResultSet resultSet = null;
-					testRoom = conn.prepareStatement("select * from room");
+					testRoom = conn.prepareStatement("select * from log");
 					resultSet = testRoom.executeQuery();
 					
 					//Test to see if this actually works
 					while(resultSet.next())
 					{
 						System.out.println("ITS NOT EMPTY");
-						System.out.println("ROOM: " + resultSet.getInt("roomNumber"));
+						System.out.println("Log: " + resultSet.getString("logs"));
 					}
 						
-					
 
-					
-					
 					return true;
 				} finally {
+					DBUtil.closeQuietly(insertLog);
 					DBUtil.closeQuietly(insertAuthor);
 					DBUtil.closeQuietly(insertRoom);
 					DBUtil.closeQuietly(testRoom);
