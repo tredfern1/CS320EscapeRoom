@@ -214,7 +214,95 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
+	public String getMapInventory() {
+		
+		
+		return executeTransaction(new Transaction<String>() {
+			@Override
+			public String execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+
+					
+					stmt = conn.prepareStatement("select * from mapInventory");
+					resultSet = stmt.executeQuery();
+					
+					String result = null;
+					
+					//Test to see if this actually works
+					while(resultSet.next())
+					{
+						result = result + resultSet;
+
+					}
+
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+		
+	}
 	
+	public void addToMapInventory(String item, String coordinate) {
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"insert into mapInventory(mapInventory.spotid, mapInventory.item)"
+							+ "values (?,?)"
+					);
+					stmt.setString(1, String.valueOf(coordinate));
+					stmt.setString(2, String.valueOf(item));
+					stmt.execute();
+					
+
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+	}
+	
+	public void removeFromMapInventory(String item) {
+		
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"delete from mapInventory where"
+							+"item = ?"
+					);
+					
+					stmt.setString(1, String.valueOf(item));
+					stmt.execute();
+					
+
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+	}
 		
 	/*
 	stmt = conn.prepareStatement(
@@ -272,7 +360,7 @@ public class DerbyDatabase implements IDatabase {
 	// TODO: Change it here and in SQLDemo.java under CS320_LibraryExample_Lab06->edu.ycp.cs320.sqldemo
 	// TODO: DO NOT PUT THE DB IN THE SAME FOLDER AS YOUR PROJECT - that will cause conflicts later w/Git
 	private Connection connect() throws SQLException {
-		Connection conn = DriverManager.getConnection("jdbc:derby:C:/CS320-2019-LibraryExample-DB/library.db;create=true");		
+		Connection conn = DriverManager.getConnection("jdbc:derby:library.db;create=true");		
 		
 		// Set autocommit() to false to allow the execution of
 		// multiple queries/statements as part of the same transaction.
@@ -294,9 +382,15 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;		
-				PreparedStatement stmt2 = null;
+
+				PreparedStatement stmt2 = null;	
+				PreparedStatement stmt3 = null;
+				
+
+
 				PreparedStatement stmt5 = null;	
 			
+
 				try {
 					
 					stmt2 = conn.prepareStatement(
@@ -320,6 +414,17 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Authors table created");
 					
+
+					//statement to create the map inventory table
+					stmt3 = conn.prepareStatement(
+							"create table mapInventory ("+
+							" spotid int,"+
+							" item varchar(40))"
+							
+							);
+					
+					stmt3.executeUpdate();
+
 					stmt5 = conn.prepareStatement(
 							"create table log (" +
 							"	logs varchar(1000)" +
@@ -329,6 +434,7 @@ public class DerbyDatabase implements IDatabase {
 					stmt5.executeUpdate();			
 					
 					System.out.println("Logs table created");
+
 										
 					return true;
 				} finally {
@@ -346,7 +452,13 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 				List<Author> authorList;
+
+				
+				//list for the map inventory
+				List<String> mapInv;
+
 				List<String> logList;
+
 				//TEST OF INT
 				int room = 0;
 				
@@ -354,14 +466,20 @@ public class DerbyDatabase implements IDatabase {
 					authorList     = InitialData.getAuthors();
 					logList     = InitialData.getLog();
 					room = InitialData.getRoom();
+					mapInv = InitialData.getMapInventory();
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}
 				
 				PreparedStatement insertAuthor   = null;
 				PreparedStatement insertRoom     = null;
+
+
+				PreparedStatement mapInventory = null;
+
 				PreparedStatement testRoom       = null;
 				PreparedStatement insertLog      = null;
+
 
 				try {
 					// must completely populate Authors table before populating BookAuthors table because of primary keys
@@ -407,7 +525,23 @@ public class DerbyDatabase implements IDatabase {
 						System.out.println("ITS NOT EMPTY");
 						System.out.println("Log: " + resultSet.getString("logs"));
 					}
+					
+					for(String item : mapInv) {
+						System.out.println(item);
 						
+
+					mapInventory = conn.prepareStatement("insert into mapInventory (spotid,item) VALUES (?,?)")	;
+					mapInventory.setString(1, item.substring(0, 2));
+					mapInventory.setString(2, item.substring(3));
+					mapInventory.addBatch();
+					
+					}
+					mapInventory.executeBatch();
+					
+					System.out.println("mapInventory table populated");	
+					
+
+
 
 					return true;
 				} finally {
@@ -415,6 +549,7 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(insertAuthor);
 					DBUtil.closeQuietly(insertRoom);
 					DBUtil.closeQuietly(testRoom);
+					DBUtil.closeQuietly(mapInventory);
 				}
 			}
 		});
