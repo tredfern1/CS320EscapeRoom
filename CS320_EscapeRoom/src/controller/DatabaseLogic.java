@@ -34,8 +34,7 @@ public class DatabaseLogic {
 		db.setRoom(room);
 	}
 	
-	  
-	
+
 	public void addItemToMapInventory(String item, String coordinate) {
 		db.addToMapInventory(item, coordinate);
 	}
@@ -43,17 +42,9 @@ public class DatabaseLogic {
 	public String getMapInventory() {
 		return db.getMapInventory();
 	}
-
-	public List<String> getLog() {
-		//set the room from the given room number
-		List<String> result = new ArrayList<String>();
-		result = db.getLog();
-		return result;
-	}
 	
-	public void addLog(String line) {
-		//set the room from the given room number
-		db.addLog(line);
+	public void removeFromMapInventory(String item) {
+		db.removeFromMapInventory(item);
 	}
 
 }

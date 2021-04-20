@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Author;
+import model.Coordinate;
 
 
 
@@ -300,6 +301,18 @@ public class DerbyDatabase implements IDatabase {
 		});
 		
 	}
+	
+	@Override
+	public Coordinate getCoordinate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCoordinate() {
+		// TODO Auto-generated method stub
+		
+	}
 		
 	/*
 	stmt = conn.prepareStatement(
@@ -433,6 +446,11 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Logs table created");
 
+					
+					stmt3 = conn.prepareStatement("create table playerCoordinate"
+							+ "(x int, y int)");
+					
+					stmt3.executeUpdate();
 										
 					return true;
 				} finally {
@@ -457,6 +475,9 @@ public class DerbyDatabase implements IDatabase {
 				List<String> mapInv;
 
 				List<String> logList;
+				
+				//coordinate for the player coord
+				Coordinate coord;
 
 				//TEST OF INT
 				int room = 0;
@@ -466,6 +487,7 @@ public class DerbyDatabase implements IDatabase {
 					logList     = InitialData.getLog();
 					room = InitialData.getRoom();
 					mapInv = InitialData.getMapInventory();
+					coord = InitialData.getCoordinate();
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}
@@ -475,6 +497,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement mapInventory = null;
 				PreparedStatement testRoom       = null;
 				PreparedStatement insertLog      = null;
+				PreparedStatement insertCoordinate      = null;
 
 
 				try {
@@ -507,7 +530,11 @@ public class DerbyDatabase implements IDatabase {
 					System.out.println("Logs table populated");		
 					
 					
-					
+					//populate the player coord database
+					insertCoordinate = conn.prepareStatement("insert into playerCoordinate"
+							+ "(x,y) values (?,?)");
+					insertCoordinate.setString(1, String.valueOf(coord.getX()));
+					insertCoordinate.setString(2, String.valueOf(coord.getY()));
 					
 					//Test to print out the room
 					
@@ -582,4 +609,6 @@ public class DerbyDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.Author;
+import model.Coordinate;
 
 
 public class InitialData {
@@ -101,6 +102,33 @@ public class InitialData {
 		}	
 		}finally {
 			readMapInv.close();
+		}
+		
+		
+		return result;
+	}
+	
+	public static Coordinate getCoordinate() throws IOException{
+		Coordinate result = new Coordinate();
+		
+		ReadCSV readCoordinate = new ReadCSV("coordinate.csv");
+		
+		try {
+			while(true) {
+				List<String> tuple = readCoordinate.next();
+				if(tuple == null) {
+					break;
+				}
+				
+				Iterator<String> i = tuple.iterator();
+				
+				result.setX(Integer.parseInt(i.next()));
+				result.setY(Integer.parseInt(i.next()));
+				
+			}
+		}
+		finally {
+			readCoordinate.close();
 		}
 		
 		

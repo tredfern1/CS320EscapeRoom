@@ -1,4 +1,14 @@
-/persist/
 /controller/
+/csv/
+/model/
+/persist/
+<<<<<<< Updated upstream
+/controller/
+<<<<<<< Updated upstream
 /servlet/
 /csv/
+=======
+=======
+/servlet/
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
