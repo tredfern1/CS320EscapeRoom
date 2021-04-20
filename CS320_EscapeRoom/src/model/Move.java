@@ -141,7 +141,12 @@ public class Move {
 		String output = null;
 
 		if(move[0].contains("go") || move[0].contains("move") || move[0].contains("walk")) {         //move outputs
-			if(move[1].contains("north")) {	
+			if(move[1].contains("north")) {
+				
+				///System.out.println(player1.hasAction("unlock1"));
+				//System.out.println(player1.getPlayerx());
+				//System.out.println(player1.getPlayery());
+				//System.out.println(player1.getRoomNumber() == 1);
 				
 				if(player1.hasAction("unlock1") == true && player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 1) //ROOM CHANGE VALIDATION
 				{

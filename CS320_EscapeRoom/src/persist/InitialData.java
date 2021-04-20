@@ -58,4 +58,48 @@ public class InitialData {
 			readRoom.close();
 		}
 	}
+	
+	public static List<String> getplayerInventory() throws IOException {
+		
+		List<String> inv = new ArrayList<String>();
+		ReadCSV readAuthors = new ReadCSV("playerInventory.csv");
+		try {
+			while (true) {
+				List<String> tuple = readAuthors.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				inv.add(i.next());
+				
+			}
+			System.out.println("player inventory loaded from CSV file:" + inv);
+			return inv;
+		} finally {
+			readAuthors.close();
+		}
+		
+	}
+	
+public static List<String> getActions() throws IOException {
+		
+		List<String> actions = new ArrayList<String>();
+		ReadCSV readAuthors = new ReadCSV("actions.csv");
+		try {
+			while (true) {
+				List<String> tuple = readAuthors.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				actions.add(i.next());
+				
+			}
+			System.out.println("player inventory loaded from CSV file:" + actions);
+			return actions;
+		} finally {
+			readAuthors.close();
+		}
+		
+	}
 }

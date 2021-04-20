@@ -103,8 +103,7 @@ public class GameServlet extends HttpServlet {
 		} else if (result == "you went east") {
 			x = x + 1;
 			coor = x + "," + y;
-		} else if (result == "you changed rooms") {
-			//if the player changes rooms
+		} else if (result == "you changed rooms") {  //if the player changes rooms
 			x = 1;
 			y = 0;
 			room = 2;
@@ -148,7 +147,23 @@ public class GameServlet extends HttpServlet {
 		
 		//STORE THE NEW VALUES IN THE DATABASE///////////////////
 		database.setRoom(room);
-
+		
+		database.getPlayerInv();
+		
+		//database.getActions();
+		//database.addAction("action2");
+		//database.getActions();
+		
+		database.addItemToPlayerInv("item4");
+		
+		database.removeItemFromPlayerInv("item1");
+		
+		//database.getPlayerInv();
+		//database.addItemToPlayerInv("item2");
+		
+		//database.getPlayerInv();
+		
+		//database.removeItemFromPlayerInv("item1");
 		
 		// set attributes(STUFF THAT IS SAVED) now in the jsp
 		req.setAttribute("Actions", Actions);

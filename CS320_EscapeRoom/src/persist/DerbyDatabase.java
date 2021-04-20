@@ -149,8 +149,195 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
-	
+	//returns the player's inventory as a string, with items separated by " "
+	@Override
+	public String getPlayerInv() {
 		
+		return executeTransaction(new Transaction<String>() {
+			@Override
+			public String execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"SELECT * FROM playerInventory"
+					);
+					
+					String result = "";
+					
+					resultSet = stmt.executeQuery();
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						//System.out.println(resultSet.getString("item"));
+						result = result + resultSet.getString("item") + " ";
+					}
+					
+					// check if any authors were found
+					if (!found) {
+						System.out.println("No items in the player's inventory were found in the database");
+					}
+					System.out.println("result in the DB for player inv: " + result);
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	@Override
+	public void addItemToPlayerInv(String item) {
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"INSERT INTO playerInventory (item) " +
+							"VALUES (?)"
+					);
+					stmt.setString(1, item);
+					
+					stmt.executeUpdate();
+					
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	@Override
+	public void removeItemFromPlayerInv(String item) {
+
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"DELETE FROM playerInventory WHERE item = ?"
+					);
+					stmt.setString(1, item);
+					
+					stmt.executeUpdate();
+					
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	@Override
+	public String getActions() {
+		
+		return executeTransaction(new Transaction<String>() {
+			@Override
+			public String execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"SELECT * FROM actions"
+					);
+					
+					String result = "";
+					
+					resultSet = stmt.executeQuery();
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						//System.out.println(resultSet.getString("item"));
+						result = result + resultSet.getString("action") + " ";
+					}
+					
+					// check if any authors were found
+					if (!found) {
+						System.out.println("No actions were found in the database");
+					}
+					System.out.println("result in the DB for actions: " + result);
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	@Override
+	public void addAction(String action) {
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"INSERT INTO actions (action) " +
+							"VALUES (?)"
+					);
+					stmt.setString(1, action);
+					
+					stmt.executeUpdate();
+					
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	@Override
+	public void removeAction(String action) {
+		
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"DELETE FROM actions WHERE action = ?"
+					);
+					stmt.setString(1, action);
+					
+					stmt.executeUpdate();
+					
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
 	/*
 	stmt = conn.prepareStatement(
 			"UPDATE room" +
@@ -230,6 +417,8 @@ public class DerbyDatabase implements IDatabase {
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;		
 				PreparedStatement stmt2 = null;	
+				PreparedStatement stmt3 = null;
+				PreparedStatement stmt4 = null;
 			
 				try {
 					
@@ -252,13 +441,31 @@ public class DerbyDatabase implements IDatabase {
 					);	
 					stmt1.executeUpdate();
 					
-					System.out.println("Authors table created");
+					//creates the table for the player's inventory
+					stmt3 = conn.prepareStatement(
+						"CREATE TABLE playerInventory ("
+						+ "item varchar(40)"
+						+ ")"
+					);
+					stmt3.executeUpdate();
+					
+					stmt4 = conn.prepareStatement(
+						"CREATE TABLE actions ("
+						+ "action varchar(40)"
+						+ ")"
+					);
+					stmt4.executeUpdate();
+					
+					System.out.println("All tables created");
 					
 										
 										
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt3);
+					DBUtil.closeQuietly(stmt4);
 				}
 			}
 		});
@@ -270,12 +477,17 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 				List<Author> authorList;
+				List<String> playerInv;
+				List<String> actions;
 				//TEST OF INT
 				int room = 0;
 				
 				try {
 					authorList     = InitialData.getAuthors();
 					room = InitialData.getRoom();
+					playerInv = InitialData.getplayerInventory();
+					actions = InitialData.getActions();
+					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}
@@ -283,7 +495,9 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertAuthor     = null;
 				PreparedStatement insertRoom     = null;
 				PreparedStatement testRoom = null;
-
+				PreparedStatement insertPlayerInv = null;
+				PreparedStatement insertActions = null;
+				
 				try {
 					// must completely populate Authors table before populating BookAuthors table because of primary keys
 					insertAuthor = conn.prepareStatement("insert into authors (lastname, firstname) values (?, ?)");
@@ -313,16 +527,40 @@ public class DerbyDatabase implements IDatabase {
 						System.out.println("ITS NOT EMPTY");
 						System.out.println("ROOM: " + resultSet.getInt("roomNumber"));
 					}
-						
 					
-
+					//populates the player's inventory with the initial data
+					insertPlayerInv = conn.prepareStatement("INSERT INTO playerInventory (item) VALUES (?)");
+					for (String item : playerInv) {
+						insertPlayerInv.setString(1, item);
+						insertPlayerInv.addBatch();
+					}
+					insertPlayerInv.executeBatch();
 					
+					/*
+					resultSet = null;
+					testRoom = conn.prepareStatement("select * from playerInventory");
+					resultSet = testRoom.executeQuery();
+					
+					while(resultSet.next())
+					{
+						System.out.println("ITS NOT EMPTY");
+						System.out.println("ITEM: " + resultSet.getString("item"));
+					}
+					*/
+					
+					insertActions = conn.prepareStatement("INSERT INTO actions (action) VALUES (?)");
+					for (String action : actions) {
+						insertActions.setString(1, action);
+						insertActions.addBatch();
+					}
+					insertActions.executeBatch();
 					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(insertAuthor);
 					DBUtil.closeQuietly(insertRoom);
 					DBUtil.closeQuietly(testRoom);
+					DBUtil.closeQuietly(insertPlayerInv);
 				}
 			}
 		});
