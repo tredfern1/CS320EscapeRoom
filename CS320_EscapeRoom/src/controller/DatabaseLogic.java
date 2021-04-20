@@ -43,7 +43,8 @@ public class DatabaseLogic {
 	public String getMapInventory() {
 		return db.getMapInventory();
 	}
-
+  
+	
 	public List<String> getLog() {
 		//set the room from the given room number
 		List<String> result = new ArrayList<String>();
