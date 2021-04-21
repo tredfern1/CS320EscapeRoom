@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import model.Author;
@@ -495,6 +496,51 @@ public class DerbyDatabase implements IDatabase {
 		});
 		
 	}
+	
+
+	
+	public void setMapInventory(String mapInventory) {
+	
+		executeTransaction(new Transaction<String>() {
+			@Override
+			public String execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				String[] temp = mapInventory.split(" ");
+				List<String> newMapInventory = new ArrayList<String>();
+				newMapInventory = Arrays.asList(temp);
+				
+				try {
+					stmt = conn.prepareStatement(
+							"delete from mapInventory"
+					);
+					stmt.executeUpdate();
+					
+					stmt = conn.prepareStatement("insert into mapInventory "
+							+ "(spotid, item) values (?,?) ");
+					int i = 0;
+					for(String item: newMapInventory) {
+						if(!item.contentEquals("") && !item.contentEquals(" ")) {
+							System.out.println(i + " : " + item);
+							stmt.setString(1, item.substring(0,3));
+							stmt.setString(2, item.substring(3) + " ");
+							stmt.addBatch();
+							i++;
+						}
+					}
+					
+					stmt.executeBatch();
+
+					return mapInventory;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+	}
 
 	
 
@@ -582,13 +628,7 @@ public class DerbyDatabase implements IDatabase {
 					stmt.setInt(1, coord.getX());
 					stmt.setInt(2, coord.getY());
 					stmt.executeUpdate();
-					
-					
-
-					
-					
-
-
+				
 					return 1;
 				} finally {
 					DBUtil.closeQuietly(resultSet);
@@ -729,8 +769,8 @@ public class DerbyDatabase implements IDatabase {
 					//statement to create the map inventory table
 					stmt6 = conn.prepareStatement(
 							"create table mapInventory ("+
-							" spotid varchar(40),"+
-							" item varchar(40))"
+							" spotid varchar(500),"+
+							" item varchar(5000))"
 							
 							);
 					
