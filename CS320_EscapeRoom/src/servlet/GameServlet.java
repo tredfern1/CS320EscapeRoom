@@ -166,28 +166,9 @@ public class GameServlet extends HttpServlet {
 		database.setCoordinate(coord);
 		database.setRoom(room);
 		database.getPlayerInv();
-		
-		System.out.println("mapinventory before set call : " + MapInventory);
-		
 		database.setMapInventory(MapInventory);
-		//database.getActions();
-		//database.addAction("action2");
-		//database.getActions();
-		
-		//database.addItemToPlayerInv("item4");
-		//database.removeItemFromPlayerInv("item1");
-		
-		database.updateActions("abc 123");
-		
-		//database.getPlayerInv();
-		//database.addItemToPlayerInv("item2");
-		
-		//database.getPlayerInv();
-		
-		//database.removeItemFromPlayerInv("item1");
-		
-		
-
+		database.updateActions(Actions);
+		database.updatePlayerInv(Inventory);
 		
 		//LOGIC FOR THE LOGS
 		if(result.contains("can't"))
@@ -204,9 +185,6 @@ public class GameServlet extends HttpServlet {
 		}
 		log = database.getLog();
 		//
-		
-		database.updateActions(Actions);
-		database.updatePlayerInv(Inventory);
 		
 		// set attributes(STUFF THAT IS SAVED) now in the jsp
 		req.setAttribute("Actions", Actions);
