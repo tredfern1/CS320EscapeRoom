@@ -1,4 +1,4 @@
-package derbyTest.copy;
+package modelTest;
 
 import static org.junit.Assert.*;
 

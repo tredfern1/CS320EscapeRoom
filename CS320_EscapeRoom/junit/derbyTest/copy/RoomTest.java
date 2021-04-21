@@ -1,4 +1,4 @@
-package modelTest;
+package derbyTest.copy;
 
 import static org.junit.Assert.*;
 
@@ -18,26 +18,10 @@ public class RoomTest {
 	@Before
 	public void setup() {
 		
-		s = new Spot();
 		
 	}
 	
-	@Test
-	public void testLookAround() {
-		
-	}
-	
-	@Test
-	public void testAddAndGetItem() {
-		
-		s.addItem("book");
-		s.addItem("key");
-		
-		assertTrue(s.getItem(0).contains("book"));
-		assertTrue(s.getItem(1).contains("key"));
-		
-		assertFalse(s.getItem(0).contains("dog"));
-	}
+
 	
 	@Test
 	public void testHasItem() {
