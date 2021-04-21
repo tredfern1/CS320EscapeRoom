@@ -26,6 +26,7 @@ public interface IDatabase {
 	public String getMapInventory();
 	public void addToMapInventory(String item, String Coordinate);
 	public void removeFromMapInventory(String item);
+	public void setMapInventory(String mapInventory);
 	
 	//log functions
 	public List<String> getLog();

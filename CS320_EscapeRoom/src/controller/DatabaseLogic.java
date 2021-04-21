@@ -106,6 +106,10 @@ public class DatabaseLogic {
 	public void setCoordinate(Coordinate coord) {
 		db.setCoordinate(coord);
 	}
+	
+	public void setMapInventory(String mapInventory) {
+		db.setMapInventory(mapInventory);
+	}
 
 	
 }
