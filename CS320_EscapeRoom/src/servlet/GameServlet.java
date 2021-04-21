@@ -14,6 +14,7 @@ import controller.GameController;
 import controller.DatabaseLogic;
 import controller.AllAuthorsQuery;
 import model.Author;
+import model.Coordinate;
 import model.Logic;
 import model.Move;
 import model.Numbers;
@@ -41,13 +42,15 @@ public class GameServlet extends HttpServlet {
 		//SET THE VALUES THE GAME USES BASED ON THE DATABASE VALUES
 		
 		Integer room = database.getRoom();
-		Integer x = getIntFromParameter(req.getParameter("x"));
-		Integer y = getIntFromParameter(req.getParameter("y"));
+		System.out.println();
+		Integer x = database.getCoordinateX();
+		Integer y = database.getCoordinateY();
 		String Inventory = (String)req.getParameter("Inventory");
-		String MapInventory = (String)req.getParameter("MapInventory");
+		String MapInventory = database.getMapInventory();
 		String Actions = (String)req.getParameter("Actions");
 		List<String> log = new ArrayList<String>();
 		log = database.getLog();
+		
 		
 		//TEST OF THE INVENTORY
 		String INV = new String();
@@ -93,8 +96,8 @@ public class GameServlet extends HttpServlet {
 		
 		description = controller.getSpotDescription(1, 1, MapInventory);
 
-		x = controller.getPlayer().getPlayerx();
-		y = controller.getPlayer().getPlayery();
+		x = database.getCoordinateX();
+		y = database.getCoordinateY();
 		
 		
 		
@@ -154,7 +157,16 @@ public class GameServlet extends HttpServlet {
 		
 		
 		//STORE THE NEW VALUES IN THE DATABASE///////////////////
+		Coordinate coord = new Coordinate();
+		
+		coord.setCoordinate(x, y);
+		
+		System.out.println("testing coord in servlet  " + coord.getX());
+		System.out.println("testing coord in servlet  " + coord.getY());
+		
 
+		database.setCoordinate(coord);
+		
 		database.setRoom(room);
 		
 		database.getPlayerInv();
@@ -173,6 +185,8 @@ public class GameServlet extends HttpServlet {
 		//database.getPlayerInv();
 		
 		//database.removeItemFromPlayerInv("item1");
+		
+		
 
 		
 		//LOGIC FOR THE LOGS

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /csv/
 <<<<<<< Updated upstream
 /persist/
@@ -8,3 +9,8 @@
 /persist/
 >>>>>>> Stashed changes
 /servlet/
+=======
+/servlet/
+/persist/
+/controller/
+>>>>>>> main

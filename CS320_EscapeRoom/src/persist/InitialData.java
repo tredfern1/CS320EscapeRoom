@@ -167,8 +167,13 @@ public class InitialData {
 				
 				Iterator<String> i = tuple.iterator();
 				
-				result.setX(Integer.parseInt(i.next()));
-				result.setY(Integer.parseInt(i.next()));
+				int x = Integer.parseInt(i.next());
+				int y = Integer.parseInt(i.next());
+				
+				result.setX(x);
+				System.out.println("initialdata version of x " + x);
+				result.setY(y);
+				System.out.println("initialdata version of y " + y);
 				
 			}
 		}
