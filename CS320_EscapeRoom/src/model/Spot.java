@@ -8,7 +8,7 @@ public class Spot {
 	public ArrayList<String> items = new ArrayList<String>();
 	
 	
-	Spot (){
+	public Spot (){
 		descriptions = new ArrayList<String>(); //init all variables
 		items = new ArrayList<String>();
 	}

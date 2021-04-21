@@ -581,7 +581,7 @@ public class DerbyDatabase implements IDatabase {
 					);
 					stmt.setInt(1, coord.getX());
 					stmt.setInt(2, coord.getY());
-					stmt.execute();
+					stmt.executeUpdate();
 					
 					
 
@@ -792,7 +792,6 @@ public class DerbyDatabase implements IDatabase {
 					playerInv = InitialData.getplayerInventory();
 					actions = InitialData.getActions();
 					mapInv = InitialData.getMapInventory();
-
 					coord = InitialData.getCoordinate();
 
 				} catch (IOException e) {
@@ -848,7 +847,7 @@ public class DerbyDatabase implements IDatabase {
 					insertCoordinate.setInt(1, coord.getX());
 					insertCoordinate.setInt(2, coord.getY());
 					
-					
+					insertCoordinate.executeUpdate();
 					//Test to print out the room
 					
 					ResultSet resultSet = null;
@@ -892,7 +891,6 @@ public class DerbyDatabase implements IDatabase {
 
 					mapInventory = conn.prepareStatement("insert into mapInventory (spotid, item) VALUES (?,?)");
 					for(String item : mapInv) {
-						System.out.println(item);
 						mapInventory.setString(1, item.substring(0,3));
 						mapInventory.setString(2, item.substring(3));
 						mapInventory.addBatch();
@@ -924,6 +922,7 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(testRoom);
 					DBUtil.closeQuietly(insertPlayerInv);
 					DBUtil.closeQuietly(mapInventory);
+					DBUtil.closeQuietly(insertCoordinate);
 				}
 			}
 		});

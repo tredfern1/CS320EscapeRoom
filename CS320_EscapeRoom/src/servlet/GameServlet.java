@@ -159,26 +159,17 @@ public class GameServlet extends HttpServlet {
 		//STORE THE NEW VALUES IN THE DATABASE///////////////////
 		Coordinate coord = new Coordinate();
 		
+		
 		coord.setCoordinate(x, y);
-		
-		System.out.println("testing coord in servlet  " + coord.getX());
-		System.out.println("testing coord in servlet  " + coord.getY());
-		
-
 		database.setCoordinate(coord);
-		
 		database.setRoom(room);
-		
 		database.getPlayerInv();
-		
 		//database.getActions();
 		//database.addAction("action2");
 		//database.getActions();
 		
 		database.addItemToPlayerInv("item4");
-		
 		database.removeItemFromPlayerInv("item1");
-		
 		//database.getPlayerInv();
 		//database.addItemToPlayerInv("item2");
 		
