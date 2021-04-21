@@ -7,6 +7,7 @@ import persist.DatabaseProvider;
 import persist.DerbyDatabase;
 import persist.IDatabase;
 import model.Author;
+import model.Coordinate;
 
 public class DatabaseLogic {
 
@@ -93,5 +94,18 @@ public class DatabaseLogic {
 	public void removeFromMapInventory(String item) {
 		db.removeFromMapInventory(item);
 	}
+	
+	public int getCoordinateX() {
+		return db.getCoordinateX();
+	}
 
+	public int getCoordinateY() {
+		return db.getCoordinateY();
+	}
+	
+	public void setCoordinate(Coordinate coord) {
+		db.setCoordinate(coord);
+	}
+
+	
 }

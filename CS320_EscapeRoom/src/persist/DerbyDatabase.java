@@ -450,7 +450,7 @@ public class DerbyDatabase implements IDatabase {
 				
 				try {
 					stmt = conn.prepareStatement(
-							"insert into mapInventory(mapInventory.spotid, mapInventory.item)"
+							"insert into mapInventory(mapInventory.spotid, mapInventory.item) "
 							+ "values (?,?)"
 					);
 					stmt.setString(1, String.valueOf(coordinate));
@@ -478,7 +478,7 @@ public class DerbyDatabase implements IDatabase {
 				
 				try {
 					stmt = conn.prepareStatement(
-							"delete from mapInventory where"
+							"delete from mapInventory where "
 							+"item = ?"
 					);
 					
@@ -497,15 +497,105 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	
-	@Override
-	public Coordinate getCoordinate() {
-		// TODO Auto-generated method stub
-		return null;
+
+	public int getCoordinateX() {
+		
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				int result = 0;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"select x from playerCoordinate"
+							
+					);
+					
+					resultSet = stmt.executeQuery();
+					
+					while(resultSet.next()) {
+						result = resultSet.getInt("x");
+					}
+
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+		
+		
 	}
 
+	public int getCoordinateY() {
+		
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				int result = 0;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"select y from playerCoordinate"
+							
+					);
+					
+					resultSet = stmt.executeQuery();
+					
+					while(resultSet.next()) {
+						result = resultSet.getInt("y");
+					}
+
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+		
+		
+	}
+	
 	@Override
-	public void setCoordinate() {
-		// TODO Auto-generated method stub
+	public void setCoordinate(Coordinate coord) {
+		
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"UPDATE playerCoordinate SET x = ?, y = ? "
+					);
+					stmt.setInt(1, coord.getX());
+					stmt.setInt(2, coord.getY());
+					stmt.execute();
+					
+					
+
+					
+					
+
+
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 		
 	}
 
@@ -754,8 +844,9 @@ public class DerbyDatabase implements IDatabase {
 					//populate the player coord database
 					insertCoordinate = conn.prepareStatement("insert into playerCoordinate"
 							+ "(x,y) values (?,?)");
-					insertCoordinate.setString(1, String.valueOf(coord.getX()));
-					insertCoordinate.setString(2, String.valueOf(coord.getY()));
+					System.out.println("derby test of initial coord" + String.valueOf(coord.getX()));
+					insertCoordinate.setInt(1, coord.getX());
+					insertCoordinate.setInt(2, coord.getY());
 					
 					
 					//Test to print out the room

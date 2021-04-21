@@ -33,8 +33,9 @@ public interface IDatabase {
 
 	
 	//functions for the x/y of the player
-	public Coordinate getCoordinate();
-	public void setCoordinate();
+	public int getCoordinateX();
+	public int getCoordinateY();
+	public void setCoordinate(Coordinate coord);
 
 	public List<String> addLog(String line);
 
