@@ -10,19 +10,20 @@ public interface IDatabase {
 	public List<Author> findAllAuthors();
 	public int getRoom();
 	public void setRoom(int room);
-
-	public String getPlayerInventory();
-	public void addtoPlayerInventory(String item);
 	
-	//functions for the map inventory
-
+	//functions for the player inventory
 	public String getPlayerInv();
 	public void addItemToPlayerInv(String item);
 	public void removeItemFromPlayerInv(String item);
+	public void updatePlayerInv(String inv);
+	
+	//functions for actions
 	public String getActions();
 	public void addAction(String action);
 	public void removeAction(String action);
-
+	public void updateActions(String actions);
+	
+	//functions for the map inventory
 	public String getMapInventory();
 	public void addToMapInventory(String item, String Coordinate);
 	public void removeFromMapInventory(String item);

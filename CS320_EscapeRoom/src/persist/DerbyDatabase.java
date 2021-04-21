@@ -344,6 +344,55 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
+	//TODO: You are here
+	@Override
+	public void updatePlayerInv(String inv) {
+		
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt1 = null;
+				PreparedStatement stmt2 = null;
+				PreparedStatement stmt3 = null;
+				
+				List<String> invList = new ArrayList<String>();
+				String[] temp = inv.split(" ");
+				invList = Arrays.asList(temp);
+				
+				ResultSet resultSet = null;
+		
+				try {
+					stmt1 = conn.prepareStatement(
+							"DROP TABLE playerInventory"
+					);
+					stmt1.executeUpdate();
+					
+					stmt2 = conn.prepareStatement(
+							"CREATE TABLE playerInventory ("
+							+ "item varchar(40)"
+							+ ")"
+					);
+					stmt2.executeUpdate();
+					
+					stmt3 = conn.prepareStatement("INSERT INTO playerInventory (item) VALUES (?)");
+					for (String item : invList) {
+						stmt3.setString(1, item);
+						stmt3.addBatch();
+					}
+					stmt3.executeBatch();
+					
+					//System.out.println("Updated actions successfully. New actions: " + actions);
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt3);
+				}
+			}
+		});
+	}
+	
 	@Override
 	public String getActions() {
 		
@@ -416,7 +465,7 @@ public class DerbyDatabase implements IDatabase {
 	
 	@Override
 	public void removeAction(String action) {
-
+		
 		executeTransaction(new Transaction<Integer>() {
 			@Override
 			public Integer execute(Connection conn) throws SQLException {
@@ -439,8 +488,54 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-		
 	
+	@Override
+	public void updateActions(String actions) {
+		
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt1 = null;
+				PreparedStatement stmt2 = null;
+				PreparedStatement stmt3 = null;
+				
+				List<String> actionsList = new ArrayList<String>();
+				String[] temp = actions.split(" ");
+				actionsList = Arrays.asList(temp);
+				
+				ResultSet resultSet = null;
+		
+				try {
+					stmt1 = conn.prepareStatement(
+							"DROP TABLE actions"
+					);
+					stmt1.executeUpdate();
+					
+					stmt2 = conn.prepareStatement(
+							"CREATE TABLE actions ("
+							+ "action varchar(40)"
+							+ ")"
+					);
+					stmt2.executeUpdate();
+					
+					stmt3 = conn.prepareStatement("INSERT INTO actions (action) VALUES (?)");
+					for (String action : actionsList) {
+						stmt3.setString(1, action);
+						stmt3.addBatch();
+					}
+					stmt3.executeBatch();
+					
+					//System.out.println("Updated actions successfully. New actions: " + actions);
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt3);
+				}
+			}
+		});
+	}
 	
 	public void addToMapInventory(String item, String coordinate) {
 		executeTransaction(new Transaction<Integer>() {
@@ -979,20 +1074,5 @@ public class DerbyDatabase implements IDatabase {
 		
 		System.out.println("Library DB successfully initialized!");
 	}
-
-
-	@Override
-	public void addtoPlayerInventory(String item) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getPlayerInventory() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 
 }
