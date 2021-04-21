@@ -53,6 +53,10 @@ public class DatabaseLogic {
 		System.out.println("Inv after removing +" + item + ": " + db.getPlayerInv());
 	}
 	
+	public void updatePlayerInv(String items) {
+		db.updatePlayerInv(items);
+	}
+	
 	public String getActions() {
 		String actions = db.getActions();
 		System.out.println("Player actions: " + db.getActions());
@@ -111,5 +115,9 @@ public class DatabaseLogic {
 		db.setMapInventory(mapInventory);
 	}
 
+	
+	public void updateActions(String actions) {
+		db.updateActions(actions);
+	}
 	
 }

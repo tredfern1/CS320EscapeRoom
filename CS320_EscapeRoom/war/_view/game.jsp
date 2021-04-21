@@ -75,7 +75,7 @@
 					<td class="label"></td>
 					<td>${result}</td>
 				</tr>
-				<%--
+				
 				<tr>
 					<td class="label">Coord:</td>
 					<td>${coords}</td>
@@ -98,7 +98,7 @@
 					<td class="label">Room number:</td>
 					<td>${room}</td>
 				</tr>
-				--%>
+				
 				</table>
 				
 				<div class = "input-style">

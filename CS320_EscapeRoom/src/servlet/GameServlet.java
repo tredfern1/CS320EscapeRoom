@@ -45,9 +45,9 @@ public class GameServlet extends HttpServlet {
 		System.out.println();
 		Integer x = database.getCoordinateX();
 		Integer y = database.getCoordinateY();
-		String Inventory = (String)req.getParameter("Inventory");
+		String Inventory = database.getPlayerInv();
 		String MapInventory = database.getMapInventory();
-		String Actions = (String)req.getParameter("Actions");
+		String Actions = database.getActions();
 		List<String> log = new ArrayList<String>();
 		log = database.getLog();
 		
@@ -174,8 +174,11 @@ public class GameServlet extends HttpServlet {
 		//database.addAction("action2");
 		//database.getActions();
 		
-		database.addItemToPlayerInv("item4");
-		database.removeItemFromPlayerInv("item1");
+		//database.addItemToPlayerInv("item4");
+		//database.removeItemFromPlayerInv("item1");
+		
+		database.updateActions("abc 123");
+		
 		//database.getPlayerInv();
 		//database.addItemToPlayerInv("item2");
 		
@@ -201,7 +204,9 @@ public class GameServlet extends HttpServlet {
 		}
 		log = database.getLog();
 		//
-
+		
+		database.updateActions(Actions);
+		database.updatePlayerInv(Inventory);
 		
 		// set attributes(STUFF THAT IS SAVED) now in the jsp
 		req.setAttribute("Actions", Actions);
