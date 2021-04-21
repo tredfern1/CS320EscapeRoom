@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import model.Spot;
 
-public class SpotTest {
+public class RoomTest {
 	
 	private Spot s;
 	//private ArrayList<String> descriptions;
