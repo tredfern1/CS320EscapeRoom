@@ -51,33 +51,6 @@ public class GameServlet extends HttpServlet {
 		List<String> log = new ArrayList<String>();
 		log = database.getLog();
 		
-		
-		//TEST OF THE INVENTORY
-		String INV = new String();
-		INV = database.getMapInventory();
-		
-		System.out.println("INV: " + INV);
-		
-		
-
-		
-		//sets the starting x and y
-		if (x == null) {
-			x = 1;
-		}
-		if (y == null) {
-			y = 1;
-		}
-		if (room == null) {
-			room = 1; //sets the starting room
-		}
-		/*
-		if(MapInventory.length() < 1)      //INTITAL VALUES OF THE MAPS INVENTORY, THIS PLACES THE ITEMS IN THE MAP 
-		{
-			MapInventory = "011hammer " + "021redkey " + "122crowbar " + "212torch " + "221rat " + "022bluekey " + "012gold "; //FORMAT IS: spotx,spoty,spotroom, spotitem, space Ex. 011hammer 0 is x, 1 is y, 1, is room#, hammer is item 
-			//Seperate items by a space at end of entry
-		}
-		*/
 
 		System.out.println("Game Servlet: doPost");
 
@@ -99,12 +72,8 @@ public class GameServlet extends HttpServlet {
 
 		x = database.getCoordinateX();
 		y = database.getCoordinateY();
-		
-		
-		
 		// COORDINATE SYSTEM // MOVE THIS INTO A NEW CLASS
 		
-		System.out.println("result: " + result);
 		if (result == "you went north") {
 			y = y + 1;
 			coor = x + "," + y; // figure out how to set coordinate
@@ -143,6 +112,9 @@ public class GameServlet extends HttpServlet {
 			coor = x + "," + y;
 		}
 		//
+		Coordinate coord = new Coordinate();
+		coord.setCoordinate(x, y);
+		
 		
 		Inventory = controller.getPickupLogic(move, result, Inventory);
 		MapInventory = controller.getMapPickupLogic(move, result, MapInventory, controller.getPlayer());
@@ -151,18 +123,7 @@ public class GameServlet extends HttpServlet {
 		controller = new GameController(x, y, Inventory, Actions, MapInventory, room); //update game controller for new descriptions
 		description = controller.getSpotDescription(x, y, MapInventory); //set new description
 		
-		
-		
-		
-		
-		
-		
 		//STORE THE NEW VALUES IN THE DATABASE///////////////////
-		Coordinate coord = new Coordinate();
-		
-		
-		
-		coord.setCoordinate(x, y);
 		database.setCoordinate(coord);
 		database.setRoom(room);
 		database.getPlayerInv();
@@ -178,9 +139,8 @@ public class GameServlet extends HttpServlet {
 		}
 		else if(result != "")
 		{
-			database.setRoom(room);
-			database.addLog(description);
 			database.addLog(result);
+			database.addLog(description);
 			database.addLog("");
 		}
 		log = database.getLog();
