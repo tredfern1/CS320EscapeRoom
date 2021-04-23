@@ -57,7 +57,8 @@ public class GameServlet extends HttpServlet {
 		String coor = "1,1";
 		String result;
 		String description;
-
+  
+		
 		Move model = new Move();
 
 		GameController controller = new GameController(x, y, Inventory, Actions, MapInventory, room);
