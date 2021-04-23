@@ -20,7 +20,6 @@ public class GameController {
 	
 	public GameController(int playerx, int playery, String Inventory, String Actions, String MapInventory, int room)
 	{
-		
 		logic1 = new Logic();
 		player1 = new Player();//create instance of all game related
 		player1.setRoomNumber(room);
@@ -49,7 +48,6 @@ public class GameController {
 		newMapInventory = Arrays.asList(temp);
 		//UPDATE THE MAP WITH ITEMS
 		map1 = new Map(room, newMapInventory); //get map
-
 	}
 
 	public void setModel(Move model) {

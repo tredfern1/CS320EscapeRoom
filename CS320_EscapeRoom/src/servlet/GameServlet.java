@@ -69,9 +69,6 @@ public class GameServlet extends HttpServlet {
 		result = controller.getOutput(move);
 		
 		description = controller.getSpotDescription(1, 1, MapInventory);
-
-		x = database.getCoordinateX();
-		y = database.getCoordinateY();
 		// COORDINATE SYSTEM // MOVE THIS INTO A NEW CLASS
 		
 		if (result == "you went north") {
@@ -154,7 +151,6 @@ public class GameServlet extends HttpServlet {
 		req.setAttribute("x", x);
 		req.setAttribute("y", y);
 		req.setAttribute("room", room);
-		//
 		req.setAttribute("description", log); //description of room
 		req.setAttribute("result", result);
 		
