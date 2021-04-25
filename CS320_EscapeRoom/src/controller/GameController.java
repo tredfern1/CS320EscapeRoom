@@ -1,191 +1,44 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Scanner;
 
-import model.Logic;
-import model.Map;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 import model.Move;
+import persist.DatabaseProvider;
+import persist.FakeDatabase;
+import persist.DerbyDatabase;
+import controller.AddNumbersController;
+import controller.Game;
+import controller.DatabaseLogic;
+import controller.AllAuthorsQuery;
+import model.Author;
+import model.Coordinate;
+import model.Logic;
+import model.Move;
+import model.Numbers;
 import model.Player;
-
 
 public class GameController {
 	
-	private Move model;
-	public int score;
-	Player player1;
-	Map map1;
-	Logic logic1;
-	
-	public GameController(int playerx, int playery, String Inventory, String Actions, String MapInventory, int room)
+	Game game;
+	public GameController()
 	{
-		logic1 = new Logic();
-		player1 = new Player();//create instance of all game related
-		player1.setRoomNumber(room);
-		this.getPlayer().updatePlayerCoor(playerx, playery); //player coord
-		//update inventory by converting string to arraylist
-		String[] temp = Inventory.split(" ");
-		List<String> newInv = new ArrayList<String>();
-		newInv = Arrays.asList(temp);
-		//Now update player inventory with this new arraylist
-		for(int i = 0; i < newInv.size(); i++)
-		{
-			player1.addItemToInventory(newInv.get(i));
-		}
-		//do the same for the actions array
-		temp = Actions.split(" ");
-		List<String> newActions = new ArrayList<String>();
-		newActions = Arrays.asList(temp);
-		//Now update player inventory with this new arraylist
-		for(int i = 0; i < newActions.size(); i++)
-		{
-			player1.addActiontoActions(newActions.get(i));
-		}
-		//do the same for map inventory, take the string and convert to arraylist
-		temp = MapInventory.split(" ");
-		List<String> newMapInventory = new ArrayList<String>();
-		newMapInventory = Arrays.asList(temp);
-		//UPDATE THE MAP WITH ITEMS
-		map1 = new Map(room, newMapInventory); //get map
-	}
-
-	public void setModel(Move model) {
-		this.model = model;
+		game = new Game();
 	}
 	
-	public String getSpotDescription(int playerx, int playery, String mapInventory)
+	public void setModel(Game model)
 	{
-		int descriptionIndex = 0;
-		String description = "";
-		
-		if(playerx == 0 && playery == 1 && !map1.getSpot(0, 1).hasItem("hammer") && player1.getRoomNumber() == 1) //change hammer room description
-		{
-			descriptionIndex = 1;
-		}
-		else if(playerx == 0 && playery == 2 && player1.hasAction("boxBreak")&& player1.getRoomNumber() == 1) //change box room description
-		{
-			descriptionIndex = 1;
-			if(player1.hasitem("redkey"))
-			{
-				descriptionIndex = 2;
-			}
-		}
-		else if(playerx == 1 && playery == 2 && player1.hasAction("unlock1") && player1.getRoomNumber() == 1) //change box room description
-		{
-			descriptionIndex = 1;
-		}
-		else if(playerx == 2 && playery == 2 && player1.hasAction("litroom") && player1.getRoomNumber() == 2) //change light room description
-		{
-			descriptionIndex = 1;
-		}
-		else if(playerx == 0 && playery == 2 && player1.hasAction("opensafe") && player1.getRoomNumber() == 2) //change box room description
-		{
-			descriptionIndex = 1;
-		}
-		if(playerx == 1 && playery == 2 && player1.getRoomNumber() == 2 && player1.hasitem("crowbar")) //change hammer room description
-		{
-			descriptionIndex = 1;
-		}
-		if(playerx == 0 && playery == 1 && player1.getRoomNumber() == 2 && player1.hasAction("ratused")) //change hammer room description
-		{
-			descriptionIndex = 1;
-		}
-	
-		
-		description = map1.getSpot(playerx, playery).getdescriptionAt(descriptionIndex);
-		
-		String[] itemChecker = mapInventory.split(" ");
-
-
-		for (int i = 0; i < itemChecker.length; i++) {
-			if (itemChecker[i].length() > 0) {
-				if (Character.getNumericValue(itemChecker[i].charAt(0)) == playerx && Character.getNumericValue(itemChecker[i].charAt(1)) == playery
-						&& Character.getNumericValue(itemChecker[i].charAt(2)) == player1.getRoomNumber()) {
-					description = description + " There is a " + itemChecker[i].substring(3) + " here";
-					
-				}
-			}
-		}
-		return description;
+		this.game = model;
 	}
 	
-	public Player getPlayer()
+	public void getInput(String move1)
 	{
-		return player1;
+		game.getInput(move1);;
 	}
 	
-	public void setPlayer(Player p)
+	public java.util.List<String> getLog()
 	{
-		player1 = p;
+		return game.getLog();
 	}
-	
-	
-	public String getOutput(String move) {
-		if(move.length() <= 0)
-		{
-			return "";
-		}
-		
-		if(model.validate(model.split(move), player1.getPlayerx(), player1.getPlayery(), map1.getSpot(player1.getPlayerx(), player1.getPlayery()), player1)) {
-			//if there is nothing after "go" (or synonym) in the move
-			if (move.replace("go", "").contentEquals("") || move.replace("move", "").contentEquals(" ") || move.replace("walk", "").contentEquals(" ")) {
-				return "You can't do that";
-			}
-			
-			return model.getOutput(model.split(move), player1);
-		}
-		else {
-			String[] command = model.split(move);
-			if( (command[0].contains("go") || command[0].contains("move") || command[0].contains("walk")) && command.length > 1)
-			{
-				if(command[1].contains("north") && player1.getPlayerx() == 1 && player1.getPlayery() == 2)
-				{
-					return "The door is locked, you cannot enter.";
-				}
-				else
-				{
-					return "Ouch, you hit a wall!";
-				}
-			}
-			else if(command[0].contains("pickup"))
-			{
-				return "You can't pickup anything";
-			}
-			else if(command[0].contains("use"))
-			{
-				return "You can't use that here";
-			}
-			else
-			{
-				return "You cannot do that";
-			}
-		}
-	}
-	
-
-	public void updateScore() // Call to update the score when move is made 
-	{
-		score += 1;
-	}
-	
-	public String getPickupLogic(String move, String result, String Inventory)
-	{
-		return logic1.LogicPickup(move, result, Inventory); 
-	}
-	
-	public String getMapPickupLogic(String move, String result, String MapInventory, Player player1)
-	{
-		return logic1.LogicPickupMapInventory(move, result, MapInventory, player1); 
-	}
-	
-	public String getActionsLogic(String move, String result, String Inventory, String Actions)
-	{
-		return logic1.LogicActions(move, result, Inventory, Actions); 
-	}
-	
-	
-
-	
-	
 }

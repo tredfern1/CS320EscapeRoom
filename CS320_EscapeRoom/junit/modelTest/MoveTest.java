@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.GameController;
+import controller.Game;
 import model.*;
 
 public class MoveTest {
 	private Move m;
-	private GameController controller;
+	private Game controller;
 	
 	@Before
 	public void setUp() {
@@ -21,7 +21,7 @@ public class MoveTest {
 		String Actions = "";
 		String mapInv = "";
 		int room = 1;
-		controller = new GameController(p.getPlayerx(), p.getPlayery(), inv, Actions, mapInv, room);
+		controller = new Game(p.getPlayerx(), p.getPlayery(), inv, Actions, mapInv, room);
 		
 		//m.validate(m.split("go east"));
 		

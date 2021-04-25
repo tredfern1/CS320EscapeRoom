@@ -1,6 +1,6 @@
 package model;
 
-import controller.GameController;
+import controller.Game;
 
 public class Move {
 
