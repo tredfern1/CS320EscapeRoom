@@ -244,6 +244,7 @@ public class Game {
 	
 	
 	public String getOutput(String move) {
+		String[] command = model.split(move.toLowerCase());
 		if(move.length() <= 0)
 		{
 			return "";
@@ -254,16 +255,18 @@ public class Game {
 			if (move.replace("go", "").contentEquals("") || move.replace("move", "").contentEquals(" ") || move.replace("walk", "").contentEquals(" ")) {
 				return "You can't do that";
 			}
-			
+
 			return model.getOutput(model.split(move), player1);
 		}
 		else {
-			String[] command = model.split(move);
 			if( (command[0].contains("go") || command[0].contains("move") || command[0].contains("walk")) && command.length > 1)
 			{
 				if(command[1].contains("north") && player1.getPlayerx() == 1 && player1.getPlayery() == 2)
 				{
 					return "The door is locked, you cannot enter.";
+				}
+				else if (!command[1].contentEquals("north") && !command[1].contentEquals("south") && !command[1].contentEquals("east") && !command[1].contentEquals("west")) {
+					return "Use the format: move north/south/east/west";
 				}
 				else
 				{
