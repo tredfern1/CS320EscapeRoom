@@ -30,10 +30,11 @@ body{
     border: none;
     color: white;
     float: center;
-    width:1900px;
-    height: 300px;
+    width: min(500em, 100vw);
+    height: min(30em, 100vw);
     border-bottom: solid;
-    font-size: 10px;
+    font-size: 0.3vw;
+    text-align: center;
 }
 
 .input-style input{
@@ -47,4 +48,8 @@ body{
     width: 500px;
     bottom: auto;
 }
+
+ttom: auto;
+}
+
 

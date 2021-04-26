@@ -121,7 +121,7 @@ public class Game {
 		System.out.println("This is description: " + description);
 
 		
-		
+		//Set the newly calculated data
 		SetData(result, description, coord);
 	}
 	
@@ -247,7 +247,7 @@ public class Game {
 		String[] command = model.split(move.toLowerCase());
 		if(move.length() <= 0)
 		{
-			return "";
+			return "Type Something First";
 		}
 		
 		if(model.validate(model.split(move), player1.getPlayerx(), player1.getPlayery(), map1.getSpot(player1.getPlayerx(), player1.getPlayery()), player1)) {

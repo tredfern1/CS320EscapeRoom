@@ -9,12 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.AddNumbersController;
 import controller.Game;
 import controller.GameController;
 import controller.DatabaseLogic;
-import controller.AllAuthorsQuery;
-import model.Author;
 import model.Coordinate;
 import model.Logic;
 import model.Move;

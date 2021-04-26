@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import model.Author;
 import model.Coordinate;
 
 
@@ -30,50 +29,6 @@ public class DerbyDatabase implements IDatabase {
 
 	private static final int MAX_ATTEMPTS = 10;
 	
-	// transaction that retrieves all Authors in Library
-	@Override
-	public List<Author> findAllAuthors() {
-		return executeTransaction(new Transaction<List<Author>>() {
-			@Override
-			public List<Author> execute(Connection conn) throws SQLException {
-				PreparedStatement stmt = null;
-				ResultSet resultSet = null;
-				
-				try {
-					stmt = conn.prepareStatement(
-							"select * from authors " +
-							" order by lastname asc, firstname asc"
-					);
-					
-					List<Author> result = new ArrayList<Author>();
-					
-					resultSet = stmt.executeQuery();
-					
-					// for testing that a result was returned
-					Boolean found = false;
-					
-					while (resultSet.next()) {
-						found = true;
-						
-						Author author = new Author();
-						loadAuthor(author, resultSet, 1);
-						
-						result.add(author);
-					}
-					
-					// check if any authors were found
-					if (!found) {
-						System.out.println("No authors were found in the database");
-					}
-					
-					return result;
-				} finally {
-					DBUtil.closeQuietly(resultSet);
-					DBUtil.closeQuietly(stmt);
-				}
-			}
-		});
-	}
 	
 	@Override
 	public List<String> getLog() {
@@ -803,11 +758,6 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	// retrieves Author information from query result set
-	private void loadAuthor(Author author, ResultSet resultSet, int index) throws SQLException {
-		author.setAuthorId(resultSet.getInt(index++));
-		author.setLastname(resultSet.getString(index++));
-		author.setFirstname(resultSet.getString(index++));
-	}
 	
 	//  creates the Authors TABLE
 	public void createTables() {
@@ -833,15 +783,6 @@ public class DerbyDatabase implements IDatabase {
 						
 					System.out.println("Room table created");
 					
-					stmt1 = conn.prepareStatement(
-						"create table authors (" +
-						"	author_id integer primary key " +
-						"		generated always as identity (start with 1, increment by 1), " +									
-						"	lastname varchar(40)," +
-						"	firstname varchar(40)" +
-						")"
-					);	
-					stmt1.executeUpdate();
 					
 					//creates the table for the player's inventory
 					stmt3 = conn.prepareStatement(
@@ -905,7 +846,6 @@ public class DerbyDatabase implements IDatabase {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
-				List<Author> authorList;
 				List<String> playerInv;
 				List<String> actions;
 
@@ -921,7 +861,6 @@ public class DerbyDatabase implements IDatabase {
 				int room = 0;
 				
 				try {
-					authorList = InitialData.getAuthors();
 					logList = InitialData.getLog();
 					room = InitialData.getRoom();
 					playerInv = InitialData.getplayerInventory();
@@ -946,17 +885,6 @@ public class DerbyDatabase implements IDatabase {
 
 
 				try {
-					// must completely populate Authors table before populating BookAuthors table because of primary keys
-					insertAuthor = conn.prepareStatement("insert into authors (lastname, firstname) values (?, ?)");
-					for (Author author : authorList) {
-//						insertAuthor.setInt(1, author.getAuthorId());	// auto-generated primary key, don't insert this
-						insertAuthor.setString(1, author.getLastname());
-						insertAuthor.setString(2, author.getFirstname());
-						insertAuthor.addBatch();
-					}
-					insertAuthor.executeBatch();
-					
-					System.out.println("Authors table populated");		
 					
 					insertRoom = conn.prepareStatement("insert into room (roomNumber) VALUES (?)");
 					insertRoom.setString(1, String.valueOf(room));
