@@ -49,7 +49,6 @@ public class GameServlet extends HttpServlet {
 		
 		controller.getInput(move);
 		
-		
 		log = controller.getLog();
 		// set attributes(STUFF THAT IS SAVED) now in the jsp
 		req.setAttribute("description", log); //description of room

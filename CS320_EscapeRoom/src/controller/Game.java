@@ -33,7 +33,6 @@ public class Game {
 	
 	public Game()
 	{
-		model = new Move();
 		GetData(); //GET DATA FROM DATABASE
 		updateGameLogic();
 	}
@@ -41,6 +40,7 @@ public class Game {
 	
 	public void updateGameLogic()
 	{
+		model = new Move();
 		logic1 = new Logic();
 		player1 = new Player();//create instance of all game related
 		player1.setRoomNumber(room);
