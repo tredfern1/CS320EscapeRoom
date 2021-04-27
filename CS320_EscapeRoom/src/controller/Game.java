@@ -112,7 +112,7 @@ public class Game {
 		
 		Inventory = getPickupLogic(move, result, Inventory);
 		MapInventory = getMapPickupLogic(move, result, MapInventory, getPlayer());
-		Actions = getActionsLogic(move, result, Inventory, Actions);
+		Actions = getActionsLogic(move, result, Inventory, Actions, getPlayer());
 		
 		updateGameLogic(); //Need to call this so it updates the logic of pickups and drops
 		
@@ -214,6 +214,16 @@ public class Game {
 			descriptionIndex = 1;
 		}
 	
+		//description changes for the third room
+		if (player1.getRoomNumber() == 3 && playerx == 0 && playery == 0 && player1.hasAction("knowsQuestion")) {
+			descriptionIndex = 1;
+		}
+		if (player1.getRoomNumber() == 3 && playerx == 0 && playery == 0 && player1.hasAction("knowsQuestion") && player1.hasitem("book")) {
+			descriptionIndex = 2;
+		}
+		if (player1.getRoomNumber() == 3 && playerx == 1 && playery == 1 && player1.hasAction("pianoSolved")) {
+			descriptionIndex = 1;
+		}
 		
 		description = map1.getSpot(playerx, playery).getdescriptionAt(descriptionIndex);
 		
@@ -304,9 +314,9 @@ public class Game {
 		return logic1.LogicPickupMapInventory(move, result, MapInventory, player1); 
 	}
 	
-	public String getActionsLogic(String move, String result, String Inventory, String Actions)
+	public String getActionsLogic(String move, String result, String Inventory, String Actions, Player player1)
 	{
-		return logic1.LogicActions(move, result, Inventory, Actions); 
+		return logic1.LogicActions(move, result, Inventory, Actions, player1); 
 	}
 	
 	
