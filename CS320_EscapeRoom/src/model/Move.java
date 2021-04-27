@@ -129,6 +129,12 @@ public class Move {
 				return true;
 			}
 		}
+		//validation for one word commands
+		else if (move.length == 1) {
+			if (move[0].contains("hint")) {
+				return true;
+			}
+		}
 
 		else {
 			return false;
@@ -217,7 +223,6 @@ public class Move {
 				output = "Play a note! A, B, C, or D";
 			}
 		}
-		
 		else {
 			output = "your move does nothing";
 		}

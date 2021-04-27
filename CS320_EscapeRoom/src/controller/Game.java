@@ -265,6 +265,10 @@ public class Game {
 			if (move.replace("go", "").contentEquals("") || move.replace("move", "").contentEquals(" ") || move.replace("walk", "").contentEquals(" ")) {
 				return "You can't do that";
 			}
+			//sends the hint from the map
+			else if(command[0].contains("hint")) {
+				return map1.getHint(player1.getPlayerx(), player1.getPlayery());
+			}
 
 			return model.getOutput(model.split(move), player1);
 		}
@@ -282,6 +286,12 @@ public class Game {
 				{
 					return "Ouch, you hit a wall!";
 				}
+			}
+			else if (command[0].contains("read") && command[1].contains("book")) {
+				return "One passage stands out to you: <br> 'The Three Laws of Robotics' <br>"
+						+ "1. A robot may not injure a human being or, through inaction, allow a human being to come to harm; <br>"
+						+ "2. A robot must obey the orders given it by human beings except where such orders would conflict with the First Law;<br>"
+						+ "3. A robot must protect its own existence as long as such protection does not conflict with the First or Second Law'";
 			}
 			else if(command[0].contains("pickup"))
 			{
