@@ -47,8 +47,13 @@ public class Logic {
 	}
 		
 	//called when adding an action to the string of actions
-	public String LogicActions(String move, String result, String Inventory, String Actions)
+	public String LogicActions(String move, String result, String Inventory, String Actions, Player player1)
 	{
+		//check if the player has seen the question in (1,1), room 3
+		if (player1.getRoomNumber() == 3 && player1.getPlayerx() == 1 && player1.getPlayery() == 1 && Actions.contains("knowsQuestion") == false) {
+			Actions = Actions + "knowsQuestion" + " ";
+			//System.out.println("Player read the question");
+		}
 		if(result.contains("You used the")) //check for uses of items
 		{
 		
@@ -73,6 +78,15 @@ public class Logic {
 			{              
 				Actions = Actions + "ratused" + " "; 
 				//add respectable tags to actions(remember the space)
+			}
+		}
+		//check for the correct answer for the piano puzzle (the right answer is C)
+		if(result.contains("You play")) {
+			String[] in = move.split(" ");
+			
+			if(in[1].contentEquals("C") || in[1].contentEquals("c")) {
+				Actions = Actions + "pianoSolved" + " ";
+				System.out.println("solved the piano");
 			}
 		}
 		if(result.contains("you've unlocked the")) {

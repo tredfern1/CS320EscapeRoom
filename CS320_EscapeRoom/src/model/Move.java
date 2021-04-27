@@ -125,6 +125,9 @@ public class Move {
 					return true;
 				}
 			}
+			else if(move[0].contains("play")) {
+				return true;
+			}
 		}
 
 		else {
@@ -202,6 +205,19 @@ public class Move {
 		else if(move[0].contains("drop")) {
 			output = "You dropped the " + move[1];
 		}
+		//outputs related to the piano puzzle in room 3
+		else if(move[0].contains("play")) {
+			if (move[1].contentEquals("A") || move[1].contentEquals("B") || move[1].contentEquals("D")) {
+				output = "You play a(n) " + move[1] +". Nothing happens.";
+			}
+			else if (move[1].contentEquals("C") ) {
+				output = "You play a C. There is a loud click, it sounds like that was the correct answer.";
+			}
+			else {
+				output = "Play a note! A, B, C, or D";
+			}
+		}
+		
 		else {
 			output = "your move does nothing";
 		}
