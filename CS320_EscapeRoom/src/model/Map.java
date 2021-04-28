@@ -31,22 +31,22 @@ public class Map {
 		{
 			//Description and item setters before actions #0
 			spots[0][0].setdescription("Seems like a dark an empty corner.");
-			spots[0][1].setdescription("There's a heavy *hammer on the floor. Wonder who left that there?"); 
-			spots[0][2].setdescription("You see a crate lying on the ground. Looks poorly made.");
+			spots[0][1].setdescription("There's a heavy hammer on the floor. It is extremely worn, but could still be effective."); 
+			spots[0][2].setdescription("You see a crate lying on the ground. Looks poorly made. Strangly, there is no opening to the box. When shaken, you can hear something inside calling to you.");
 			spots[1][0].setdescription("There's a window with bars on it. No way you could get through this.");
-			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
-			spots[1][2].setdescription("There's a red door with a keyhole, it's locked.");
-			spots[2][0].setdescription("In this corner of the room you see a rat, ew!");
+			spots[1][1].setdescription("You are in the center of a dark and dirty room. The floor is covered with dust and dirt, it looks like this place hasn't been cleaned in months. You can see a strange red door to your north.");
+			spots[1][2].setdescription("To the north there's a red door with a keyhole, it seems to be locked. The paint on it is a faded blood red, it kinda creeps you out.");
+			spots[2][0].setdescription("In this corner of the room you see a small lever on the wall, is it dangerous to use it?");
 			spots[2][1].setdescription("Yeah there's nothing here but a sense of dread."); 
-			spots[2][2].setdescription("Yikes! a corner with some nasty rats!");
-	
-		
+			spots[2][2].setdescription("Yikes! a corner with some nasty rats! Although very gross, they are very nutritious.");
 			//Description setters after actions #1
-			spots[0][1].setdescription("There's a dusty spot where the hammer was."); 
-			spots[0][2].setdescription("The crate is broken and lying on the ground. Looks like a little *redkey fell out.");
-			spots[1][2].setdescription("There's a red door with a keyhole, it's been unlocked!");
+			spots[0][1].setdescription("There's a dusty spot where the hammer was. It must have been there for ages."); 
+			spots[0][2].setdescription("The crate is broken and lying on the ground in pieces. Between the rubble you can spot a little shiny redkey. No doubt that could be useful.");
+			spots[1][2].setdescription("To the north there's a red door with a keyhole, it's been unlocked! Maybe you will get out of here afterall.");
+			spots[2][0].setdescription("The lever has been pulled and a tiny hole opens up in the wall. Gold! If you get out of here, maybe you'll be rich!");
 			//Description setters after actions #2
-			spots[0][2].setdescription("The crate is broken and lying on the ground. This is where you found the key.");
+			spots[2][0].setdescription("The lever has been pulled and a tiny hole opened up in the wall. There's no more gold here sadly.");
+			spots[0][2].setdescription("The crate is broken and lying on the ground. This is where you found the redkey.");
 			
 			//hints for room 1
 			hints[1][1] = "Move around with the command: move north/south/east/west";

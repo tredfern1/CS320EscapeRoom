@@ -12,7 +12,6 @@ import model.Player;
 
 
 public class Game {
-	
 	private Move model;
 	public int score;
 	public Integer x;
@@ -25,7 +24,6 @@ public class Game {
 	String description;
 	String move;
 	List<String> log;
-	
 	Player player1;
 	Map map1;
 	Logic logic1;
@@ -193,10 +191,23 @@ public class Game {
 				descriptionIndex = 2;
 			}
 		}
-		else if(playerx == 1 && playery == 2 && player1.hasAction("unlock1") && player1.getRoomNumber() == 1) //change box room description
+		else if(playerx == 1 && playery == 2 && player1.hasAction("unlock1") && player1.getRoomNumber() == 1) //change door room description
 		{
 			descriptionIndex = 1;
 		}
+		else if(playerx == 2 && playery == 0 && player1.hasAction("lever") && player1.getRoomNumber() == 1)
+		{
+			if(player1.hasitem("goldnugget"))
+			{
+				descriptionIndex = 2;
+			}
+			else
+			{
+				descriptionIndex = 1;
+			}
+		}
+		
+		//description changes for the second room
 		else if(playerx == 2 && playery == 2 && player1.hasAction("litroom") && player1.getRoomNumber() == 2) //change light room description
 		{
 			descriptionIndex = 1;
@@ -205,11 +216,11 @@ public class Game {
 		{
 			descriptionIndex = 1;
 		}
-		if(playerx == 1 && playery == 2 && player1.getRoomNumber() == 2 && player1.hasitem("crowbar")) //change hammer room description
+		if(playerx == 1 && playery == 2 && player1.getRoomNumber() == 2 && player1.hasitem("crowbar")) //change crowbar room description
 		{
 			descriptionIndex = 1;
 		}
-		if(playerx == 0 && playery == 1 && player1.getRoomNumber() == 2 && player1.hasAction("ratused")) //change hammer room description
+		if(playerx == 0 && playery == 1 && player1.getRoomNumber() == 2 && player1.hasAction("ratused")) //change rat room description
 		{
 			descriptionIndex = 1;
 		}
@@ -257,7 +268,7 @@ public class Game {
 		String[] command = model.split(move.toLowerCase());
 		if(move.length() <= 0)
 		{
-			return "Type Something First";
+			return ""; //Leave empty beacuse it looks better
 		}
 		
 		if(model.validate(model.split(move), player1.getPlayerx(), player1.getPlayery(), map1.getSpot(player1.getPlayerx(), player1.getPlayery()), player1)) {

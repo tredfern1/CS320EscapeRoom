@@ -75,6 +75,17 @@ public class Move {
 							return false;
 						}
 					}
+					else if(move[1].contains("goldnugget"))
+					{
+						if(player1.hasAction("lever"))
+						{
+							return true;
+						}
+						else
+						{
+							return false;
+						}
+					}
 					else
 					{
 						return true;
@@ -104,6 +115,9 @@ public class Move {
 					return true;
 				}
 				
+				if(move[1].contains("lever") && player1.getPlayerx()==2 && player1.getPlayery()==0 && player1.getRoomNumber()==1) {
+					return true;
+				}
 				else
 				{
 					return false;
@@ -150,11 +164,6 @@ public class Move {
 
 		if(move[0].contains("go") || move[0].contains("move") || move[0].contains("walk")) {         //move outputs
 			if(move[1].contains("north")) {
-				
-				///System.out.println(player1.hasAction("unlock1"));
-				//System.out.println(player1.getPlayerx());
-				//System.out.println(player1.getPlayery());
-				//System.out.println(player1.getRoomNumber() == 1);
 				
 				if(player1.hasAction("unlock1") == true && player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 1) //ROOM CHANGE VALIDATION
 				{
