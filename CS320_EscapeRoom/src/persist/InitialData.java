@@ -6,10 +6,41 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.Coordinate;
+import model.Hidden;
 
 
 public class InitialData {
-	// reads initial Author data from CSV file and returns a List of Authors
+	// reads initial hidden statuses from csv and returns arraylist
+	public static List<Hidden> getHidden() throws IOException {
+		List<Hidden> hiddenList = new ArrayList<Hidden>();
+		ReadCSV readhidden = new ReadCSV("hidden.csv");
+		try {
+			while (true) {
+				List<String> tuple = readhidden.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				
+				
+				if(i.hasNext()) {
+				String item = i.next();
+				String status = i.next();
+				
+				System.out.println("initial data of item for hidden : " + item);
+				System.out.println("initial data of item for hidden : " + status);
+				int hiddenStatus = Integer.parseInt(status);
+				Hidden hidden = new Hidden(item, hiddenStatus);
+				hiddenList.add(hidden);
+				
+				}
+			}
+			System.out.println("hiddenList loaded from CSV file");
+			return hiddenList;
+		} finally {
+			readhidden.close();
+		}
+	}
 
 	//GET THE INTIAL LOG FROM THE CSV
 	public static List<String> getLog() throws IOException {

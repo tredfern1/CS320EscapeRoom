@@ -151,6 +151,12 @@ public class Game {
 		database.setMapInventory(MapInventory);
 		database.updateActions(Actions);
 		database.updatePlayerInv(Inventory);
+		
+		if(result.contains("You picked up a")) {
+			String[] resultArray = result.split(" ");
+			database.setHiddenStatus(resultArray[4]);
+			System.out.println("TESTING CHANGED HIDDEN: " + resultArray[4] + " " + database.getHiddenStatus(resultArray[4]));
+		}
 
 		// LOGIC FOR THE LOGS
 		if (result.contains("can't")) {
@@ -240,11 +246,14 @@ public class Game {
 		
 		String[] itemChecker = mapInventory.split(" ");
 
-
+		
+		//instance of database to determine hidden items
+		DatabaseLogic db = new DatabaseLogic();
+		
 		for (int i = 0; i < itemChecker.length; i++) {
 			if (itemChecker[i].length() > 0) {
 				if (Character.getNumericValue(itemChecker[i].charAt(0)) == playerx && Character.getNumericValue(itemChecker[i].charAt(1)) == playery
-						&& Character.getNumericValue(itemChecker[i].charAt(2)) == player1.getRoomNumber()) {
+						&& Character.getNumericValue(itemChecker[i].charAt(2)) == player1.getRoomNumber() && db.getHiddenStatus(itemChecker[i].substring(3)) != 0) {
 					description = description + " There is a " + itemChecker[i].substring(3) + " here";
 					
 				}
@@ -325,7 +334,7 @@ public class Game {
 		score += 1;
 	}
 	
-	public String getPickupLogic(String move, String result, String Inventory)
+	public String getPickupLogic(String move, String result, String Inventory) 
 	{
 		return logic1.LogicPickup(move, result, Inventory); 
 	}

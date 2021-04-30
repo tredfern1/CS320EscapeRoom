@@ -6,7 +6,7 @@ import java.util.List;
 import persist.DatabaseProvider;
 import persist.DerbyDatabase;
 import persist.IDatabase;
-import model.Author;
+
 import model.Coordinate;
 
 public class DatabaseLogic {
@@ -116,6 +116,14 @@ public class DatabaseLogic {
 	
 	public void updateActions(String actions) {
 		db.updateActions(actions);
+	}
+	
+	public int getHiddenStatus(String item) {
+		return db.getHiddenStatus(item);
+	}
+	
+	public void setHiddenStatus(String item) {
+		db.setHiddenStatus(item);
 	}
 	
 }

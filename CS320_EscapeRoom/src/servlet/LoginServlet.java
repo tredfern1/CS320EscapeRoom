@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.GuessingGame;
+
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
