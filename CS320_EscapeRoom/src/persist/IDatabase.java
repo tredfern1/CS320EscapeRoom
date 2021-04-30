@@ -40,5 +40,9 @@ public interface IDatabase {
 
 	public List<String> addLog(String line);
 
-
+	
+	//functions for hiding items
+	public int getHiddenStatus(String item);
+	public void setHiddenStatus(String item);
+	
 }

@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import model.Coordinate;
+import model.Hidden;
 
 
 
@@ -688,6 +689,68 @@ public class DerbyDatabase implements IDatabase {
 		});
 		
 	}
+	
+	public int getHiddenStatus(String item) {
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				 
+				int result = 0;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"select status from hidden "+
+							"where item = ?"
+							
+					);
+					
+					stmt.setString(1, item);
+					
+					resultSet = stmt.executeQuery();
+					
+					while(resultSet.next()) {
+						result = resultSet.getInt("status");
+					}
+
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+	}
+	
+	public void setHiddenStatus(String item) {
+		
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"UPDATE hidden "
+							+"set status = 1 "
+							+"where item = ?"
+					);
+					stmt.setString(1, item);
+			
+					stmt.executeUpdate();
+				
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+		
+	}
 
 		
 	
@@ -774,6 +837,13 @@ public class DerbyDatabase implements IDatabase {
 	
 				try {
 					
+					//create table for hiding items
+					stmt1 = conn.prepareStatement(
+							"create table hidden "+
+							"(item varchar(50), status int)"
+							);
+					stmt1.executeUpdate();
+					
 					stmt2 = conn.prepareStatement(
 							"create table room (" +
 							"	roomNumber int" +
@@ -854,6 +924,8 @@ public class DerbyDatabase implements IDatabase {
 
 				List<String> logList;
 				
+				List<Hidden> hiddenList;
+				
 				//coordinate for the player coord
 				Coordinate coord;
 
@@ -867,6 +939,7 @@ public class DerbyDatabase implements IDatabase {
 					actions = InitialData.getActions();
 					mapInv = InitialData.getMapInventory();
 					coord = InitialData.getCoordinate();
+					hiddenList = InitialData.getHidden();
 
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
@@ -882,9 +955,22 @@ public class DerbyDatabase implements IDatabase {
 				//PreparedStatement testRoom       = null;
 				PreparedStatement insertLog      = null;
 				PreparedStatement insertCoordinate      = null;
-
+				PreparedStatement insertHidden = null;
 
 				try {
+					
+					//populating the hidden table
+					insertHidden = conn.prepareStatement(""
+							+ "insert into hidden (item, status) "
+							+ "values(?, ?) ");
+					
+					for(Hidden hidden: hiddenList) {
+						insertHidden.setString(1, hidden.getItem());
+						insertHidden.setInt(2, hidden.getStatus());
+						insertHidden.addBatch();
+					}
+					
+					insertHidden.executeBatch();
 					
 					insertRoom = conn.prepareStatement("insert into room (roomNumber) VALUES (?)");
 					insertRoom.setString(1, String.valueOf(room));
@@ -932,6 +1018,8 @@ public class DerbyDatabase implements IDatabase {
 						insertPlayerInv.addBatch();
 					}
 					insertPlayerInv.executeBatch();
+					
+					
 					
 					/*
 					resultSet = null;
