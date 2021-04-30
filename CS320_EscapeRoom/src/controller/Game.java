@@ -103,6 +103,10 @@ public class Game {
 			y = 2;
 			room = 2;
 		}
+		else if(result == "You restarted the game")
+		{
+			restartGame();
+		}
 		//
 		Coordinate coord = new Coordinate();
 		coord.setCoordinate(x, y);
@@ -347,6 +351,20 @@ public class Game {
 	public String getActionsLogic(String move, String result, String Inventory, String Actions, Player player1)
 	{
 		return logic1.LogicActions(move, result, Inventory, Actions, player1); 
+	}
+	
+	public void restartGame()
+	{
+		DatabaseLogic database = null;
+		database = new DatabaseLogic();
+		
+		database.restartGame();
+		database.loadGame();
+		
+		GetData();
+		
+		System.out.println("PlayerInv: " + Inventory);
+		System.out.println("Position: " + x + y);
 	}
 	
 	

@@ -44,5 +44,7 @@ public interface IDatabase {
 	//functions for hiding items
 	public int getHiddenStatus(String item);
 	public void setHiddenStatus(String item);
+	public void restartGame();
+	public void loadInitialData2();
 	
 }

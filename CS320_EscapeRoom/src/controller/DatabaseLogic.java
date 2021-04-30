@@ -126,4 +126,14 @@ public class DatabaseLogic {
 		db.setHiddenStatus(item);
 	}
 	
+	public void restartGame() {
+		db.restartGame();
+	}
+	
+	public void loadGame() {
+		db.loadInitialData2();
+	}
+	
+	
+	
 }

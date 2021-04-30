@@ -148,6 +148,9 @@ public class Move {
 			if (move[0].contains("hint")) {
 				return true;
 			}
+			else if(move[0].contains("restart")) {
+				return true;
+			}
 		}
 
 		else {
@@ -231,6 +234,10 @@ public class Move {
 			else {
 				output = "Play a note! A, B, C, or D";
 			}
+		}
+		else if(move[0].contains("restart"))
+		{
+			output = "You restarted the game";
 		}
 		else {
 			output = "your move does nothing";
