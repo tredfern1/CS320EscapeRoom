@@ -18,6 +18,7 @@
 		
 		td.label {
 			text-align: right;
+			font-family: 'VT323', monospace;
 		}
 		</style>
 	</head>

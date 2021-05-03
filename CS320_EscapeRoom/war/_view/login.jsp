@@ -5,8 +5,36 @@
 <html>
 	<head>
 		<title>Login!</title>
-        
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
+		<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
+		
+		<style type="text/css">
+		.error {
+			color: red;
+			font-family: 'VT323', monospace;
+			font-size: 30px;
+		}
+		.text{
+			color: white;
+			font-family: 'VT323', monospace;
+			font-size: 30px;
+		}
+
+		.button {
+			background-color: black;
+			border: 2px solid white;
+			color: white;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 30px;
+			font-family: 'VT323', monospace;
+		}
+
+		</style>
+
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
+		
 	</head>
 
 	<body>
@@ -38,12 +66,19 @@
 			                `/////////////.         -///////////     .///////////.  :////////////////////////                                     .///////////:       -///////.           `:+sssss+:.                    `:+osssso:.`         `////////   -//`   ///////////`                                      </pre>
          </div>
         
-           <input type="text">
-           <input type="password">
-
-        <form action="${pageContext.servletContext.contextPath}/game" method="doGet">
-			
-			<input type="Submit" name="submit" value="Login">
+           <c:if test="${! empty errorMessage}">
+			<div class="error">${errorMessage}</div>
+		</c:if>
+	
+		<form action="${pageContext.servletContext.contextPath}/login" method="post">
+			<div class = "input-style">
+				<label type = "text" class = "text" for="username">USERNAME:</label>
+				<input autofocus autocomplete= "off" type="text" name="username" value="${username}">
+				<br>
+				<label type = "text" class = "text" for="password">PASSWORD:</label>
+                <input autofocus autocomplete= "off" type="password" name="password" value="${password}">
+				</div>
+			<input class = "button" type="Submit" name="submit" value="Login">
 		</form>
         
         
