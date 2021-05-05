@@ -38,4 +38,8 @@ public class GameController {
 	{
 		return game.getLog();
 	}
+	
+	public int getScore() {
+		return game.getScore();
+	}
 }

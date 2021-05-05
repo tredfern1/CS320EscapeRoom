@@ -69,8 +69,13 @@
                 <input type="hidden" name = "MapInventory" value="${MapInventory}">
                 <input type="hidden" name = "Actions" value="${Actions}">
               
+              	<input type="hidden" name = "Score" value="${Score}">
              
               <table>
+              	<tr>
+              		<td class="label">Score: </td>
+              		<td>${Score}</td>
+              	</tr>
 				<%--
                 <tr>
 					<td class="label"></td>
