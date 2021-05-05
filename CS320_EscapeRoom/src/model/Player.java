@@ -73,6 +73,11 @@ public class Player {
 		roomNumber = room;
 	}
 	
+	public String getInventory()
+	{
+		return playerInv.getInventory();
+	}
+	
 	public int getRoomNumber()
 	{
 		return roomNumber;

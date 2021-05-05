@@ -147,6 +147,11 @@ public class Move {
 			else if(move[0].contains("play")) {
 				return true;
 			}
+			else if(move[0].contains("check"))
+			{
+				return true;
+			}
+			
 		}
 		//validation for one word commands
 		else if (move.length == 1) {
@@ -154,6 +159,9 @@ public class Move {
 				return true;
 			}
 			else if(move[0].contains("restart")) {
+				return true;
+			}
+			else if(move[0].contains("help")) {
 				return true;
 			}
 		}
@@ -244,6 +252,14 @@ public class Move {
 		else if(move[0].contains("restart"))
 		{
 			output = "You restarted the game";
+		}
+		else if(move[0].contains("check") && move[1].contains("inventory"))
+		{
+			output = "Inventory: " + player1.getInventory();
+		}
+		else if(move[0].contains("help"))
+		{
+			output = "Commands: ";
 		}
 		else {
 			output = "your move does nothing";

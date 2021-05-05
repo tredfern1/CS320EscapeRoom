@@ -119,6 +119,14 @@ public class Game {
 		updateGameLogic(); //Need to call this so it updates the logic of pickups and drops
 		
 		description = getSpotDescription(x, y, MapInventory);
+		if(move.contains("help"))
+		{
+			description = "go/walk/move [direction(north, east, etc)]<br>pickup/take/grab [item]<br> drop [item]<br>enter [code] <br> use [item]<br>check inventory<br>hint<br>help<br>restart";
+		}
+		else if(move.contains("check"))
+		{
+			description = "";
+		}
 		System.out.println("Map Inv: " + MapInventory);
 		System.out.println("This is description: " + description);
 
@@ -297,7 +305,6 @@ public class Game {
 			else if(command[0].contains("hint")) {
 				return map1.getHint(player1.getPlayerx(), player1.getPlayery());
 			}
-
 			return model.getOutput(model.split(move), player1);
 		}
 		else {

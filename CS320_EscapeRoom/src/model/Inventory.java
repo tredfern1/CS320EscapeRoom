@@ -42,5 +42,16 @@ public class Inventory {
 	{
 		return playerInventory.size();
 	}
+	
+	public String getInventory()
+	{
+		String all = "";
+		
+		for(int i = 0; i < playerInventory.size(); i++)
+		{
+			all = all + " " + playerInventory.get(i);
+		}
+		return all;
+	}
 
 }
