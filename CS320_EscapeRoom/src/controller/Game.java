@@ -27,6 +27,7 @@ public class Game {
 	Player player1;
 	Map map1;
 	Logic logic1;
+	int numMoves;
 	
 	
 	public Game()
@@ -67,6 +68,8 @@ public class Game {
 		newMapInventory = Arrays.asList(temp);
 		//UPDATE THE MAP WITH ITEMS
 		map1 = new Map(room, newMapInventory); //get map
+		score = 0;
+		numMoves = 0;
 	}
 	
 	public void getInput(String move1)
@@ -80,28 +83,36 @@ public class Game {
 	{
 		if (result == "you went north") {
 			y = y + 1;
+			numMoves++;
 		} else if (result == "you went south") {
 			y = y - 1;
+			numMoves++;
 		} else if (result == "you went west") {
 			x = x - 1;
+			numMoves++;
 		} else if (result == "you went east") {
 			x = x + 1;
+			numMoves++;
 		} else if (result == "you changed rooms") {  //if the player changes rooms
 			x = 1;
 			y = 0;
 			room = 2;
+			numMoves++;
 		} else if (result == "you went back to room 1") {  //if the player changes rooms
 			x = 1;
 			y = 2;
 			room = 1;
+			numMoves++;
 		} else if (result == "you enter room 3") { //moving from room 2 to room 3
 			x = 1;
 			y = 0;
 			room = 3;
+			numMoves++;
 		} else if (result == "you returned to room 2"){ //moving from room 3 to room 2
 			x = 1;
 			y = 2;
 			room = 2;
+			numMoves++;
 		}
 		else if(result == "You restarted the game")
 		{
@@ -117,6 +128,7 @@ public class Game {
 		Actions = getActionsLogic(move, result, Inventory, Actions, getPlayer());
 		
 		updateGameLogic(); //Need to call this so it updates the logic of pickups and drops
+		updateScore(); //updates the current score
 		
 		description = getSpotDescription(x, y, MapInventory);
 		if(move.contains("help"))
@@ -343,10 +355,17 @@ public class Game {
 		}
 	}
 	
-
-	public void updateScore() // Call to update the score when move is made 
-	{
-		score += 1;
+	/* Scoring rules:
+	 * completing actions: +100 each
+	 * moving: -1
+	 */
+	public void updateScore() {
+		int tempScore = player1.Actions().size() * 100;
+		score = (tempScore - numMoves);
+	}
+	
+	public int getScore() {
+		return score;
 	}
 	
 	public String getPickupLogic(String move, String result, String Inventory) 
