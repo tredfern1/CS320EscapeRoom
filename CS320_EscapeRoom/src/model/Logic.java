@@ -64,6 +64,11 @@ public class Logic {
 				Actions = Actions + "boxBreak" + " "; 
 				//add respectable tags to actions(remember the space)
 			}
+			if(input[1].contains("bluekey"))
+			{              
+				Actions = Actions + "unlock2" + " "; 
+				//add respectable tags to actions(remember the space)
+			}
 			if(input[1].contains("redkey"))
 			{              
 				Actions = Actions + "unlock1" + " "; 

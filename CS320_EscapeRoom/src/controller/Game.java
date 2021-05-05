@@ -234,6 +234,10 @@ public class Game {
 		{
 			descriptionIndex = 1;
 		}
+		else if(playerx == 0 && playery == 2 && player1.hasitem("bluekey") && player1.getRoomNumber() == 2) //change box room description
+		{
+			descriptionIndex = 2;
+		}
 	
 		//description changes for the third room
 		if (player1.getRoomNumber() == 3 && playerx == 0 && playery == 0 && player1.hasAction("knowsQuestion")) {

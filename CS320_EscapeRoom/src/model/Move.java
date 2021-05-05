@@ -23,7 +23,7 @@ public class Move {
 					return true;
 				}
 				//validate being able to enter room 3 from room 2 (currently there are no conditions to do this)
-				else if (move[1].contains("north") && playerx == 1 && playery == 2 && player1.getRoomNumber() == 2) {
+				else if (move[1].contains("north") && playerx == 1 && playery == 2 && player1.getRoomNumber() == 2 && player1.hasAction("unlock2")) {
 					return true;
 				}
 				//validate being able to enter room 2 from room 3
@@ -118,6 +118,11 @@ public class Move {
 				if(move[1].contains("lever") && player1.getPlayerx()==2 && player1.getPlayery()==0 && player1.getRoomNumber()==1) {
 					return true;
 				}
+				
+				//for unlocking second door
+				if(move[1].contains("bluekey") && player1.getPlayerx()==1 && player1.getPlayery()==2 && player1.getRoomNumber()==2 && !player1.hasAction("unlock2")) {
+					return true;
+				}
 				else
 				{
 					return false;
@@ -172,8 +177,9 @@ public class Move {
 				{
 					output = "you changed rooms";
 				}
+				
 				//move from room 2 to room 3
-				else if(player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 2) {
+				else if(player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 2 && player1.hasAction("unlock2")) {
 					output = "you enter room 3";
 				}
 				else

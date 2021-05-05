@@ -63,7 +63,7 @@ public class Map {
 			
 			spots[1][0].setdescription("The door south of you goes back to room 1");
 			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
-			spots[1][2].setdescription("There's a crowbar leaned against the wall");
+			spots[1][2].setdescription("There's a blue door here with a crowbar leaned against it.");
 			//spots[1][2].addItem("crowbar");
 			
 			spots[2][0].setdescription("How shocking!? More cobwebs.");
@@ -73,10 +73,11 @@ public class Map {
 			spots[2][2].setdescription("This corner is too dark to see anything. Perhaps some light would help?");
 			
 			//set second descriptions of the room
-			spots[1][2].setdescription("This is the spot where the crowbar used to be");
+			spots[1][2].setdescription("There is a blue door here.");
 			
 			spots[2][2].setdescription("You can now see a code on the wall. 6851");
 			
+			spots[0][2].setdescription("The safe is unlocked and you can see a bluekey inside of it.");
 			spots[0][2].setdescription("The safe is unlocked");
 			
 			spots[0][1].setdescription("There's the hole where the rat brought you gold from");
