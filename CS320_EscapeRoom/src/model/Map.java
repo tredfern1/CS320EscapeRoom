@@ -63,7 +63,7 @@ public class Map {
 			
 			spots[1][0].setdescription("The door south of you goes back to room 1");
 			spots[1][1].setdescription("You are in the center of a dark and dirty room.");
-			spots[1][2].setdescription("There's a blue door here with a crowbar leaned against it.");
+			spots[1][2].setdescription("There's a blue door here, it seems to be locked.");
 			//spots[1][2].addItem("crowbar");
 			
 			spots[2][0].setdescription("How shocking!? More cobwebs.");
@@ -73,7 +73,7 @@ public class Map {
 			spots[2][2].setdescription("This corner is too dark to see anything. Perhaps some light would help?");
 			
 			//set second descriptions of the room
-			spots[1][2].setdescription("There is a blue door here.");
+
 			
 			spots[2][2].setdescription("You can now see a code on the wall. 6851");
 			
@@ -81,6 +81,7 @@ public class Map {
 			spots[0][2].setdescription("The safe is unlocked");
 			
 			spots[0][1].setdescription("There's the hole where the rat brought you gold from");
+			spots[1][2].setdescription("There's a blue door here, it is now unlocked");
 			
 			//hints for room 2
 			hints[0][2] = "The code is probably hidden somewhere in this room. Or you could get a lucky guess?";
@@ -114,7 +115,7 @@ public class Map {
 			hints[1][1] = "The answer is likely hidden somewhere in this room. And don't Google it, that's cheating!";
 			hints[0][0] = "Come back when you figure out what book you need";
 		}
-		
+
 		//SET THE ITEMS IN THE MAP BASED ON THE ARRAY OF MAP ITEMS
 		for(int i = 0; i < newMapInventory.size(); i++) //goes through all items in the map and adds them based on the string
 		{

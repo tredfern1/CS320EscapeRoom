@@ -42,4 +42,11 @@ public class GameController {
 	public int getScore() {
 		return game.getScore();
 	}
+	
+	public int getWinGame() {
+		return game.getWinGame();
+	}
+	public void restartGame() {
+		game.restartGame();
+	}
 }

@@ -50,9 +50,18 @@ public class GameServlet extends HttpServlet {
 		// set attributes(STUFF THAT IS SAVED) now in the jsp
 		req.setAttribute("description", log); //description of room
 		req.setAttribute("Score", controller.getScore());
-		//
 		
-
+		//these conditions check to see if and how the game has been won
+		if(controller.getWinGame() == 2) {
+			controller.restartGame();
+			req.getRequestDispatcher("/_view/winNoGold.jsp").forward(req, resp);
+		}
+		
+		if(controller.getWinGame() == 1) {
+			controller.restartGame();
+			req.getRequestDispatcher("/_view/winWithGold.jsp").forward(req, resp);
+		}
+		
 		req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
 	}
 

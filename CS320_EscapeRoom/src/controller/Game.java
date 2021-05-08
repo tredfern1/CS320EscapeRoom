@@ -28,6 +28,12 @@ public class Game {
 	Map map1;
 	Logic logic1;
 	int numMoves;
+	int winStatus = 0;
+	
+	//return whether the game has ended and if so which ending
+	public int getWinGame() {
+		return winStatus;
+	}
 	
 	
 	public Game()
@@ -81,7 +87,13 @@ public class Game {
 	
 	public void handleInput()
 	{
-		if (result == "you went north") {
+		if (result == "you changed rooms") {  //if the player changes rooms
+			x = 1;
+			y = 0;
+			room = 2;
+			numMoves++;
+		}
+		else if (result == "you went north") {
 			y = y + 1;
 			numMoves++;
 		} else if (result == "you went south") {
@@ -93,12 +105,7 @@ public class Game {
 		} else if (result == "you went east") {
 			x = x + 1;
 			numMoves++;
-		} else if (result == "you changed rooms") {  //if the player changes rooms
-			x = 1;
-			y = 0;
-			room = 2;
-			numMoves++;
-		} else if (result == "you went back to room 1") {  //if the player changes rooms
+		}  else if (result == "you went back to room 1") {  //if the player changes rooms
 			x = 1;
 			y = 2;
 			room = 1;
@@ -114,6 +121,26 @@ public class Game {
 			room = 2;
 			numMoves++;
 		}
+		
+		//
+		//condition for winning the game
+		else if (result == "you've escaped the rooms!"){ //moving from room 3 to room 2
+			x = 1;
+			y = 2;
+			room = 3;
+			if(player1.hasitem("gold") && player1.hasitem("goldnugget")) {
+				winStatus = 1;
+				score = score + 1000;
+			}
+			else {
+				winStatus = 2;
+				score = score + 500;
+			}
+			System.out.println("Winstatus: " + winStatus);
+			numMoves++;
+		}
+		
+		
 		else if(result == "You restarted the game")
 		{
 			restartGame();
@@ -225,6 +252,11 @@ public class Game {
 		{
 			descriptionIndex = 1;
 		}
+		else if(playerx == 1 && playery == 2 && player1.hasAction("unlock2") && player1.getRoomNumber() == 2) //change door room description
+		{
+			descriptionIndex = 1;
+		}
+		
 		else if(playerx == 2 && playery == 0 && player1.hasAction("lever") && player1.getRoomNumber() == 1)
 		{
 			if(player1.hasitem("goldnugget"))
@@ -246,10 +278,7 @@ public class Game {
 		{
 			descriptionIndex = 1;
 		}
-		if(playerx == 1 && playery == 2 && player1.getRoomNumber() == 2 && player1.hasitem("crowbar")) //change crowbar room description
-		{
-			descriptionIndex = 1;
-		}
+
 		if(playerx == 0 && playery == 1 && player1.getRoomNumber() == 2 && player1.hasAction("ratused")) //change rat room description
 		{
 			descriptionIndex = 1;

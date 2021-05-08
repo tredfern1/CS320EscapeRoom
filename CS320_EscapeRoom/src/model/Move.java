@@ -22,10 +22,15 @@ public class Move {
 				{
 					return true;
 				}
-				//validate being able to enter room 3 from room 2 (currently there are no conditions to do this)
+				//validate being able to enter room 3 from room 2 
 				else if (move[1].contains("north") && playerx == 1 && playery == 2 && player1.getRoomNumber() == 2 && player1.hasAction("unlock2")) {
 					return true;
 				}
+				//validate being able to enter room 4 from room 3 
+				else if (move[1].contains("north") && playerx == 1 && playery == 2 && player1.getRoomNumber() == 3 && player1.hasAction("pianoSolved")) {
+					return true;
+				}
+				
 				//validate being able to enter room 2 from room 3
 				else if (move[1].contains("south") && playerx == 1 && playery == 0 && player1.getRoomNumber() == 3) {
 					return true;
@@ -178,12 +183,17 @@ public class Move {
 	public String getOutput(String[] move, Player player1) {
 		String output = null;
 
+		System.out.println("testing to fix room 1 bug: " + player1.getPlayerx() + " : " + player1.getPlayery() + " : " + player1.getRoomNumber());
 		if(move[0].contains("go") || move[0].contains("move") || move[0].contains("walk")) {         //move outputs
 			if(move[1].contains("north")) {
 				
-				if(player1.hasAction("unlock1") == true && player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 1) //ROOM CHANGE VALIDATION
+				if( player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 1) //ROOM CHANGE VALIDATION
 				{
+					System.out.println("testing to see if room change condition is hit");
 					output = "you changed rooms";
+				}
+				else if( player1.getPlayerx() == 1 && player1.getPlayery() == 2 && player1.getRoomNumber() == 3)  {
+					output = "you've escaped the rooms!";
 				}
 				
 				//move from room 2 to room 3
@@ -265,7 +275,7 @@ public class Move {
 			output = "your move does nothing";
 		}
 
-		
+		System.out.println("testing output for room change bug : " + output);
 		return output;
 	}
 	
