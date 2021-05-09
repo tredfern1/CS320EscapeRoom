@@ -138,6 +138,7 @@ public class Game {
 				winStatus = 2;
 				score = score + 500;
 			}
+			updateHighScore();
 			System.out.println("Winstatus: " + winStatus);
 			numMoves++;
 		}
@@ -151,7 +152,6 @@ public class Game {
 		Coordinate coord = new Coordinate();
 		coord.setCoordinate(x, y);
 		
-		
 		Inventory = getPickupLogic(move, result, Inventory);
 		MapInventory = getMapPickupLogic(move, result, MapInventory, getPlayer());
 		Actions = getActionsLogic(move, result, Inventory, Actions, getPlayer());
@@ -159,8 +159,6 @@ public class Game {
 		updateGameLogic(); //Need to call this so it updates the logic of pickups and drops
 		updateScore(); //updates the current score
 		//TODO: make this update only when the game ends
-		updateHighScore();
-		
 		
 		description = getSpotDescription(x, y, MapInventory);
 		if(move.contains("help"))
