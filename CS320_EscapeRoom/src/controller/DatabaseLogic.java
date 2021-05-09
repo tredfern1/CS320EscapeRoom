@@ -134,6 +134,12 @@ public class DatabaseLogic {
 		db.loadInitialData2();
 	}
 	
+	public void setHighScore(int score) {
+		db.updateHighScore(score);
+	}
 	
+	public int getHighScore() {
+		return db.getHighScore();
+	}
 	
 }

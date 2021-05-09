@@ -403,6 +403,71 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	@Override
+	public void updateHighScore(int score) {
+		executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"UPDATE highScore SET score = ?"
+					);
+					stmt.setString(1, String.valueOf(score));
+					stmt.execute();
+					
+					stmt = conn.prepareStatement("select * from highScore");
+					resultSet = stmt.executeQuery();
+					
+					return 1;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	@Override
+	public int getHighScore() {
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					stmt = conn.prepareStatement(
+							"select * from highScore"
+					);
+					
+					resultSet = stmt.executeQuery();
+					
+					int result = 0;
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						result = resultSet.getInt("score");
+					}
+					
+					// check if any authors were found
+					if (!found) {
+						System.out.println("No high score found");
+					}
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	@Override
 	public String getActions() {
 		
 		return executeTransaction(new Transaction<String>() {
@@ -545,6 +610,8 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
+	
+	
 	
 	public void addToMapInventory(String item, String coordinate) {
 		executeTransaction(new Transaction<Integer>() {
@@ -887,6 +954,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt4 = null;
 				PreparedStatement stmt5 = null;	
 				PreparedStatement stmt6 = null;	
+				PreparedStatement stmt7 = null;	
 	
 				try {
 					
@@ -950,7 +1018,13 @@ public class DerbyDatabase implements IDatabase {
 							+ "(x int, y int)");
 					
 					stmt3.executeUpdate();
-										
+					
+					stmt7 = conn.prepareStatement(
+							"CREATE TABLE highScore" +
+							"(score int)"
+							);
+					stmt7.executeUpdate();
+					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
@@ -959,6 +1033,7 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(stmt4);
 					DBUtil.closeQuietly(stmt5);
 					DBUtil.closeQuietly(stmt6);
+					DBUtil.closeQuietly(stmt7);
 				}
 			}
 		});
@@ -978,12 +1053,13 @@ public class DerbyDatabase implements IDatabase {
 				List<String> logList;
 				
 				List<Hidden> hiddenList;
-				
+
 				//coordinate for the player coord
 				Coordinate coord;
 
 				//TEST OF INT
 				int room = 0;
+				int highScore = 0;
 				
 				try {
 					logList = InitialData.getLog();
@@ -993,6 +1069,7 @@ public class DerbyDatabase implements IDatabase {
 					mapInv = InitialData.getMapInventory();
 					coord = InitialData.getCoordinate();
 					hiddenList = InitialData.getHidden();
+					highScore = InitialData.getHighScore();
 
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
@@ -1009,6 +1086,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertLog      = null;
 				PreparedStatement insertCoordinate      = null;
 				PreparedStatement insertHidden = null;
+				PreparedStatement insertHighScore = null;
 
 				try {
 					
@@ -1072,7 +1150,9 @@ public class DerbyDatabase implements IDatabase {
 					}
 					insertPlayerInv.executeBatch();
 					
-					
+					insertHighScore = conn.prepareStatement("INSERT INTO highScore (score) VALUES (?)");
+					insertHighScore.setInt(1, highScore);
+					insertHighScore.executeUpdate();
 					
 					/*
 					resultSet = null;

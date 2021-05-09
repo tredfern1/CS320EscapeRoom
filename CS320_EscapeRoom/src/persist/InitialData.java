@@ -80,6 +80,21 @@ public class InitialData {
 		}
 	}
 	
+	public static int getHighScore() throws IOException {
+		int score = 0;
+		ReadCSV readHighScore = new ReadCSV("highScore.csv");
+		List<String> tuple = readHighScore.next();
+		
+		Iterator<String> i = tuple.iterator();
+		try {
+			score = Integer.parseInt(i.next());
+			System.out.println("The high score is: " + score);
+			
+			return score;
+		} finally {
+			readHighScore.close();
+		}
+	}
 
 	public static List<String> getplayerInventory() throws IOException {
 		

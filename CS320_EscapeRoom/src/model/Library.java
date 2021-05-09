@@ -10,7 +10,7 @@ public class Library {
 	private ArrayList<String> usernames;
 	private ArrayList<String> passwords;
 	private Map<String, String> credentials;
-	
+	private Map<String, Integer> score; 
 	// create model - test version
 	public Library() {
 		usernames = new ArrayList<String>();
