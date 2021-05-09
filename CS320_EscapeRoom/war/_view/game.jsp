@@ -70,11 +70,16 @@
                 <input type="hidden" name = "Actions" value="${Actions}">
               
               	<input type="hidden" name = "Score" value="${Score}">
+              	<input type="hidden" name = "highScore" value="${highScore}">
              
               <table>
               	<tr>
               		<td class="label">Score: </td>
               		<td>${Score}</td>
+              	</tr>
+              	<tr>
+              		<td class="label">High Score: </td>
+              		<td>${highScore}</td>
               	</tr>
 				<%--
                 <tr>

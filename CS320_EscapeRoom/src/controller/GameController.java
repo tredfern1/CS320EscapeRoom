@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
@@ -48,5 +50,9 @@ public class GameController {
 	}
 	public void restartGame() {
 		game.restartGame();
+	}
+	
+	public int getHighScore() {
+		return game.getHighScore();
 	}
 }

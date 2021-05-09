@@ -31,7 +31,9 @@ public interface IDatabase {
 	//log functions
 	public List<String> getLog();
 
-
+	//high score functions
+	public void updateHighScore(int score);
+	public int getHighScore();
 	
 	//functions for the x/y of the player
 	public int getCoordinateX();

@@ -3,6 +3,8 @@ package controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.io.*;
+import java.util.Scanner;
 
 import model.Coordinate;
 import model.Logic;
@@ -74,7 +76,7 @@ public class Game {
 		newMapInventory = Arrays.asList(temp);
 		//UPDATE THE MAP WITH ITEMS
 		map1 = new Map(room, newMapInventory); //get map
-		score = 0;
+		score = 25;
 		numMoves = 0;
 	}
 	
@@ -136,6 +138,7 @@ public class Game {
 				winStatus = 2;
 				score = score + 500;
 			}
+			updateHighScore();
 			System.out.println("Winstatus: " + winStatus);
 			numMoves++;
 		}
@@ -149,13 +152,13 @@ public class Game {
 		Coordinate coord = new Coordinate();
 		coord.setCoordinate(x, y);
 		
-		
 		Inventory = getPickupLogic(move, result, Inventory);
 		MapInventory = getMapPickupLogic(move, result, MapInventory, getPlayer());
 		Actions = getActionsLogic(move, result, Inventory, Actions, getPlayer());
 		
 		updateGameLogic(); //Need to call this so it updates the logic of pickups and drops
 		updateScore(); //updates the current score
+		//TODO: make this update only when the game ends
 		
 		description = getSpotDescription(x, y, MapInventory);
 		if(move.contains("help"))
@@ -426,5 +429,17 @@ public class Game {
 		System.out.println("Position: " + x + y);
 	}
 	
+	//updates high score in the database
+	public void updateHighScore() {
+		DatabaseLogic db = new DatabaseLogic();
+		
+		if (db.getHighScore() < score) {
+			db.setHighScore(score);
+		}
+	}
 	
+	public int getHighScore() {
+		DatabaseLogic db = new DatabaseLogic();
+		return db.getHighScore();
+	}
 }
