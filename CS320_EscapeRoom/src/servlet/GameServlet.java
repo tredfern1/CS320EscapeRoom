@@ -52,6 +52,7 @@ public class GameServlet extends HttpServlet {
 		req.setAttribute("Score", controller.getScore());
 		req.setAttribute("highScore", controller.getHighScore());
 		//
+
 		
 		//these conditions check to see if and how the game has been won
 		if(controller.getWinGame() == 2) {
