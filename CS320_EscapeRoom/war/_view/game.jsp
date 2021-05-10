@@ -54,7 +54,6 @@
         
             <div class="game-box">
 				
-
 				 <p> ${description == null ? "Press ENTER to play!" : ""}</p>
 
 				 <c:forEach items="${description}" var="item">
@@ -73,15 +72,7 @@
               	<input type="hidden" name = "highScore" value="${highScore}">
              
               <table>
-              	<tr>
-              		<td class="label">Score: </td>
-              		<td>${Score}</td>
-              	</tr>
-              	<tr>
-              		<td class="label">High Score: </td>
-              		<td>${highScore}</td>
-              	</tr>
-				<%--
+				<%-- stuff for testing
                 <tr>
 					<td class="label"></td>
 					<td>${result}</td>
@@ -115,6 +106,7 @@
 				<label for="move">></label>
                 <input autofocus autocomplete= "off" type="text" name="move" value="${move}">
 				</div>
+				<p style = "margin: 0;"> Score: ${Score} High Score: ${highScore}</p>
 				
             </div>
         </form>   
