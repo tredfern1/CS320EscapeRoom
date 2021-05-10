@@ -428,9 +428,17 @@ public class Game {
 		database.loadGame();
 		
 		GetData();
+	}
+	
+	public void restartGameAfterWin()
+	{
+		DatabaseLogic database = null;
+		database = new DatabaseLogic();
 		
-		System.out.println("PlayerInv: " + Inventory);
-		System.out.println("Position: " + x + y);
+		database.restartGame();
+		database.loadGameWithDescription();
+		
+		GetData();
 	}
 	
 	//updates high score in the database

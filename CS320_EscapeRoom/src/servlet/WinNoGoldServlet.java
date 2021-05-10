@@ -27,7 +27,7 @@ public class WinNoGoldServlet extends HttpServlet {
 
 		req.getRequestDispatcher("/_view/winNoGold.jsp").forward(req, resp);
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -36,13 +36,8 @@ public class WinNoGoldServlet extends HttpServlet {
 		Game game = new Game();
 		GameController controller = new GameController();
 		controller.setModel(game);
-		controller.restartGame();
+		controller.restartGameAfterWin();
 		
-
-		
-
-		
-
 		// Forward to view to render the result HTML document
 		resp.sendRedirect(req.getContextPath() + "/login");
 	}

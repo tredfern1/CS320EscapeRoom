@@ -52,6 +52,10 @@ public class GameController {
 		game.restartGame();
 	}
 	
+	public void restartGameAfterWin() {
+		game.restartGameAfterWin();
+	}
+	
 	public int getHighScore() {
 		return game.getHighScore();
 	}

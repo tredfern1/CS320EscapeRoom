@@ -48,5 +48,6 @@ public interface IDatabase {
 	public void setHiddenStatus(String item);
 	public void restartGame();
 	public void loadInitialData2();
+	public void loadInitialData();
 	
 }

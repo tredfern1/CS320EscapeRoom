@@ -1197,7 +1197,7 @@ public class DerbyDatabase implements IDatabase {
 						System.out.println("MAPINV: " + resultSet.getString("spotid") + resultSet.getString("item"));
 					}
 
-					
+					System.out.println("THIS JUST GOT LOADED AGAIN");
 					return true;
 				} finally {
 					DBUtil.closeQuietly(insertLog);

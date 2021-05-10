@@ -36,11 +36,7 @@ public class WinWithGold extends HttpServlet {
 		Game game = new Game();
 		GameController controller = new GameController();
 		controller.setModel(game);
-		controller.restartGame();
-		
-
-		
-
+		controller.restartGameAfterWin();
 		
 
 		// Forward to view to render the result HTML document

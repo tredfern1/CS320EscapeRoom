@@ -130,6 +130,11 @@ public class DatabaseLogic {
 		db.restartGame();
 	}
 	
+	public void loadGameWithDescription()
+	{
+		db.loadInitialData();
+	}
+	
 	public void loadGame() {
 		db.loadInitialData2();
 	}
