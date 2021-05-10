@@ -104,6 +104,7 @@ public class Map {
 			spots[2][0].setdescription("You are in the southeastern corner of the third room. There is nothing here");
 			spots[2][1].setdescription("You are on the eastern side of the third room. There is nothing here");
 			spots[2][2].setdescription("You are in the northeastern side of the third room. There is nothing here");
+			spots[1][2].setdescription("You are on the northern side of the third room. The final door has unlocked and it appears you are free to leave.");
 			
 			//descriptions after changes are made
 			spots[0][0].setdescription("You are in the southwestern corner of the third room. One book stands out to you; 'I, Robot' by Isaac Asimov");

@@ -251,11 +251,15 @@ public class Game {
 				descriptionIndex = 2;
 			}
 		}
-		else if(playerx == 1 && playery == 2 && player1.hasAction("unlock1") && player1.getRoomNumber() == 1) //change door room description
+		else if(playerx == 1 && playery == 2 && player1.hasAction("unlock1") && player1.getRoomNumber() == 1) //change door room 1 description
 		{
 			descriptionIndex = 1;
 		}
-		else if(playerx == 1 && playery == 2 && player1.hasAction("unlock2") && player1.getRoomNumber() == 2) //change door room description
+		else if(playerx == 1 && playery == 2 && player1.hasAction("unlock2") && player1.getRoomNumber() == 2) //change door room 2 description
+		{
+			descriptionIndex = 1;
+		}
+		else if(playerx == 1 && playery == 2 && player1.hasAction("pianoSolved") && player1.getRoomNumber() == 3) //change door room 2 description
 		{
 			descriptionIndex = 1;
 		}
