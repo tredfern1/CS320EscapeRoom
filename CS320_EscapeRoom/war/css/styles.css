@@ -16,12 +16,12 @@ body{
     border: none;
     color: white;
     float: left;
-    width:1000px;
-    height: 1000px;
+    width: min(500em, 100vw);
+    height: min(30em, 100vw);
     text-align: left;
     border-width: 2px;
     font-family: 'VT323', monospace;
-    font-size: 30px;
+    font-size: 2vw;
 }
 
 
@@ -37,6 +37,14 @@ body{
     text-align: center;
 }
 
+.art{
+	margin: auto;
+    border: none;
+    color: white;
+    float: center;
+    font-size: 0.5vw;
+}
+
 .input-style input{
     background-color: black; 
     color: white; 
@@ -44,8 +52,7 @@ body{
     border-style:none; 
     outline:none;
     font-family: 'VT323', monospace;
-    font-size: 30px;
-    width: 500px;
+    font-size: 2vw;
     bottom: auto;
 }
 

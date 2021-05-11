@@ -18,6 +18,7 @@
 			color: white;
 			font-family: 'VT323', monospace;
 			font-size: 30px;
+			font-size: 2vw;
 		}
 
 		.button {
@@ -27,7 +28,7 @@
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
-			font-size: 30px;
+			font-size: 2vw;
 			font-family: 'VT323', monospace;
 		}
 

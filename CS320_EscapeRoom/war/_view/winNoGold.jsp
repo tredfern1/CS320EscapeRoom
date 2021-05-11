@@ -18,17 +18,17 @@
 			color: white;
 			font-family: 'VT323', monospace;
 			font-size: 30px;
+			font-size: 2vw;
 		}
 
 		.button {
 			background-color: black;
 			border: 2px solid white;
 			color: white;
-			float: center;
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
-			font-size: 30px;
+			font-size: 2vw;
 			font-family: 'VT323', monospace;
 		}
 
@@ -71,10 +71,61 @@
 	
 		<form action="${pageContext.servletContext.contextPath}/login" method="post">
 			<p class = "text">You've managed to escape the rooms! However, it seems that if you had looked a little harder you may have found more...</p>
-
+			<div class="art">
+        	<pre>
+																		                             ...----....
+																		                         ..-:"''         ''"-..
+																		                      .-'                      '-.
+																		                    .'              .     .       '.
+																		                  .'   .          .    .      .    .''.
+																		                .'  .    .       .   .   .     .   . ..:.
+																		              .' .   . .  .       .   .   ..  .   . ....::.
+																		             ..   .   .      .  .    .     .  ..  . ....:IA.
+																		            .:  .   .    .    .  .  .    .. .  .. .. ....:IA.
+																		           .: .   .   ..   .    .     . . .. . ... ....:.:VHA.
+																		           '..  .  .. .   .       .  . .. . .. . .....:.::IHHB.
+																		          .:. .  . .  . .   .  .  . . . ...:.:... .......:HIHMM.
+																		         .:.... .   . ."::"'.. .   .  . .:.:.:II;,. .. ..:IHIMMA
+																		         ':.:..  ..::IHHHHHI::. . .  ...:.::::.,,,. . ....VIMMHM
+																		        .:::I. .AHHHHHHHHHHAI::. .:...,:IIHHHHHHMMMHHL:. . VMMMM
+																		       .:.:V.:IVHHHHHHHMHMHHH::..:" .:HIHHHHHHHHHHHHHMHHA. .VMMM.
+																		       :..V.:IVHHHHHMMHHHHHHHB... . .:VPHHMHHHMMHHHHHHHHHAI.:VMMI
+																		       ::V..:VIHHHHHHMMMHHHHHH. .   .I":IIMHHMMHHHHHHHHHHHAPI:WMM
+																		       ::". .:.HHHHHHHHMMHHHHHI.  . .:..I:MHMMHHHHHHHHHMHV:':H:WM
+																		       :: . :.::IIHHHHHHMMHHHHV  .ABA.:.:IMHMHMMMHMHHHHV:'. .IHWW
+																		       '.  ..:..:.:IHHHHHMMHV" .AVMHMA.:.'VHMMMMHHHHHV:' .  :IHWV
+																		        :.  .:...:".:.:TPP"   .AVMMHMMA.:. "VMMHHHP.:... .. :IVAI
+																		       .:.   '... .:"'   .   ..HMMMHMMMA::. ."VHHI:::....  .:IHW'
+																		       ...  .  . ..:IIPPIH: ..HMMMI.MMMV:I:.  .:ILLH:.. ...:I:IM
+																		     : .   .'"' .:.V". .. .  :HMMM:IMMMI::I. ..:HHIIPPHI::'.P:HM.
+																		     :.  .  .  .. ..:.. .    :AMMM IMMMM..:...:IV":T::I::.".:IHIMA
+																		     'V:.. .. . .. .  .  .   'VMMV..VMMV :....:V:.:..:....::IHHHMH
+																		       "IHH:.II:.. .:. .  . . . " :HB"" . . ..PI:.::.:::..:IHHMMV"
+																		        :IP""HHII:.  .  .    . . .'V:. . . ..:IH:.:.::IHIHHMMMMM"
+																		        :V:. VIMA:I..  .     .  . .. . .  .:.I:I:..:IHHHHMMHHMMM
+																		        :"VI:.VWMA::. .:      .   .. .:. ..:.I::.:IVHHHMMMHMMMMI
+																		        :."VIIHHMMA:.  .   .   .:  .:.. . .:.II:I:AMMMMMMHMMMMMI
+																		        :..VIHIHMMMI...::.,:.,:!"I:!"I!"I!"V:AI:VAMMMMMMHMMMMMM'
+																		        ':.:HIHIMHHA:"!!"I.:AXXXVVXXXXXXXA:."HPHIMMMMHHMHMMMMMV
+																		          V:H:I:MA:W'I :AXXXIXII:IIIISSSSSSXXA.I.VMMMHMHMMMMMM
+																		            'I::IVA ASSSSXSSSSBBSBMBSSSSSSBBMMMBS.VVMMHIMM'"'
+																		             I:: VPAIMSSSSSSSSSBSSSMMBSSSBBMMMMXXI:MMHIMMI
+																		            .I::. "H:XIIXBBMMMMMMMMMMMMMMMMMBXIXXMMPHIIMM'
+																		            :::I.  ':XSSXXIIIIXSSBMBSSXXXIIIXXSMMAMI:.IMM
+																		            :::I:.  .VSSSSSISISISSSBII:ISSSSBMMB:MI:..:MM
+																		            ::.I:.  ':"SSSSSSSISISSXIIXSSSSBMMB:AHI:..MMM.
+																		            ::.I:. . ..:"BBSSSSSSSSSSSSBBBMMMB:AHHI::.HMMI
+																		            :..::.  . ..::":BBBBBSSBBBMMMB:MMMMHHII::IHHMI
+																		            ':.I:... ....:IHHHHHMMMMMMMMMMMMMMMHHIIIIHMMV"
+																		              "V:. ..:...:.IHHHMMMMMMMMMMMMMMMMHHHMHHMHP'
+																		               ':. .:::.:.::III::IHHHHMMMMMHMHMMHHHHM"
+																		                 "::....::.:::..:..::IIIIIHHHHMMMHHMV"
+																		                   "::.::.. .. .  ...:::IIHHMMMMHMV"
+																		                     "V::... . .I::IHHMMV"'
+																		                       '"VHVHHHAHHHHMMV:"'
+        	</pre>
+        </div>
 			<input class = "button" type="Submit" name="submit" value="Reset game and return to login">
 		</form>
-        
-        
 	</body>
 </html>
