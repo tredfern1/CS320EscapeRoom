@@ -44,6 +44,8 @@ public class Map {
 			spots[0][2].setdescription("The crate is broken and lying on the ground in pieces. Between the rubble you can spot a little shiny redkey. No doubt that could be useful.");
 			spots[1][2].setdescription("To the north there's a red door with a keyhole, it's been unlocked! Maybe you will get out of here afterall.");
 			spots[2][0].setdescription("The lever has been pulled and a tiny hole opens up in the wall. A goldnugget! If you get out of here, maybe you'll be rich!");
+			spots[1][0].setdescription("The bars on the window broke away, a bird has flown to the window with a goldkey in his mouth.");
+			
 			//Description setters after actions #2
 			spots[2][0].setdescription("The lever has been pulled and a tiny hole opened up in the wall. There's no more gold here sadly.");
 			spots[0][2].setdescription("The crate is broken and lying on the ground. This is where you found the redkey.");
