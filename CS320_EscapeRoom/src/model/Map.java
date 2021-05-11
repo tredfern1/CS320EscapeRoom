@@ -89,7 +89,7 @@ public class Map {
 		if (room == 3) {
 			//starting descriptions
 			spots[0][0].setdescription("You are in the southwestern corner of the third room. There is a bookshelf here, but nothing stands out at the moment.");
-			spots[0][1].setdescription("You are on the western side of the third room. There is nothing here");
+			spots[0][1].setdescription("You are on the western side of the third room. There is a bone here. It looks like something has been chewing on it.");
 			spots[0][2].setdescription("You are in the northwestern corner of the third room. There is nothing here");
 			
 			spots[1][0].setdescription("You entered room 3. You are on the southern side of the room. You can south to return to room 2.");
@@ -101,9 +101,9 @@ public class Map {
 					+ 					"<br> (D) 'A robot must protect its own existence as long as such protection does not conflict with the First or Second Law.' ");
 			spots[1][2].setdescription("You are on the northern side of the third room. There is a locked door here.");
 			
-			spots[2][0].setdescription("You are in the southeastern corner of the third room. There is nothing here");
-			spots[2][1].setdescription("You are on the eastern side of the third room. There is nothing here");
-			spots[2][2].setdescription("You are in the northeastern side of the third room. There is nothing here");
+			spots[2][0].setdescription("You are in the southeastern corner of the third room. There is nothing here.");
+			spots[2][1].setdescription("There is a mean looking dog here. He is holding a goldbar in is his mouth. It looks like he does not want to drop it.");
+			spots[2][2].setdescription("You are in the northeastern side of the third room. There is a broken safe here. It does not look very useful.");
 			spots[1][2].setdescription("You are on the northern side of the third room. The final door has unlocked and it appears you are free to leave.");
 			
 			//descriptions after changes are made
@@ -112,9 +112,14 @@ public class Map {
 			
 			spots[1][1].setdescription("You are in the center of the third room. There is a grand piano here. You have already solved this puzzle. It appears the last door has unlocked, also.");
 			
+			spots[2][1].setdescription("The dog looks happier, but still does not want to drop the goldbar.");
+			spots[2][1].setdescription("The dog has lost interest in the goldbar. You can now pick it up.");
+			spots[2][1].setdescription("The dog looks happy. There is no more gold here.");
+			
 			//hints for room 3
-			hints[1][1] = "The answer is likely hidden somewhere in this room. And don't Google it, that's cheating!";
+			hints[1][1] = "The answer is likely hidden somewhere in this room. Enter an answer by playing the piano: play [A/B/C/D]. And don't Google it, that's cheating!";
 			hints[0][0] = "Come back when you figure out what book you need";
+			hints[2][1] = "There is probably a way to get the dog to drop the gold.";
 		}
 
 		//SET THE ITEMS IN THE MAP BASED ON THE ARRAY OF MAP ITEMS

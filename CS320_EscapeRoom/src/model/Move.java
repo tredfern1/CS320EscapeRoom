@@ -91,10 +91,18 @@ public class Move {
 							return false;
 						}
 					}
+					else if(move[1].contains("goldbar")) {
+						if(player1.hasAction("tameDog")) {
+							return true;
+						}
+						else {
+							return false;
+						}
+					}
 					else
 					{
 						return true;
-					}
+					} 
 				} //add more items here
 				
 				else
@@ -154,6 +162,9 @@ public class Move {
 			}
 			else if(move[0].contains("check"))
 			{
+				return true;
+			}
+			else if(move[0].contains("pet")) {
 				return true;
 			}
 			
@@ -270,6 +281,9 @@ public class Move {
 		else if(move[0].contains("help"))
 		{
 			output = "Commands: ";
+		}
+		else if (move[0].contains("pet") && move[1].contains("dog")) {
+			output = "You pet the dog.";
 		}
 		else {
 			output = "your move does nothing";

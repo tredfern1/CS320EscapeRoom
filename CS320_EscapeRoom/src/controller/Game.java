@@ -126,7 +126,8 @@ public class Game {
 		
 		//
 		//condition for winning the game
-		else if (result == "you've escaped the rooms!"){ //moving from room 3 to room 2
+		else if (result == "you've escaped the rooms!"){ 
+			updateHighScore();
 			x = 1;
 			y = 2;
 			room = 3;
@@ -138,7 +139,6 @@ public class Game {
 				winStatus = 2;
 				score = score + 500;
 			}
-			updateHighScore();
 			System.out.println("Winstatus: " + winStatus);
 			numMoves++;
 		}
@@ -305,6 +305,15 @@ public class Game {
 		if (player1.getRoomNumber() == 3 && playerx == 1 && playery == 1 && player1.hasAction("pianoSolved")) {
 			descriptionIndex = 1;
 		}
+		if (player1.getRoomNumber() == 3 && playerx == 2 && playery == 1 && player1.hasAction("petDog") && !player1.hasAction("tameDog")) { //the player has pet the dog once
+			descriptionIndex = 1;
+		}
+		if (player1.getRoomNumber() == 3 && playerx == 2 && playery == 1 && player1.hasAction("petDog") && player1.hasAction("tameDog")) { //the player has pet the dog twice
+			descriptionIndex = 2;
+		}
+		if (player1.getRoomNumber() == 3 && playerx == 2 && playery == 1 && player1.hasAction("petDog") && player1.hasAction("tameDog") && player1.hasitem("goldbar")) { //the player has pet the dog twice and taken the gold
+			descriptionIndex = 3;
+		}
 		
 		description = map1.getSpot(playerx, playery).getdescriptionAt(descriptionIndex);
 		
@@ -384,6 +393,9 @@ public class Game {
 			{
 				return "You can't use that here";
 			}
+			else if (command[0].contains("pet") && command[1].contains("dog")) {
+				return model.getOutput(model.split(move), player1);
+			}
 			else
 			{
 				return "You cannot do that";
@@ -432,6 +444,7 @@ public class Game {
 	
 	public void restartGameAfterWin()
 	{
+		updateHighScore();
 		DatabaseLogic database = null;
 		database = new DatabaseLogic();
 		
