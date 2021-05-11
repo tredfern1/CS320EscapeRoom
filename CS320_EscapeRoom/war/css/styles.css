@@ -16,7 +16,7 @@ body{
     border: none;
     color: white;
     float: left;
-    width: min(500em, 100vw);
+    width: min(400em, 80vw);
     height: min(30em, 100vw);
     text-align: left;
     border-width: 2px;

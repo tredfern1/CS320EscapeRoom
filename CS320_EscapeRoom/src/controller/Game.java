@@ -288,7 +288,14 @@ public class Game {
 
 		if(playerx == 0 && playery == 1 && player1.getRoomNumber() == 2 && player1.hasAction("ratused")) //change rat room description
 		{
-			descriptionIndex = 1;
+			if(player1.hasitem("gold"))
+			{
+				descriptionIndex = 2;
+			}
+			else
+			{
+				descriptionIndex = 1;
+			}
 		}
 		else if(playerx == 0 && playery == 2 && player1.hasitem("bluekey") && player1.getRoomNumber() == 2) //change box room description
 		{

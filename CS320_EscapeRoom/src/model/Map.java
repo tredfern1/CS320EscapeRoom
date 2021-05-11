@@ -80,8 +80,9 @@ public class Map {
 			spots[0][2].setdescription("The safe is unlocked and you can see a bluekey inside of it.");
 			spots[0][2].setdescription("The safe is unlocked");
 			
-			spots[0][1].setdescription("There's the hole where the rat brought you gold from");
+			spots[0][1].setdescription("Wow! It looks like the rat brought you gold! Should you take the gold?");
 			spots[1][2].setdescription("There's a blue door here, it is now unlocked");
+			spots[0][1].setdescription("There's a hole in the wall where the rat brought you gold. Nothing else is here.");
 			
 			//hints for room 2
 			hints[0][2] = "The code is probably hidden somewhere in this room. Or you could get a lucky guess?";
