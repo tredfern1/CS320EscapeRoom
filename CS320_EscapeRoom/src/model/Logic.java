@@ -89,6 +89,11 @@ public class Logic {
 				Actions = Actions + "lever" + " "; 
 				//add respectable tags to actions(remember the space)
 			}
+			if(input[1].contains("crowbar"))
+			{              
+				Actions = Actions + "usedCrowbar" + " "; 
+				//add respectable tags to actions(remember the space)
+			}
 		}
 		//check for the correct answer for the piano puzzle (the right answer is C)
 		if(result.contains("You play")) {

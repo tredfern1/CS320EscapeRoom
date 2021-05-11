@@ -255,6 +255,10 @@ public class Game {
 		{
 			descriptionIndex = 1;
 		}
+		else if(playerx == 1 && playery == 0 && player1.hasAction("usedCrowbar") && player1.getRoomNumber() == 1) //change door room 1 description
+		{
+			descriptionIndex = 1;
+		}
 		else if(playerx == 1 && playery == 2 && player1.hasAction("unlock2") && player1.getRoomNumber() == 2) //change door room 2 description
 		{
 			descriptionIndex = 1;

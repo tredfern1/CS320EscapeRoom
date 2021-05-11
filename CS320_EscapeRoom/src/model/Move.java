@@ -115,7 +115,11 @@ public class Move {
 				if(move[1].contains("hammer") && player1.hasitem("hammer") &&  !player1.hasAction("boxBreak") && spot.hasItem("redkey"))
 				{
 					return true;
-				} //add more items here
+				} 
+				if(move[1].contains("crowbar") && player1.hasitem("crowbar") &&  !player1.hasAction("useCrowbar") && playerx == 1 && playery == 0)
+				{
+					return true;
+				}//add more items here
 				if(move[1].contains("redkey") && player1.hasitem("redkey") &&  !player1.hasAction("unlock1") && playerx == 1 && playery == 2)
 				{
 					return true;
