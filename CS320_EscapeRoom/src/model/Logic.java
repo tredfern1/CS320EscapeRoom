@@ -102,6 +102,15 @@ public class Logic {
 		if(result.contains("you've unlocked the")) {
 			Actions = Actions + "opensafe" + " "; 
 		}
+		//player must pet the dog twice to solve the puzzle
+		if(result.contains("You pet the dog")) {
+			if (player1.hasAction("petDog")) {
+				Actions = Actions + "tameDog ";
+			} else {
+				Actions = Actions + "petDog ";
+			}
+		}
+		
 		return Actions;//add to string of items
 	}
 }
