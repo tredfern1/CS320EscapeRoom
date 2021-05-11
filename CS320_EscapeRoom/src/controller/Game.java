@@ -387,7 +387,7 @@ public class Game {
 			}
 			else if(command[0].contains("pickup"))
 			{
-				return "You can't pickup anything";
+				return "You can't pickup that";
 			}
 			else if(command[0].contains("use"))
 			{
