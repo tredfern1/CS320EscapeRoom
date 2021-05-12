@@ -127,17 +127,18 @@ public class Game {
 		//
 		//condition for winning the game
 		else if (result == "you've escaped the rooms!"){ 
-			updateHighScore();
 			x = 1;
 			y = 2;
 			room = 3;
-			if(player1.hasitem("gold") && player1.hasitem("goldnugget")) {
+			if(player1.hasitem("gold") && player1.hasitem("goldnugget") && player1.hasitem("goldbar")) {
 				winStatus = 1;
 				score = score + 1000;
+				updateHighScore();
 			}
 			else {
 				winStatus = 2;
 				score = score + 500;
+				updateHighScore();
 			}
 			System.out.println("Winstatus: " + winStatus);
 			numMoves++;
@@ -158,7 +159,8 @@ public class Game {
 		
 		updateGameLogic(); //Need to call this so it updates the logic of pickups and drops
 		updateScore(); //updates the current score
-		//TODO: make this update only when the game ends
+		updateHighScore();
+		//TODO: fix high score
 		
 		description = getSpotDescription(x, y, MapInventory);
 		if(move.contains("help"))
@@ -444,6 +446,7 @@ public class Game {
 	
 	public void restartGame()
 	{
+		updateHighScore();
 		DatabaseLogic database = null;
 		database = new DatabaseLogic();
 		

@@ -32,7 +32,7 @@ public class GameControllerTest {
 		actions = "";
 		mapInv = "";
 		room = 1;
-		controller = new Game(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller = new Game();
 		controller.setModel(model);
 		move = "";
 		result = "";
@@ -112,7 +112,7 @@ public class GameControllerTest {
 		//update the controller's inventory for this test
 		mapInv = "111hammer";
 		
-		controller = new Game(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller = new Game();
 		controller.setModel(model);
 		
 		result = controller.getOutput("pickup hammer");
@@ -128,7 +128,7 @@ public class GameControllerTest {
 		
 		//test picking up an item on another spot should return null
 		mapInv = "221hammer";
-		controller = new Game(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller = new Game();
 		controller.setModel(model);
 		
 		result = controller.getOutput("pickup hammer");
@@ -139,7 +139,7 @@ public class GameControllerTest {
 		move = "";
 		mapInv = "111hammer";
 		
-		controller = new Game(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller = new Game();
 		controller.setModel(model);
 		
 		assertEquals(controller.getPickupLogic(move, result, inv), "");
@@ -157,7 +157,7 @@ public class GameControllerTest {
 		//update the controller's inventory for this test
 		mapInv = "111hammer";
 		
-		controller = new Game(p.getPlayerx(), p.getPlayery(), inv, actions, mapInv, room);
+		controller = new Game();
 		controller.setModel(model);
 		
 		result = controller.getOutput("pickup hammer");
