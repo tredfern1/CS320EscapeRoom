@@ -179,7 +179,7 @@ public class GameTest {
 		controller.restartGame();
 		String desc = controller.getSpotDescription(1, 1, "");
 		System.out.println("TESTING the get spot description test : " + desc);
-		assertTrue(desc.contentEquals("You are in the center of a dark and dirty room. The floor is covered with dust and dirt, it looks like this place hasn't been cleaned in months. You can see a strange red door to your north."));
+		assertTrue(desc.contains("You are in the center of a dark and dirty room. The floor is covered with dust and dirt, it looks like this place hasn't been cleaned in months. You can see a strange red door to your north."));
 	}
 	
 	@Test

@@ -1,5 +1,5 @@
 /controller/
-/servlet/
-/persist/
 /csv/
 /model/
+/persist/
+/servlet/
