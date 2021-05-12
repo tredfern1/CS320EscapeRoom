@@ -196,5 +196,4 @@ public class GameTest {
 		String result = controller.getActionsLogic("use redkey", "You used the redkey", "redkey ", "", player1);
 		assertTrue(result.contains("unlock1"));
 	}
-	
 }
