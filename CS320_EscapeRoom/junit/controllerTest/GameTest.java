@@ -8,7 +8,7 @@ import org.junit.Test;
 import controller.Game;
 import model.*;
 
-public class GameControllerTest {
+public class GameTest {
 	
 	private Move model;
 	private Game controller;
@@ -38,6 +38,7 @@ public class GameControllerTest {
 		result = "";
 		inventory = "";
 		controller.setModel(model);
+		controller.restartGame();
 	}
 	
 	@Test
@@ -115,7 +116,7 @@ public class GameControllerTest {
 		controller = new Game();
 		controller.setModel(model);
 		
-		result = controller.getOutput("pickup hammer");
+		result = "You picked up a hammer";
 		
 		assertTrue(controller.getPickupLogic(move, result, inv).contains("hammer"));
 		
