@@ -72,11 +72,11 @@
               	<input type="hidden" name = "highScore" value="${highScore}">
              
               <table>
+              <%-- stuff for testing
               	<tr>
 					<td class="label">Actions made:</td>
 					<td>${Actions}</td>
 				</tr>
-				<%-- stuff for testing
                 <tr>
 					<td class="label"></td>
 					<td>${result}</td>

@@ -122,22 +122,9 @@ public class Game {
 			room = 3;
 			if(player1.hasitem("gold") && player1.hasitem("goldnugget") && player1.hasitem("goldbar")) {
 				winStatus = 1;
-<<<<<<< HEAD
 			}
 			else {
 				winStatus = 2;
-=======
-				score = score + 1000;
-				updateHighScore();
-			}
-			else {
-				winStatus = 2;
-				score = score + 500;
-				updateHighScore();
-<<<<<<< Updated upstream
-=======
->>>>>>> main
->>>>>>> Stashed changes
 			}
 			System.out.println("Winstatus: " + winStatus);
 		}
@@ -156,19 +143,6 @@ public class Game {
 		Actions = getActionsLogic(move, result, Inventory, Actions, getPlayer());
 		
 		updateGameLogic(); //Need to call this so it updates the logic of pickups and drops
-<<<<<<< Updated upstream
-		updateScore(); //updates the current score
-		updateHighScore();
-		//TODO: fix high score
-=======
-<<<<<<< HEAD
-		//TODO: make this update only when the game ends
-=======
-		updateScore(); //updates the current score
-		updateHighScore();
-		//TODO: fix high score
->>>>>>> main
->>>>>>> Stashed changes
 		
 		description = getSpotDescription(x, y, MapInventory);
 		if(move.contains("help"))
