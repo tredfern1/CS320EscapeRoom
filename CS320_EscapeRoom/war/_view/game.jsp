@@ -72,6 +72,10 @@
               	<input type="hidden" name = "highScore" value="${highScore}">
              
               <table>
+              	<tr>
+					<td class="label">Actions made:</td>
+					<td>${Actions}</td>
+				</tr>
 				<%-- stuff for testing
                 <tr>
 					<td class="label"></td>
@@ -85,11 +89,6 @@
 				<tr>
 					<td class="label">Inventory:</td>
 					<td>${Inventory}</td>
-				</tr>
-				
-				<tr>
-					<td class="label">Actions made:</td>
-					<td>${Actions}</td>
 				</tr>
 				<tr>
 					<td class="label">Map Inventory:</td>

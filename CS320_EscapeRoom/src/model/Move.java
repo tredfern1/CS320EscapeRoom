@@ -116,11 +116,11 @@ public class Move {
 				{
 					return true;
 				} 
-				if(move[1].contains("crowbar") && player1.hasitem("crowbar") &&  !player1.hasAction("useCrowbar") && playerx == 1 && playery == 0)
+				if(move[1].contains("crowbar") && player1.hasitem("crowbar") &&  !player1.hasAction("useCrowbar") && playerx == 1 && playery == 0  && player1.getRoomNumber() == 1)
 				{
 					return true;
 				}//add more items here
-				if(move[1].contains("redkey") && player1.hasitem("redkey") &&  !player1.hasAction("unlock1") && playerx == 1 && playery == 2)
+				if(move[1].contains("redkey") && player1.hasitem("redkey") &&  !player1.hasAction("unlock1") && playerx == 1 && playery == 2 && player1.getRoomNumber() == 1)
 				{
 					return true;
 				} //add more items here
@@ -183,6 +183,10 @@ public class Move {
 			}
 			else if(move[0].contains("help")) {
 				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 
@@ -286,7 +290,7 @@ public class Move {
 		{
 			output = "Commands: ";
 		}
-		else if (move[0].contains("pet") && move[1].contains("dog")) {
+		else if (move[0].contains("pet")) {
 			output = "You pet the dog.";
 		}
 		else {

@@ -29,7 +29,6 @@ public class Game {
 	Player player1;
 	Map map1;
 	Logic logic1;
-	int numMoves;
 	int winStatus = 0;
 	
 	//return whether the game has ended and if so which ending
@@ -76,8 +75,7 @@ public class Game {
 		newMapInventory = Arrays.asList(temp);
 		//UPDATE THE MAP WITH ITEMS
 		map1 = new Map(room, newMapInventory); //get map
-		score = 25;
-		numMoves = 0;
+		updateScore();
 	}
 	
 	public void getInput(String move1)
@@ -93,35 +91,27 @@ public class Game {
 			x = 1;
 			y = 0;
 			room = 2;
-			numMoves++;
 		}
 		else if (result == "you went north") {
 			y = y + 1;
-			numMoves++;
 		} else if (result == "you went south") {
 			y = y - 1;
-			numMoves++;
 		} else if (result == "you went west") {
 			x = x - 1;
-			numMoves++;
 		} else if (result == "you went east") {
 			x = x + 1;
-			numMoves++;
 		}  else if (result == "you went back to room 1") {  //if the player changes rooms
 			x = 1;
 			y = 2;
 			room = 1;
-			numMoves++;
 		} else if (result == "you enter room 3") { //moving from room 2 to room 3
 			x = 1;
 			y = 0;
 			room = 3;
-			numMoves++;
 		} else if (result == "you returned to room 2"){ //moving from room 3 to room 2
 			x = 1;
 			y = 2;
 			room = 2;
-			numMoves++;
 		}
 		
 		//
@@ -132,6 +122,11 @@ public class Game {
 			room = 3;
 			if(player1.hasitem("gold") && player1.hasitem("goldnugget") && player1.hasitem("goldbar")) {
 				winStatus = 1;
+<<<<<<< HEAD
+			}
+			else {
+				winStatus = 2;
+=======
 				score = score + 1000;
 				updateHighScore();
 			}
@@ -139,9 +134,12 @@ public class Game {
 				winStatus = 2;
 				score = score + 500;
 				updateHighScore();
+<<<<<<< Updated upstream
+=======
+>>>>>>> main
+>>>>>>> Stashed changes
 			}
 			System.out.println("Winstatus: " + winStatus);
-			numMoves++;
 		}
 		
 		
@@ -158,14 +156,24 @@ public class Game {
 		Actions = getActionsLogic(move, result, Inventory, Actions, getPlayer());
 		
 		updateGameLogic(); //Need to call this so it updates the logic of pickups and drops
+<<<<<<< Updated upstream
 		updateScore(); //updates the current score
 		updateHighScore();
 		//TODO: fix high score
+=======
+<<<<<<< HEAD
+		//TODO: make this update only when the game ends
+=======
+		updateScore(); //updates the current score
+		updateHighScore();
+		//TODO: fix high score
+>>>>>>> main
+>>>>>>> Stashed changes
 		
 		description = getSpotDescription(x, y, MapInventory);
 		if(move.contains("help"))
 		{
-			description = "go/walk/move [direction(north, east, etc)]<br>pickup/take/grab [item]<br> drop [item]<br>enter [code] <br> use [item]<br>check inventory<br>hint<br>help<br>restart";
+			description = "go/walk/move [direction(north, east, etc)]<br>pickup/take/grab [item]<br> drop [item]<br>enter [code] <br> use [item]<br>check inventory<br>hint<br>help<br>restart<br>pet<br>play<br>read";
 		}
 		else if(move.contains("check"))
 		{
@@ -406,7 +414,7 @@ public class Game {
 			{
 				return "You can't use that here";
 			}
-			else if (command[0].contains("pet") && command[1].contains("dog")) {
+			else if (command[0].contains("pet")) {
 				return model.getOutput(model.split(move), player1);
 			}
 			else
@@ -421,8 +429,12 @@ public class Game {
 	 * moving: -1
 	 */
 	public void updateScore() {
-		int tempScore = player1.Actions().size() * 100;
-		score = (tempScore - numMoves);
+		System.out.println("length of actions: " + player1.Actions().size());
+		int temp = (player1.Actions().size() - 1) * 100;
+		if(score < temp)
+		{
+			score = temp;
+		}
 	}
 	
 	public int getScore() {
@@ -454,6 +466,7 @@ public class Game {
 		database.loadGame();
 		
 		GetData();
+		score = 0;
 	}
 	
 	public void restartGameAfterWin()
@@ -466,6 +479,7 @@ public class Game {
 		database.loadGameWithDescription();
 		
 		GetData();
+		score = 0;
 	}
 	
 	//updates high score in the database

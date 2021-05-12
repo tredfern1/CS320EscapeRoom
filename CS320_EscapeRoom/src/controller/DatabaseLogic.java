@@ -132,7 +132,7 @@ public class DatabaseLogic {
 	
 	public void loadGameWithDescription()
 	{
-		db.loadInitialData();
+		db.loadInitialData3();
 	}
 	
 	public void loadGame() {

@@ -56,6 +56,10 @@ public class GameController {
 		game.restartGameAfterWin();
 	}
 	
+	public void updateHighScore() {
+		game.updateHighScore();
+	}
+	
 	public int getHighScore() {
 		return game.getHighScore();
 	}

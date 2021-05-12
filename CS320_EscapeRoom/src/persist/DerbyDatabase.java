@@ -948,7 +948,6 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;		
-
 				PreparedStatement stmt2 = null;	
 				PreparedStatement stmt3 = null;
 				PreparedStatement stmt4 = null;
@@ -1212,6 +1211,170 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
+	//LOADS DATA WITH DESCRIPTION
+	public void loadInitialData3(){
+		executeTransaction(new Transaction<Boolean>() {
+			@Override
+			public Boolean execute(Connection conn) throws SQLException {
+				List<String> playerInv;
+				List<String> actions;
+
+				//list for the map inventory
+				List<String> mapInv;
+
+				List<String> logList;
+				
+				List<Hidden> hiddenList;
+				
+				//coordinate for the player coord
+				Coordinate coord;
+
+				//TEST OF INT
+				int room = 0;
+				
+				try {
+					logList = InitialData.getLog();
+					room = InitialData.getRoom();
+					playerInv = InitialData.getplayerInventory();
+					actions = InitialData.getActions();
+					mapInv = InitialData.getMapInventory();
+					coord = InitialData.getCoordinate();
+					hiddenList = InitialData.getHidden();
+
+				} catch (IOException e) {
+					throw new SQLException("Couldn't read initial data", e);
+				}
+				
+				PreparedStatement insertAuthor   = null;
+				PreparedStatement insertRoom     = null;
+				PreparedStatement testRoom = null;
+				PreparedStatement insertPlayerInv = null;
+				PreparedStatement insertActions = null;
+				PreparedStatement insertLog      = null;
+				PreparedStatement mapInventory = null;
+				//PreparedStatement testRoom       = null;
+				PreparedStatement insertCoordinate      = null;
+				PreparedStatement insertHidden = null;
+
+				try {
+					
+					//populating the hidden table
+					insertHidden = conn.prepareStatement(""
+							+ "insert into hidden (item, status) "
+							+ "values(?, ?) ");
+					
+					for(Hidden hidden: hiddenList) {
+						insertHidden.setString(1, hidden.getItem());
+						insertHidden.setInt(2, hidden.getStatus());
+						insertHidden.addBatch();
+					}
+					
+					insertHidden.executeBatch();
+					
+					insertRoom = conn.prepareStatement("insert into room (roomNumber) VALUES (?)");
+					insertRoom.setString(1, String.valueOf(room));
+					insertRoom.execute();
+					System.out.println("Room table populated");	
+
+					//populate the player coord database
+					insertCoordinate = conn.prepareStatement("insert into playerCoordinate"
+							+ "(x,y) values (?,?)");
+					System.out.println("derby test of initial coord" + String.valueOf(coord.getX()));
+					insertCoordinate.setInt(1, coord.getX());
+					insertCoordinate.setInt(2, coord.getY());
+					
+					insertCoordinate.executeUpdate();
+					//Test to print out the room
+					
+					ResultSet resultSet = null;
+					testRoom = conn.prepareStatement("select logs from log");
+					resultSet = testRoom.executeQuery();
+					
+					//Test to see if this actually works
+					while(resultSet.next())
+					{
+						System.out.println("ITS NOT EMPTY");
+						System.out.println("Log: " + resultSet.getString("logs"));
+					}
+					
+					insertLog = conn.prepareStatement("insert into log (logs) values (?)");
+					for (String statement : logList) {
+//			
+						insertLog.setString(1, statement);
+						insertLog.addBatch();
+					}
+					insertLog.executeBatch();
+					
+					System.out.println("Logs table populated");		
+					
+					//populates the player's inventory with the initial data
+					insertPlayerInv = conn.prepareStatement("INSERT INTO playerInventory (item) VALUES (?)");
+					for (String item : playerInv) {
+						insertPlayerInv.setString(1, item);
+						insertPlayerInv.addBatch();
+					}
+					insertPlayerInv.executeBatch();
+					
+					
+					
+					/*
+					resultSet = null;
+					testRoom = conn.prepareStatement("select * from playerInventory");
+					resultSet = testRoom.executeQuery();
+					
+					while(resultSet.next())
+					{
+						System.out.println("ITS NOT EMPTY");
+						System.out.println("ITEM: " + resultSet.getString("item"));
+					}
+					*/
+					
+					insertActions = conn.prepareStatement("INSERT INTO actions (action) VALUES (?)");
+					for (String action : actions) {
+						insertActions.setString(1, action);
+						insertActions.addBatch();
+					}
+					insertActions.executeBatch();
+
+					mapInventory = conn.prepareStatement("insert into mapInventory (spotid, item) VALUES (?,?)");
+					for(String item : mapInv) {
+						mapInventory.setString(1, item.substring(0,3));
+						mapInventory.setString(2, item.substring(3));
+						mapInventory.addBatch();
+					}
+					
+					
+					mapInventory.executeBatch();
+					
+					System.out.println("mapInventory table populated");	
+					
+					//Test to print out the room
+					
+					resultSet = null;
+					testRoom = conn.prepareStatement("select * from mapInventory");
+					resultSet = testRoom.executeQuery();
+					System.out.println(resultSet.getFetchSize());
+					//Test to see if this actually works
+					while(resultSet.next())
+					{
+						System.out.println("MAPINV: " + resultSet.getString("spotid") + resultSet.getString("item"));
+					}
+
+					
+					return true;
+				} finally {
+					DBUtil.closeQuietly(insertAuthor);
+					DBUtil.closeQuietly(insertRoom);
+					DBUtil.closeQuietly(testRoom);
+					DBUtil.closeQuietly(insertPlayerInv);
+					DBUtil.closeQuietly(mapInventory);
+					DBUtil.closeQuietly(insertCoordinate);
+				}
+			}
+		});
+	}
+	
+	// LOADS DATA WITHOUT THE DESCIPTION
 	public void loadInitialData2() {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override

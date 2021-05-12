@@ -56,11 +56,13 @@ public class GameServlet extends HttpServlet {
 		
 		//these conditions check to see if and how the game has been won
 		if(controller.getWinGame() == 2) {
+			controller.updateHighScore();
 			controller.restartGameAfterWin();
 			req.getRequestDispatcher("/_view/winNoGold.jsp").forward(req, resp);
 		}
 		
 		else if(controller.getWinGame() == 1) {
+			controller.updateHighScore();
 			controller.restartGameAfterWin();
 			req.getRequestDispatcher("/_view/winWithGold.jsp").forward(req, resp);
 		}
