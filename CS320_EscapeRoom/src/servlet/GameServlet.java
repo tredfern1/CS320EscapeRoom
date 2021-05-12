@@ -15,7 +15,6 @@ import controller.DatabaseLogic;
 import model.Coordinate;
 import model.Logic;
 import model.Move;
-import model.Numbers;
 import model.Player;
 
 public class GameServlet extends HttpServlet {

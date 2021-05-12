@@ -18,40 +18,25 @@ public class GameControllerTest {
 	
 	@Before
 	public void setUp() {
-
 		model = new Game();
 		model.restartGame();
 		controller = new GameController();
-
-		
-
-		String inv = "";
-		Player p = new Player();
-		p.updatePlayerCoor(1, 1);
-		String actions = "";
-		 String mapInv = "";
-		int room = 1;
-		Game model;
-
-		model = new Game();
-		model.restartGame();
-		GameController controller = new GameController();
-
-		controller.setModel(model);
-		
 	}
 	
 
 
 	@Test
+	public void TestGetScore() {
+		assertTrue(controller.getScore() == 0);
+	}
+	
+	@Test
 	public void TestGetHighScore() {
-		assertTrue(controller.getHighScore() == 25);
-
+		assertTrue(controller.getHighScore() == 100);
 	}
 	
 	@Test
 	public void TestGetWinGameNotTrue() {
 		assertTrue(controller.getWinGame() == 0);
 	}
-
 }

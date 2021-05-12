@@ -40,6 +40,28 @@ public class SpotTest {
 	}
 	
 	@Test
+	public void testAddAndGetItem2() {
+		
+		s.addItem("ice");
+		s.addItem("cream");
+		
+		assertTrue(s.getItem(0).contains("ice"));
+		assertTrue(s.getItem(1).contains("cream"));
+		
+		assertFalse(s.getItem(0).contains("cat"));
+	}
+	@Test
+	public void testAddAndGetItem3() {
+		
+		s.addItem("cat");
+		s.addItem("keycard");
+		
+		assertTrue(s.getItem(0).contains("cat"));
+		assertTrue(s.getItem(1).contains("keycard"));
+	}
+	
+	
+	@Test
 	public void testHasItem() {
 		
 		s.addItem("cactus");

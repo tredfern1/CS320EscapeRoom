@@ -185,7 +185,7 @@ public class GameTest {
 	@Test
 	public void testGetScore() {
 		int score = controller.getScore();
-		assertTrue(score == 25);
+		assertTrue(score == 0);
 	}
 	
 	@Test
