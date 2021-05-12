@@ -46,7 +46,7 @@ public class MoveTest {
 	}
 	
 	@Test
-	public void testAlternateMovementSynonyms() {
+	public void testMovementSynonyms1() {
 		Spot tempSpot = new Spot();
 		Player tempPlayer = new Player();
 		
@@ -55,6 +55,26 @@ public class MoveTest {
 		assertTrue(m.validate(m.split("go east"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
 		assertTrue(m.validate(m.split("move east"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
 		assertTrue(m.validate(m.split("walk east"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
+	}
+	
+	@Test
+	public void testMovementSynonyms2() {
+		Spot tempSpot = new Spot();
+		Player tempPlayer = new Player();
+		
+		//tests synonyms for the same command
+		controller.getPlayer().updatePlayerCoor(1, 1);
+		assertTrue(m.validate(m.split("move east"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
+	}
+	
+	@Test
+	public void testMovementSynonyms3() {
+		Spot tempSpot = new Spot();
+		Player tempPlayer = new Player();
+		
+		//tests synonyms for the same command
+		controller.getPlayer().updatePlayerCoor(1, 1);
+		assertTrue(m.validate(m.split("go east"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
 	}
 	
 	@Test
@@ -68,7 +88,7 @@ public class MoveTest {
 	}
 	
 	@Test
-	public void testTakeAndSynonyms() {
+	public void testTake() {
 		
 		Spot tempSpot = new Spot();
 		Player tempPlayer = new Player();
@@ -81,6 +101,36 @@ public class MoveTest {
 		//player should not be able to take an item they already have
 		tempPlayer.addItemToInventory("hammer");
 		assertFalse(m.validate(m.split("take hammer"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
+	}
+	
+	@Test
+	public void testTakeSynonyms1() {
+		
+		Spot tempSpot = new Spot();
+		Player tempPlayer = new Player();
+		
+		//the player should be able to take an item from the spot they are on
+		tempSpot.addItem("hammer");
+		assertTrue(m.validate(m.split("grab hammer"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
+		
+		//player should not be able to take an item they already have
+		tempPlayer.addItemToInventory("hammer");
+		assertFalse(m.validate(m.split("grab hammer"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
+	}
+	
+	@Test
+	public void testTakeSynonyms2() {
+		
+		Spot tempSpot = new Spot();
+		Player tempPlayer = new Player();
+		
+		//the player should be able to take an item from the spot they are on
+		tempSpot.addItem("hammer");
+		assertTrue(m.validate(m.split("pickup hammer"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
+		
+		//player should not be able to take an item they already have
+		tempPlayer.addItemToInventory("hammer");
+		assertFalse(m.validate(m.split("pickup hammer"), controller.getPlayer().getPlayerx(), controller.getPlayer().getPlayery(), tempSpot, tempPlayer));
 	}
 
 }
