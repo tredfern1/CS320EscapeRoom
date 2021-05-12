@@ -68,7 +68,7 @@
          </div>
         
 
-	
+		<%-- SKULL CITED FROM --> http://www.asciiworld.com/-Death-Co-.html--%>
 		<form action="${pageContext.servletContext.contextPath}/login" method="post">
 			<p class = "text">You've managed to escape the rooms! However, it seems that if you had looked a little harder you may have found more...</p>
 			<div class="art">
