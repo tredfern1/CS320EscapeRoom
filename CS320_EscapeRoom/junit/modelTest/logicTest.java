@@ -23,6 +23,7 @@ public class logicTest {
 	@Before
 	public void setUp() {
 		l = new Logic();
+		p = new Player();
 		
 		result = "You picked up a blueKey";
 		playerInv = "hammer shoes rat redkey";
@@ -54,10 +55,10 @@ public class logicTest {
 	@Test
 	public void testLogicActions() {
 		//test that a move that doesn't update actions doesn't update actions
-		assertTrue(l.LogicActions(move, result, playerInv, actions) == actions);
+		assertTrue(l.LogicActions(move, result, playerInv, actions, p) == actions);
 		
 		//test that action is added to actions
-		assertTrue(l.LogicActions("use hammer", "You used the hammer", playerInv, actions).contentEquals(actions + "boxBreak "));
+		assertTrue(l.LogicActions("use hammer", "You used the hammer", playerInv, actions, p).contentEquals(actions + "boxBreak "));
 		
 	}
 	

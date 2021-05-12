@@ -21,7 +21,7 @@ public class MoveTest {
 		String Actions = "";
 		String mapInv = "";
 		int room = 1;
-		controller = new Game(p.getPlayerx(), p.getPlayery(), inv, Actions, mapInv, room);
+		controller = new Game();
 		
 		//m.validate(m.split("go east"));
 		
