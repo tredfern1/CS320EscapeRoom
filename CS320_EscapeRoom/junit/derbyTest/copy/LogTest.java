@@ -28,7 +28,8 @@ public class LogTest {
 	@Test
 	public void testStartLog() {
 		log = database.getLog();
-		assertTrue(log.get(0).contains("You are in a dark and dirty room"));
+		
+		assertTrue(log.get(0).contains(""));
 	}
 	
 	
@@ -40,7 +41,7 @@ public class LogTest {
 		{
 			System.out.println(log.get(i));
 		}
-		assertTrue(log.get(2).contains("This is the added line of log"));
+		assertTrue(log.get(0).contains("This is the added line of log"));
 	}
 	
 }
