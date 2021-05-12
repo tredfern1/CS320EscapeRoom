@@ -175,8 +175,24 @@ public class GameTest {
 	}
 	
 	@Test
+	public void testGetSpotDescription() {
+		String desc = controller.getSpotDescription(1, 1, "");
+		assertTrue(desc.contentEquals("You are in the center of a dark and dirty room. The floor is covered with dust and dirt, it looks like this place hasn't been cleaned in months. You can see a strange red door to your north."));
+	}
+	
+	@Test
+	public void testGetScore() {
+		int score = controller.getScore();
+		assertTrue(score == 25);
+	}
+	
+	@Test
 	public void testGetActionsLogic() {
-		
+		Player player1 = new Player();
+		player1.updatePlayerCoor(1, 2);
+		player1.setRoomNumber(1);
+		String result = controller.getActionsLogic("use redkey", "You used the redkey", "redkey ", "", player1);
+		assertTrue(result.contains("unlock1"));
 	}
 	
 }
