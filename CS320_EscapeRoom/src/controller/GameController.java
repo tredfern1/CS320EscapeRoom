@@ -33,7 +33,7 @@ public class GameController {
 	
 	public void getInput(String move1)
 	{
-		game.getInput(move1);;
+		game.getInput(move1);
 	}
 	
 	public java.util.List<String> getLog()
